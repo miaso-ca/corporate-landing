@@ -6,7 +6,7 @@ const STATS = [
   { type: 'count', countTo: 5, decimals: 1, suffix: ' ★', label: 'Google rating' },
   { type: 'count', countTo: 4, decimals: 0, suffix: '', label: 'Flexible catering formats' },
   { type: 'text', value: 'Toronto & GTA', label: 'Delivery and on-site service' },
-  { type: 'text', value: 'Quote within 1 business day', label: '' },
+  { type: 'text', value: 'Quote within', label: '1 business day' },
 ]
 
 function prefersReducedMotion() {
