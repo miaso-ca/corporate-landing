@@ -2,7 +2,7 @@
    shared 96px token; this block just had an unusually large amount of
    empty space above/below relative to how little content fills it. */
 #why-miaso.section {
-  padding-top: 72px;
+  padding-top: 56px;
   padding-bottom: 72px;
 }
 
