@@ -30,18 +30,20 @@ export default function HowItWorks() {
       ref={ref}
     >
       <h2>From Your Brief to a Beautifully Served Event</h2>
-      <div className="how-it-works__steps">
-        {STEPS.map((step, i) => (
-          <div className="how-it-works__step" key={step.title}>
-            <span className="how-it-works__number">{String(i + 1).padStart(2, '0')}</span>
-            <div className="how-it-works__copy">
-              <h3>{step.title}</h3>
-              <p>{step.desc}</p>
+      <div className="content-card">
+        <div className="how-it-works__steps">
+          {STEPS.map((step, i) => (
+            <div className="how-it-works__step" key={step.title}>
+              <span className="how-it-works__number">{String(i + 1).padStart(2, '0')}</span>
+              <div className="how-it-works__copy">
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <a className="btn how-it-works__cta" href="#quote">Request a Corporate Quote</a>
       </div>
-      <a className="btn how-it-works__cta" href="#quote">Request a Corporate Quote</a>
       <QuickCaptureForm source="block-5" />
     </section>
   )

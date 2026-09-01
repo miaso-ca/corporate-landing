@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  margin: 40px 0 44px;
 }
 
 .how-it-works__step {
@@ -34,7 +33,7 @@
 }
 
 .how-it-works__cta {
-  margin-bottom: 32px;
+  margin-top: 36px;
 }
 
 @media (min-width: 900px) {

@@ -100,9 +100,19 @@ img { max-width: 100%; display: block; }
 }
 
 .section {
-  padding: 64px 24px;
+  padding: 96px 24px;
   max-width: 1120px;
   margin: 0 auto;
+}
+
+/* Reusable containment card — white surface for text-only blocks that would
+   otherwise float unbounded on the cream page background (breaks the
+   "one continuous wall of text" read across consecutive sections). */
+.content-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 34px rgba(43, 31, 20, 0.1);
+  padding: 40px clamp(20px, 5vw, 48px);
 }
 
 .section--dark {

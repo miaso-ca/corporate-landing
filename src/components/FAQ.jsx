@@ -36,26 +36,28 @@ export default function FAQ() {
   return (
     <section className={`section reveal ${visible ? 'reveal--visible' : ''}`} id="faq" ref={ref}>
       <h2>Corporate Catering Questions</h2>
-      <div className="faq__list">
-        {FAQS.map((item, i) => {
-          const isOpen = openIndex === i
-          return (
-            <div className="faq__item" key={item.q}>
-              <button
-                className="faq__question"
-                type="button"
-                aria-expanded={isOpen}
-                onClick={() => setOpenIndex(isOpen ? null : i)}
-              >
-                <span>{item.q}</span>
-                <span className="faq__icon" aria-hidden="true">{isOpen ? '−' : '+'}</span>
-              </button>
-              <div className={`faq__answer-wrap ${isOpen ? 'faq__answer-wrap--open' : ''}`}>
-                <p className="faq__answer" aria-hidden={!isOpen}>{item.a}</p>
+      <div className="content-card">
+        <div className="faq__list">
+          {FAQS.map((item, i) => {
+            const isOpen = openIndex === i
+            return (
+              <div className="faq__item" key={item.q}>
+                <button
+                  className="faq__question"
+                  type="button"
+                  aria-expanded={isOpen}
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                >
+                  <span>{item.q}</span>
+                  <span className="faq__icon" aria-hidden="true">{isOpen ? '−' : '+'}</span>
+                </button>
+                <div className={`faq__answer-wrap ${isOpen ? 'faq__answer-wrap--open' : ''}`}>
+                  <p className="faq__answer" aria-hidden={!isOpen}>{item.a}</p>
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </section>
   )

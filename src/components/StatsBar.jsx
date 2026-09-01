@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import useReveal from '../hooks/useReveal.js'
+import './StatsBar.css'
 
 const STATS = [
   { type: 'count', countTo: 5, decimals: 1, suffix: ' ★', label: 'Google rating' },
@@ -68,10 +69,10 @@ function Stat({ stat, delay }) {
 export default function StatsBar() {
   return (
     <section className="section section--dark">
-      <h2 style={{ color: '#fff', marginBottom: 32 }}>Corporate Events, Thoughtfully Handled</h2>
-      <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+      <h2 className="stats-bar__heading">Corporate Events, Thoughtfully Handled</h2>
+      <div className="stats-bar__grid">
         {STATS.map((s, i) => (
-          <Stat key={s.label} stat={s} delay={i * 100} />
+          <Stat key={s.value ?? s.countTo} stat={s} delay={i * 100} />
         ))}
       </div>
     </section>
