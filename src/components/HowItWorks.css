@@ -1,3 +1,10 @@
+/* The panel bleeds full-width horizontally, but its parent .section still
+   had its own 96px bottom padding — that left a cream strip between the
+   white panel's bottom edge and the dark section right after it. */
+#how-it-works.section {
+  padding-bottom: 0;
+}
+
 /* Full-bleed white band — same negative-margin technique as the bar-service
    banner and Hero's inset formula, so this panel's content lines up with
    the rest of the page while the white fill itself runs edge to edge. */

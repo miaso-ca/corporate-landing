@@ -141,8 +141,16 @@
     border-top-color: #f0e2d0;
   }
 
+  /* Padding lives on -content, not -inner: a 0fr row's "automatic minimum
+     size" only zeroes out CONTENT-based sizing on an overflow:hidden item —
+     the item's own padding still counts toward its box size regardless, so
+     with padding here the panel never fully collapsed to 0 when closed
+     (it sat at a fixed ~28px, visibly peeking over the hero photo). */
   .nav__mobile-panel-inner {
     overflow: hidden;
+  }
+
+  .nav__mobile-panel-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
