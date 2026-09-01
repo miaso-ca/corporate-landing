@@ -31,7 +31,7 @@ export default function App() {
       <Footer />
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
-      <StickyCta />
+      <StickyCta onRequestQuote={() => setQuoteOpen(true)} />
     </>
   )
 }

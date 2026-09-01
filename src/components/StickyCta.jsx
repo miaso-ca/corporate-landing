@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './StickyCta.css'
 
-export default function StickyCta() {
+export default function StickyCta({ onRequestQuote }) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function StickyCta() {
 
   return (
     <div className={`sticky-cta ${visible ? 'sticky-cta--visible' : ''}`} aria-hidden={!visible}>
-      <a className="btn sticky-cta__btn" href="#quote">
+      <button className="btn sticky-cta__btn" type="button" onClick={onRequestQuote}>
         Request a Corporate Quote
-      </a>
+      </button>
     </div>
   )
 }
