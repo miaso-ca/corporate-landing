@@ -1,0 +1,50 @@
+.why-miaso {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.why-miaso__text p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4a3c2c;
+  margin: 16px 0 0;
+}
+
+.why-miaso__checklist {
+  list-style: none;
+  margin: 0;
+  padding: 28px;
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid #f0e2d0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.why-miaso__checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.why-miaso__checklist .pill {
+  flex-shrink: 0;
+  padding: 4px 9px;
+  font-size: 11px;
+}
+
+.why-miaso__checklist li span:last-child {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .why-miaso {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
