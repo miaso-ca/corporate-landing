@@ -1,18 +1,21 @@
 .quick-form {
   display: grid;
-  /* Equal-width columns — flex-wrap previously let Event Date grow to fill
-     whatever room was left on its own wrapped row, so it ballooned wider
-     than Name/Email/Phone above it instead of matching them. */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px 16px;
+  /* 4 equal field columns + a 5th "auto" column for the button, all in the
+     SAME row — putting the button on its own row below left a big empty
+     strip under Name/Email/Phone with only the button floating on the
+     right. align-items:end lines every input up on one baseline. */
+  grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
+  align-items: end;
+  gap: 16px;
   margin-top: 20px;
-  padding: 24px;
+  padding: 24px 24px 34px;
   background: var(--card);
   border-radius: var(--radius);
   border: 1px solid #f0e2d0;
 }
 
 .quick-form__field {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -43,6 +46,13 @@
 }
 
 .quick-form__hint {
+  /* Out of flow so it doesn't make Event Date's column taller than its
+     siblings — that mismatch is what was pushing inputs out of alignment. */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  white-space: nowrap;
   font-size: 11px;
   color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
 }
@@ -50,11 +60,6 @@
 .quick-form__error {
   font-size: 11px;
   color: var(--cta);
-}
-
-.quick-form .btn {
-  grid-column: 1 / -1;
-  justify-self: end;
 }
 
 .quick-form--done {
@@ -66,6 +71,15 @@
 @media (max-width: 720px) {
   .quick-form {
     grid-template-columns: 1fr 1fr;
+  }
+  .quick-form__hint {
+    position: static;
+    margin-top: 0;
+    white-space: normal;
+  }
+  .quick-form .btn {
+    grid-column: 1 / -1;
+    justify-self: end;
   }
 }
 
