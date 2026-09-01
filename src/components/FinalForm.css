@@ -40,7 +40,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #8a7a68;
+  color: #6b5c48; /* WCAG AA on white card background */
 }
 
 .final-form__field input,

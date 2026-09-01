@@ -5,7 +5,7 @@ const STATS = [
   { type: 'count', countTo: 5, decimals: 1, suffix: ' ★', label: 'Google rating' },
   { type: 'count', countTo: 4, decimals: 0, suffix: '', label: 'Flexible catering formats' },
   { type: 'text', value: 'Toronto & GTA', label: 'Delivery and on-site service' },
-  { type: 'text', value: '1 day', label: 'Quote turnaround' },
+  { type: 'text', value: 'Quote within 1 business day', label: '' },
 ]
 
 function prefersReducedMotion() {
@@ -60,7 +60,7 @@ function Stat({ stat, delay }) {
       style={{ color: '#fff' }}
     >
       <b>{isCount ? `${count}${stat.suffix}` : stat.value}</b>
-      <span>{stat.label}</span>
+      {stat.label && <span>{stat.label}</span>}
     </div>
   )
 }

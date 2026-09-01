@@ -64,7 +64,7 @@
 .footer__copyright {
   margin: 0;
   font-size: 11px;
-  color: #8a7a68;
+  color: #c9b8a3; /* WCAG AA on dark footer background */
 }
 
 @media (max-width: 560px) {

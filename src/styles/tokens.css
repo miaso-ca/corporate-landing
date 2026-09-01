@@ -85,6 +85,7 @@ img { max-width: 100%; display: block; }
 }
 .stat span {
   font-size: 11px;
+  color: #c9b8a3; /* WCAG AA on dark --ink backgrounds (StatsBar) */
   color: #8a7a68;
 }
 
