@@ -3,13 +3,23 @@ import { submitLead } from '../lib/submitLead.js'
 import './QuickCaptureForm.css'
 
 const FIELDS = [
-  { name: 'name', label: 'Full Name', type: 'text' },
-  { name: 'contact', label: 'Email or Phone', type: 'text' },
-  { name: 'eventDate', label: 'Event Date', type: 'date' },
+  { name: 'name', label: 'Full Name', type: 'text', required: true },
+  { name: 'email', label: 'Email', type: 'email', required: true },
+  { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
+  {
+    name: 'eventDate',
+    label: 'Event Date',
+    type: 'date',
+    required: false,
+    hint: "Optional — leave blank if you're not sure yet",
+  },
 ]
 
+// ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function QuickCaptureForm({ source }) {
-  const [values, setValues] = useState({ name: '', contact: '', eventDate: '' })
+  const [values, setValues] = useState({ name: '', email: '', phone: '', eventDate: '' })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
@@ -20,8 +30,12 @@ export default function QuickCaptureForm({ source }) {
 
   function validate() {
     const next = {}
-    FIELDS.forEach(({ name, label }) => {
-      if (!values[name].trim()) next[name] = `${label} is required`
+    FIELDS.forEach(({ name, label, required }) => {
+      if (required && !values[name].trim()) {
+        next[name] = `${label} is required`
+      } else if (name === 'email' && values.email.trim() && !EMAIL_RE.test(values.email.trim())) {
+        next[name] = 'Enter a valid email address'
+      }
     })
     setErrors(next)
     return Object.keys(next).length === 0
@@ -51,7 +65,7 @@ export default function QuickCaptureForm({ source }) {
 
   return (
     <form className="quick-form" onSubmit={handleSubmit} noValidate>
-      {FIELDS.map(({ name, label, type }) => (
+      {FIELDS.map(({ name, label, type, hint }) => (
         <div className="quick-form__field" key={name}>
           <label htmlFor={`${source}-${name}`}>{label}</label>
           <input
@@ -60,6 +74,7 @@ export default function QuickCaptureForm({ source }) {
             value={values[name]}
             onChange={(e) => handleChange(name, e.target.value)}
           />
+          {hint && !errors[name] && <span className="quick-form__hint">{hint}</span>}
           {errors[name] && <span className="quick-form__error">{errors[name]}</span>}
         </div>
       ))}

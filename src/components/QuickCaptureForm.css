@@ -41,6 +41,11 @@
   outline-offset: 1px;
 }
 
+.quick-form__hint {
+  font-size: 11px;
+  color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
+}
+
 .quick-form__error {
   font-size: 11px;
   color: var(--cta);
