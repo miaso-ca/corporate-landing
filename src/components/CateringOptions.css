@@ -20,6 +20,11 @@
   border: 1px solid #f0e2d0;
   transition: box-shadow 0.2s var(--ease-out), transform 0.2s var(--ease-out);
   will-change: transform;
+  /* Grid stretches each row's cards to equal height by default; flex-column
+     + margin-top:auto on the pill below pins it to the bottom edge instead
+     of wherever the (variable-length) description happens to end. */
+  display: flex;
+  flex-direction: column;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -62,6 +67,8 @@
 
 .catering-card__best-for {
   margin: 12px 20px 20px;
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 /* One deliberate brand-red background moment on the page — used once, sparingly */
