@@ -11,6 +11,7 @@ const OPTIONS = [
     title: 'Corporate Lunches & Drop-Off Catering',
     description:
       'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
+    bestFor: 'meetings, training days, office celebrations',
     photo: lunchesPhoto,
     alt: 'Individually styled catering cups ready for drop-off',
   },
@@ -18,6 +19,7 @@ const OPTIONS = [
     title: 'Grazing Tables',
     description:
       'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
+    bestFor: 'networking events, client receptions',
     photo: grazingPhoto,
     alt: 'Grazing table spread with cheeses, breads and canapés',
   },
@@ -25,6 +27,7 @@ const OPTIONS = [
     title: 'Mobile Cart Experience',
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
+    bestFor: 'conferences, expos, brand activations',
     photo: cartPhoto,
     alt: 'MIASO catering staff member serving a tray of canapés at an outdoor event',
   },
@@ -32,6 +35,7 @@ const OPTIONS = [
     title: 'Full-Service Corporate Catering',
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
+    bestFor: 'galas, product launches, award nights',
     photo: fullservicePhoto,
     alt: 'Full-service buffet spread set for a corporate event',
   },
@@ -46,6 +50,7 @@ function CateringCard({ option, delay }) {
       </div>
       <h3 className="catering-card__title">{option.title}</h3>
       <p className="catering-card__desc">{option.description}</p>
+      <span className="pill pill--on-light catering-card__best-for">Best for: {option.bestFor}</span>
     </div>
   )
 }
