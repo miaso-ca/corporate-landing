@@ -76,11 +76,17 @@ export default function CateringOptions() {
       </div>
 
       <div className="catering-options__callout">
-        <span className="pill pill--on-photo">Add Full Bar Service</span>
-        <p>
-          MIASO partners with North Spirit Distillery to add bartenders, mixers and glassware to
-          your event — request it in the same quote.
-        </p>
+        <div className="catering-options__callout-copy">
+          <span className="pill pill--on-photo">Need Bar Service Too?</span>
+          <p>
+            Consider it handled. MIASO partners with North Spirit Distillery for full bar
+            service — bartenders, mixers and glassware — so you can book catering and bar in one
+            coordinated call.
+          </p>
+        </div>
+        <a className="btn catering-options__callout-btn" href="#quote">
+          Ask About Bar Service
+        </a>
       </div>
 
       <div className="catering-options__quote">
