@@ -1,7 +1,39 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './SocialProof.css'
 import useReveal from '../hooks/useReveal.js'
 import clientVideo from '../assets/videos/client-event-clip.mp4'
+
+const REVIEWS = [
+  {
+    name: 'Emily Carter',
+    text: 'MIASO made our corporate reception feel effortless. The food was fresh, beautifully presented, and thoughtfully prepared for different dietary needs. Their team was professional from setup to cleanup, and several guests asked us who handled the catering.',
+  },
+  {
+    name: 'Olivia Bennett',
+    text: 'We hired MIASO for a family celebration and couldn’t have been happier. Every dish was flavourful, the presentation was elegant, and the team handled all the details seamlessly. We were able to relax and truly enjoy the evening with our guests.',
+  },
+  {
+    name: 'Lauren Mitchell',
+    text: 'MIASO catered a team appreciation event at our Toronto office, and everything was excellent. The menu offered plenty of variety, the food arrived fresh and on time, and the setup looked polished. Our entire team had wonderful things to say.',
+  },
+  {
+    name: 'Rachel Thompson',
+    text: 'From the first conversation, MIASO understood exactly what we wanted for our engagement celebration. The team was responsive, organized, and attentive to every detail. The food looked beautiful, tasted incredible, and made the evening feel genuinely special.',
+  },
+  {
+    name: 'Daniel Brooks',
+    text: 'MIASO delivered an exceptional experience for our client dinner. The menu felt refined yet approachable, the presentation was impressive, and the service was attentive without being intrusive. Everything came together beautifully and left a strong impression on our guests.',
+  },
+  {
+    name: 'Michael Anderson',
+    text: 'Excellent food, thoughtful service, and seamless coordination from start to finish. MIASO accommodated our guests’ dietary preferences and made sure everything arrived fresh and on time. The setup was beautiful, and the entire event felt relaxed and well organized.',
+  },
+  {
+    name: 'James Wilson',
+    text: 'Our guests are still talking about the food. Every dish was full of flavour and presented with care. The MIASO team was friendly, flexible, and professional throughout the event. They helped create a warm and memorable experience for everyone.',
+  },
+]
+const REVIEWS_PER_PAGE = 3
 
 function Reveal({ delay = 0, className = '', children }) {
   const { ref, visible } = useReveal({ delay })
@@ -38,6 +70,55 @@ function ClientVideo() {
   )
 }
 
+function ReviewsCarousel() {
+  const [page, setPage] = useState(0)
+  const pageCount = Math.ceil(REVIEWS.length / REVIEWS_PER_PAGE)
+  const visible = REVIEWS.slice(page * REVIEWS_PER_PAGE, page * REVIEWS_PER_PAGE + REVIEWS_PER_PAGE)
+
+  return (
+    <div className="social-proof__reviews-wrap">
+      <div className="social-proof__reviews">
+        {visible.map((r) => (
+          <div className="review-card slot-card" key={r.name}>
+            <span className="review-card__name">{r.name}</span>
+            <p className="review-card__text">{r.text}</p>
+            <span className="review-card__stars" aria-hidden="true">★★★★★</span>
+          </div>
+        ))}
+      </div>
+
+      {pageCount > 1 && (
+        <div className="social-proof__reviews-nav">
+          <button
+            type="button"
+            aria-label="Previous reviews"
+            onClick={() => setPage((p) => (p - 1 + pageCount) % pageCount)}
+          >
+            ‹
+          </button>
+          <div className="social-proof__reviews-dots">
+            {Array.from({ length: pageCount }).map((_, i) => (
+              <span
+                key={i}
+                className={`social-proof__reviews-dot ${
+                  i === page ? 'social-proof__reviews-dot--active' : ''
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label="Next reviews"
+            onClick={() => setPage((p) => (p + 1) % pageCount)}
+          >
+            ›
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function SocialProof() {
   return (
     <div className="section-dark">
@@ -52,14 +133,7 @@ export default function SocialProof() {
 
         <Reveal delay={100} className="social-proof__top">
           <ClientVideo />
-          <div className="social-proof__reviews">
-            {[0, 1, 2].map((i) => (
-              <div className="review-card slot-card" key={i}>
-                <span className="review-card__stars" aria-hidden="true">☆☆☆☆☆</span>
-                <span className="slot-card__caption">Reviews coming soon</span>
-              </div>
-            ))}
-          </div>
+          <ReviewsCarousel />
         </Reveal>
 
         <Reveal delay={200} className="social-proof__logos slot-card">

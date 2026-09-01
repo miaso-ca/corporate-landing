@@ -84,10 +84,21 @@
 }
 
 /* Google-review-style cards — now the video's row-mate instead of a
-   separate full-width row below it. */
-.social-proof__reviews {
+   separate full-width row below it. Wrap holds the card grid plus a
+   prev/next + dots nav row for flipping through more than fit on screen
+   at once (currently: sample copy, see SAMPLE_REVIEWS comment in the .jsx
+   — not live-deployed until real reviews replace it). */
+.social-proof__reviews-wrap {
   flex: 1 1 auto;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.social-proof__reviews {
+  flex: 1 1 auto;
+  min-height: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -96,18 +107,79 @@
 .review-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
   padding: 20px;
-  text-align: center;
+  text-align: left;
+}
+
+.review-card__name {
+  /* Baskervville is only loaded at its regular weight (ital@0;1, no wght
+     axis) — bolding it would fall back to synthetic/faux-bold, which looks
+     uneven on a serif face. Stay in the sans font, which has a real 700. */
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.review-card__text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a3c2c;
+  margin: 10px 0 0;
 }
 
 .review-card__stars {
   display: block;
-  font-size: 18px;
-  letter-spacing: 4px;
-  color: #d8c9b8; /* muted outline — placeholder, not an asserted 5-star rating */
-  margin-bottom: 12px;
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--accent);
+}
+
+.social-proof__reviews-nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social-proof__reviews-nav button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 249, 243, 0.3);
+  background: none;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .social-proof__reviews-nav button:hover {
+    background: rgba(255, 249, 243, 0.12);
+  }
+}
+
+.social-proof__reviews-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.social-proof__reviews-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 249, 243, 0.3);
+}
+
+.social-proof__reviews-dot--active {
+  background: #fff;
 }
 
 /* Client logos strip */
