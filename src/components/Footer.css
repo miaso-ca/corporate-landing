@@ -57,6 +57,31 @@
   opacity: 0.85;
 }
 
+.footer__social {
+  display: flex;
+  gap: 16px;
+}
+
+.footer__social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  opacity: 0.85;
+  transition: opacity 0.15s var(--ease-out), border-color 0.15s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer__social a:hover {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
 .footer__tagline {
   margin: 8px 0 0;
   font-size: 12px;
