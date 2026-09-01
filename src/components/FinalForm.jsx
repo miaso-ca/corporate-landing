@@ -11,6 +11,15 @@ const CATERING_FORMATS = [
   'Not sure yet',
 ]
 
+const BUDGET_RANGES = [
+  'Under $500',
+  '$500 – $1,500',
+  '$1,500 – $5,000',
+  '$5,000 – $15,000',
+  '$15,000+',
+  'Not sure yet',
+]
+
 const FIELDS = [
   { name: 'name', label: 'Full Name', type: 'text', required: true },
   { name: 'company', label: 'Company', type: 'text', required: true },
@@ -20,7 +29,7 @@ const FIELDS = [
   { name: 'eventDate', label: 'Event Date', type: 'date', required: true },
   { name: 'guests', label: 'Number of Guests', type: 'number', required: true },
   { name: 'venue', label: 'Venue or Location', type: 'text', required: true },
-  { name: 'budget', label: 'Approximate Budget', type: 'text', required: true },
+  { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
   { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
   { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false },
   { name: 'details', label: 'Additional Details', type: 'textarea', required: false },
@@ -101,7 +110,7 @@ export default function FinalForm() {
                       onChange={(e) => handleChange(name, e.target.value)}
                     >
                       <option value="" disabled>
-                        Select a format
+                        Select an option
                       </option>
                       {options.map((opt) => (
                         <option key={opt} value={opt}>
