@@ -1,6 +1,6 @@
 .hero {
   padding: 0;
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -43,7 +43,12 @@
 .hero__gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(43, 31, 20, 0.05) 0%, rgba(43, 31, 20, 0.55) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(43, 31, 20, 0.12) 0%,
+    rgba(43, 31, 20, 0.4) 35%,
+    rgba(43, 31, 20, 0.72) 100%
+  );
 }
 
 .hero__photo-content {
@@ -51,11 +56,23 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
   padding: clamp(24px, 5vw, 64px);
   padding-top: clamp(92px, 12vw, 128px);
   height: 100%;
-  justify-content: flex-start;
+  /* Text group and card are two flex children — space-between guarantees
+     the card can never overlap the headline, regardless of how many lines
+     the headline wraps to at any viewport height. `gap` enforces a minimum
+     breathing room even on short viewports where space-between alone would
+     let them touch with 0px between. */
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hero__text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .hero__title {
@@ -66,13 +83,12 @@
 }
 
 .hero__card {
-  position: relative;
-  margin: -72px 6% 0;
   background: var(--card);
   border-radius: var(--radius-sm);
   box-shadow: 0 14px 34px rgba(43, 31, 20, 0.16);
   padding: 28px 32px 32px;
   max-width: 640px;
+  width: 100%;
 }
 
 .hero__desc {
@@ -124,5 +140,5 @@
 
 @media (max-width: 560px) {
   .hero__photo { min-height: 78vh; max-height: none; }
-  .hero__card { margin: -52px 5% 0; padding: 20px 20px 22px; max-width: none; }
+  .hero__card { padding: 20px 20px 22px; max-width: none; }
 }

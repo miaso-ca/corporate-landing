@@ -21,44 +21,46 @@ export default function Hero({ onWatchVideo }) {
           />
           <div className="hero__gradient" />
           <div className="hero__photo-content">
-            <span
-              className={`pill pill--on-photo reveal reveal--fast ${
-                eyebrow.visible ? 'reveal--visible' : ''
-              }`}
-              ref={eyebrow.ref}
-            >
-              Corporate Catering · Toronto &amp; GTA
-            </span>
-            <h1
-              className={`hero__title reveal reveal--rise ${
-                headline.visible ? 'reveal--visible' : ''
-              }`}
-              ref={headline.ref}
-            >
-              Corporate Catering in Toronto That Makes Hosting Effortless
-            </h1>
-          </div>
-        </div>
+            <div className="hero__text-group">
+              <span
+                className={`pill pill--on-photo reveal reveal--fast ${
+                  eyebrow.visible ? 'reveal--visible' : ''
+                }`}
+                ref={eyebrow.ref}
+              >
+                Catering in Toronto &amp; GTA
+              </span>
+              <h1
+                className={`hero__title reveal reveal--rise ${
+                  headline.visible ? 'reveal--visible' : ''
+                }`}
+                ref={headline.ref}
+              >
+                Corporate Catering That Makes Hosting Effortless
+              </h1>
+            </div>
 
-        <div
-          className={`hero__card reveal ${card.visible ? 'reveal--visible' : ''}`}
-          ref={card.ref}
-        >
-          <p className="hero__desc">
-            From polished office lunches and client receptions to grazing tables, a staffed
-            Mobile Cart and full-service events, MIASO delivers fresh food, thoughtful
-            presentation and seamless support across Toronto and the GTA.
-          </p>
-          <div className="hero__actions">
-            <a className="btn" href="#quote">Request a Corporate Quote</a>
-            <button className="hero__watch" onClick={onWatchVideo} type="button">
-              <span className="hero__play">▶</span>
-              Watch 45 sec
-            </button>
-          </div>
-          <div className="hero__trust">
-            Made fresh to order · Flexible dietary options · Delivery, setup and staffed
-            service available
+            <div
+              className={`hero__card reveal ${card.visible ? 'reveal--visible' : ''}`}
+              ref={card.ref}
+            >
+              <p className="hero__desc">
+                From polished office lunches and client receptions to grazing tables, a staffed
+                Mobile Cart and full-service events, MIASO delivers fresh food, thoughtful
+                presentation and seamless support across Toronto and the GTA.
+              </p>
+              <div className="hero__actions">
+                <a className="btn" href="#quote">Request a Corporate Quote</a>
+                <button className="hero__watch" onClick={onWatchVideo} type="button">
+                  <span className="hero__play">▶</span>
+                  Watch 45 sec
+                </button>
+              </div>
+              <div className="hero__trust">
+                Made fresh to order · Flexible dietary options · Delivery, setup and staffed
+                service available
+              </div>
+            </div>
           </div>
         </div>
       </div>
