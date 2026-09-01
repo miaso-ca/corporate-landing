@@ -35,8 +35,8 @@ export default function FAQ() {
 
   return (
     <section className={`section reveal ${visible ? 'reveal--visible' : ''}`} id="faq" ref={ref}>
-      <h2>Corporate Catering Questions</h2>
-      <div className="content-card">
+      <div className="faq__panel">
+        <h2>Corporate Catering Questions</h2>
         <div className="faq__list">
           {FAQS.map((item, i) => {
             const isOpen = openIndex === i

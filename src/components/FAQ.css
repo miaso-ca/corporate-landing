@@ -1,5 +1,18 @@
+/* Full-bleed white band — same technique as HowItWorks' panel and the
+   bar-service banner — so this reads as a real section instead of a
+   contained card floating on cream. */
+#faq.section {
+  padding-bottom: 56px;
+}
+
+.faq__panel {
+  margin: 0 calc(50% - 50vw);
+  background: var(--card);
+  padding: 48px clamp(24px, calc(50vw - 536px), 220px);
+}
+
 .faq__list {
-  margin-top: 28px;
+  margin-top: 20px;
   border-top: 1px solid #f0e2d0;
 }
 
@@ -16,7 +29,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 20px 0;
+  padding: 15px 0;
   font-family: var(--font-sans);
   font-size: 15px;
   font-weight: 600;
