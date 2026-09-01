@@ -143,5 +143,13 @@
      aspect-ratio here the frame's own row would collapse to 0 height. */
   .why-miaso__photo-frame {
     aspect-ratio: 16 / 10;
+    /* On the desktop row, matching row-height next to the elevated
+       checklist card reads as one pairing even though the frame itself
+       carries no border/shadow. Stacked, that asymmetry is exposed — the
+       checklist looks like a card and the photo looks like a bare image.
+       Give the frame the same border+shadow language so both blocks read
+       as one considered composition. */
+    border: 1px solid #f0e2d0;
+    box-shadow: 0 14px 34px rgba(43, 31, 20, 0.16);
   }
 }

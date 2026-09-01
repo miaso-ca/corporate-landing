@@ -137,4 +137,17 @@
   .catering-options__grid {
     grid-template-columns: 1fr;
   }
+
+  /* "Best for:" copy is long enough to wrap to 2 lines on every card at
+     these widths (confirmed 375–430px). A 100px pill radius on a 2-line
+     block reads as a stretched capsule instead of a tag — drop to the
+     shared small-card radius so a wrapped line looks intentional.
+     Two-class selector (not just `.catering-card__best-for`) is deliberate:
+     it needs specificity strictly higher than tokens.css's `.pill` rule so
+     it wins on tie-breaking source order regardless of how the two
+     stylesheets get concatenated/injected. */
+  .catering-card .catering-card__best-for {
+    border-radius: var(--radius-sm);
+    line-height: 1.4;
+  }
 }
