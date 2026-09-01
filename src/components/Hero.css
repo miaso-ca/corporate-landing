@@ -64,7 +64,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: clamp(24px, 5vw, 64px);
+  /* Horizontal inset mirrors .section's own math (max-width:1120px, margin
+     auto, 24px padding) — (100vw - 1120px)/2 + 24px simplifies to
+     50vw - 536px — so the hero's left edge lines up with every section
+     below it instead of using an unrelated vw-based clamp. */
+  padding-left: clamp(24px, calc(50vw - 536px), 220px);
+  padding-right: clamp(24px, calc(50vw - 536px), 220px);
+  padding-bottom: clamp(24px, 5vw, 64px);
   padding-top: clamp(92px, 12vw, 128px);
   justify-content: space-between;
   gap: 40px;
