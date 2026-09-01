@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import useReveal from '../hooks/useReveal.js'
 import './FAQ.css'
 
 const FAQS = [
@@ -30,9 +31,10 @@ const FAQS = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null)
+  const { ref, visible } = useReveal()
 
   return (
-    <section className="section" id="faq">
+    <section className={`section reveal ${visible ? 'reveal--visible' : ''}`} id="faq" ref={ref}>
       <h2>Corporate Catering Questions</h2>
       <div className="faq__list">
         {FAQS.map((item, i) => {
@@ -48,7 +50,9 @@ export default function FAQ() {
                 <span>{item.q}</span>
                 <span className="faq__icon" aria-hidden="true">{isOpen ? '−' : '+'}</span>
               </button>
-              {isOpen && <p className="faq__answer">{item.a}</p>}
+              <div className={`faq__answer-wrap ${isOpen ? 'faq__answer-wrap--open' : ''}`}>
+                <p className="faq__answer" aria-hidden={!isOpen}>{item.a}</p>
+              </div>
             </div>
           )
         })}

@@ -1,4 +1,5 @@
 import './WhyMiaso.css'
+import useReveal from '../hooks/useReveal.js'
 
 const CHECKLIST = [
   'Fresh food prepared to order',
@@ -10,8 +11,9 @@ const CHECKLIST = [
 ]
 
 export default function WhyMiaso() {
+  const { ref, visible } = useReveal()
   return (
-    <section className="section">
+    <section className={`section reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
       <div className="why-miaso">
         <div className="why-miaso__text">
           <h2>You Manage the Event. We Manage the Catering Details.</h2>

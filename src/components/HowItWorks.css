@@ -47,6 +47,22 @@
     flex: 1;
     flex-direction: column;
     gap: 12px;
+    padding-left: 20px;
     padding-right: 16px;
+    position: relative;
+  }
+
+  .how-it-works__step:first-child {
+    padding-left: 0;
+  }
+
+  .how-it-works__step:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: #f0e2d0;
   }
 }

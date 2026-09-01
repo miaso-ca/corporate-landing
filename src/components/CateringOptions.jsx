@@ -1,8 +1,9 @@
 import './CateringOptions.css'
 import QuickCaptureForm from './QuickCaptureForm.jsx'
+import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing.jpg'
-import cartPhoto from '../assets/photos/catering-cart.jpg'
+import cartPhoto from '../assets/photos/gallery/staff-serving-canapes-smile.jpg'
 import fullservicePhoto from '../assets/photos/catering-fullservice.jpg'
 
 const OPTIONS = [
@@ -25,7 +26,7 @@ const OPTIONS = [
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     photo: cartPhoto,
-    alt: 'Styled cheese and charcuterie presentation',
+    alt: 'MIASO catering staff member serving a tray of canapés at an outdoor event',
   },
   {
     title: 'Full-Service Corporate Catering',
@@ -37,8 +38,13 @@ const OPTIONS = [
 ]
 
 export default function CateringOptions() {
+  const { ref, visible } = useReveal()
   return (
-    <section className="section" id="catering-options">
+    <section
+      className={`section reveal ${visible ? 'reveal--visible' : ''}`}
+      id="catering-options"
+      ref={ref}
+    >
       <h2>One Catering Partner for Every Corporate Occasion</h2>
       <p className="catering-options__intro">
         Whether you are planning a boardroom lunch, client reception, conference or company

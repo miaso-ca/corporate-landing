@@ -32,6 +32,24 @@
   flex-shrink: 0;
 }
 
+.faq__answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 0.3s ease-out, opacity 0.25s ease-out;
+}
+
+.faq__answer-wrap--open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.faq__answer-wrap > * {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .faq__answer {
   margin: 0 0 20px;
   font-size: 14px;

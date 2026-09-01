@@ -15,13 +15,14 @@
 .why-miaso__checklist {
   list-style: none;
   margin: 0;
-  padding: 28px;
+  padding: 34px;
   background: var(--card);
   border-radius: var(--radius);
   border: 1px solid #f0e2d0;
+  box-shadow: 0 14px 34px rgba(43, 31, 20, 0.16);
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
 }
 
 .why-miaso__checklist li {
@@ -38,7 +39,7 @@
 
 .why-miaso__checklist li span:last-child {
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--ink);
 }
 

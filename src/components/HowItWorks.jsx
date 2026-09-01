@@ -1,4 +1,5 @@
 import QuickCaptureForm from './QuickCaptureForm.jsx'
+import useReveal from '../hooks/useReveal.js'
 import './HowItWorks.css'
 
 const STEPS = [
@@ -21,8 +22,13 @@ const STEPS = [
 ]
 
 export default function HowItWorks() {
+  const { ref, visible } = useReveal()
   return (
-    <section className="section" id="how-it-works">
+    <section
+      className={`section reveal ${visible ? 'reveal--visible' : ''}`}
+      id="how-it-works"
+      ref={ref}
+    >
       <h2>From Your Brief to a Beautifully Served Event</h2>
       <div className="how-it-works__steps">
         {STEPS.map((step, i) => (
