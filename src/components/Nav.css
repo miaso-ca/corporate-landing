@@ -90,10 +90,14 @@
 .nav__toggle {
   display: none;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 5px;
-  width: 32px;
-  height: 32px;
+  /* 44x44 hit area (WCAG 2.5.5 / mobile touch-target minimum) — the icon
+     itself stays visually compact via the fixed span width below, only the
+     tappable box grows. */
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
@@ -102,6 +106,7 @@
 
 .nav__toggle span {
   display: block;
+  width: 22px;
   height: 2px;
   background: #fff;
   border-radius: 1px;

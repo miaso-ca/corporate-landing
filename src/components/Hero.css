@@ -88,6 +88,14 @@
   line-height: 1.12;
   color: #fff;
   max-width: 620px;
+  /* Guarantees legibility against whatever the photo happens to show behind
+     the headline at any breakpoint/crop — measured on the narrowest tested
+     width (375px, where the headline wraps to 3 lines) that the existing
+     .hero__gradient alone lets a bright patch of the photo sit directly
+     behind the last line, dropping local contrast to ~1.7:1. A gradient
+     strong enough to fix that everywhere would flatten the photo; a text
+     shadow fixes it at the source regardless of crop or line count. */
+  text-shadow: 0 2px 24px rgba(43, 31, 20, 0.55), 0 1px 3px rgba(43, 31, 20, 0.4);
   /* Baskervville's line-box has ~30px of leading above the actual glyph
      cap-height at this size — the flex `gap` above can't touch that, so the
      pill-to-headline gap looks much bigger than the gap value says. Pull
@@ -132,6 +140,9 @@
   font-family: var(--font-sans);
   font-size: 12px;
   padding: 0;
+  /* 44px touch target — the 32px play circle stays the same visual size,
+     centered, the extra height is just tappable padding. */
+  min-height: 44px;
 }
 
 .hero__play {
