@@ -4,6 +4,7 @@ import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing.jpg'
 import cartPhoto from '../assets/photos/gallery/staff-serving-canapes-smile.jpg'
+import cartVideo from '../assets/videos/mobile-cart-clip.mp4'
 import fullservicePhoto from '../assets/photos/catering-fullservice.jpg'
 
 const OPTIONS = [
@@ -28,8 +29,11 @@ const OPTIONS = [
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
+    // ponytail: testing video here — photo kept on the object so reverting
+    // is a one-line change (delete/comment the `video` field below).
     photo: cartPhoto,
-    alt: 'MIASO catering staff member serving a tray of canapés at an outdoor event',
+    video: cartVideo,
+    alt: 'MIASO mobile catering cart in action at an outdoor event',
   },
   {
     title: 'Full-Service Corporate Catering',
@@ -46,7 +50,18 @@ function CateringCard({ option, delay }) {
   return (
     <div className={`catering-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
       <div className="catering-card__photo">
-        <img src={option.photo} alt={option.alt} loading="lazy" />
+        {option.video ? (
+          <video
+            src={option.video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label={option.alt}
+          />
+        ) : (
+          <img src={option.photo} alt={option.alt} loading="lazy" />
+        )}
       </div>
       <h3 className="catering-card__title">{option.title}</h3>
       <p className="catering-card__desc">{option.description}</p>

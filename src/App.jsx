@@ -10,24 +10,27 @@ import FAQ from './components/FAQ.jsx'
 import FinalForm from './components/FinalForm.jsx'
 import Footer from './components/Footer.jsx'
 import VideoModal from './components/VideoModal.jsx'
+import QuoteModal from './components/QuoteModal.jsx'
 import StickyCta from './components/StickyCta.jsx'
 
 export default function App() {
   const [videoOpen, setVideoOpen] = useState(false)
+  const [quoteOpen, setQuoteOpen] = useState(false)
 
   return (
     <>
-      <Nav />
-      <Hero onWatchVideo={() => setVideoOpen(true)} />
+      <Nav onRequestQuote={() => setQuoteOpen(true)} />
+      <Hero onWatchVideo={() => setVideoOpen(true)} onRequestQuote={() => setQuoteOpen(true)} />
       <StatsBar />
       <CateringOptions />
       <WhyMiaso />
-      <HowItWorks />
+      <HowItWorks onRequestQuote={() => setQuoteOpen(true)} />
       <SocialProof />
       <FAQ />
       <FinalForm />
       <Footer />
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
       <StickyCta />
     </>
   )

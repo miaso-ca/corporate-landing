@@ -2,7 +2,7 @@ import './Hero.css'
 import heroPhoto from '../assets/photos/hero-table.jpg'
 import useReveal from '../hooks/useReveal.js'
 
-export default function Hero({ onWatchVideo }) {
+export default function Hero({ onWatchVideo, onRequestQuote }) {
   // Above-the-fold: reveal on mount rather than waiting for scroll, staggered
   // so the eyebrow settles first, then the headline, then the card — a small
   // choreography instead of one flat fade.
@@ -50,7 +50,9 @@ export default function Hero({ onWatchVideo }) {
                 presentation and seamless support across Toronto and the GTA.
               </p>
               <div className="hero__actions">
-                <a className="btn" href="#quote">Request a Corporate Quote</a>
+                <button className="btn" type="button" onClick={onRequestQuote}>
+                  Request a Corporate Quote
+                </button>
                 <button className="hero__watch" onClick={onWatchVideo} type="button">
                   <span className="hero__play">▶</span>
                   Watch 45 sec

@@ -8,7 +8,7 @@ const LINKS = [
   { href: '#faq', label: 'FAQ' },
 ]
 
-export default function Nav() {
+export default function Nav({ onRequestQuote }) {
   const [solid, setSolid] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -46,9 +46,9 @@ export default function Nav() {
           <a className="nav__phone" href="tel:416-613-0078">
             416-613-0078
           </a>
-          <a className="btn nav__cta" href="#quote">
+          <button className="btn nav__cta" type="button" onClick={onRequestQuote}>
             Request a Quote
-          </a>
+          </button>
         </div>
 
         <button
@@ -75,9 +75,16 @@ export default function Nav() {
             <a href="tel:416-613-0078" onClick={closeMenu}>
               416-613-0078
             </a>
-            <a className="btn" href="#quote" onClick={closeMenu}>
+            <button
+              className="btn"
+              type="button"
+              onClick={() => {
+                closeMenu()
+                onRequestQuote()
+              }}
+            >
               Request a Quote
-            </a>
+            </button>
           </div>
         </div>
       </div>
