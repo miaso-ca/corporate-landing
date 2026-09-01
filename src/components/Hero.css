@@ -52,18 +52,21 @@
 }
 
 .hero__photo-content {
-  position: relative;
+  /* Absolute+inset (not height:100%) — .hero__photo has no explicit `height`,
+     only min-height/max-height, so a percentage-height child resolves to
+     `auto` per spec and silently ignores the 100%. That's what broke
+     space-between: this element was only as tall as its own content, not
+     the full photo, so the card sat right under the headline instead of
+     being pushed to the bottom. inset:0 sidesteps the percentage-resolution
+     rule entirely by matching how .hero__gradient/.hero__photo img are
+     already positioned. */
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: clamp(24px, 5vw, 64px);
   padding-top: clamp(92px, 12vw, 128px);
-  height: 100%;
-  /* Text group and card are two flex children — space-between guarantees
-     the card can never overlap the headline, regardless of how many lines
-     the headline wraps to at any viewport height. `gap` enforces a minimum
-     breathing room even on short viewports where space-between alone would
-     let them touch with 0px between. */
   justify-content: space-between;
   gap: 24px;
 }
