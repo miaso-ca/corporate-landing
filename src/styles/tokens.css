@@ -45,7 +45,12 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 6px 14px;
+  /* letter-spacing adds trailing space after the LAST character with no
+     matching space before the first — at 0.12em/11px that's ~1.3px of
+     "phantom" width on the right that visually shifts the text left of
+     true-center even though the box itself measures symmetric. Trim the
+     right padding to compensate so the ink, not just the box, centers. */
+  padding: 6px 12.5px 6px 14px;
   border-radius: 100px;
 }
 .pill--on-photo {
