@@ -82,6 +82,12 @@
   line-height: 1.12;
   color: #fff;
   max-width: 620px;
+  /* Baskervville's line-box has ~30px of leading above the actual glyph
+     cap-height at this size — the flex `gap` above can't touch that, so the
+     pill-to-headline gap looks much bigger than the gap value says. Pull
+     the box up to compensate; tuned empirically against real measurement,
+     not a font-metric formula. */
+  margin-top: -30px;
 }
 
 .hero__card {
