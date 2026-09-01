@@ -30,7 +30,7 @@ function Reveal({ delay = 0, className = '', children }) {
 
 export default function SocialProof() {
   return (
-    <section className="section" id="social-proof">
+    <section className="section section--dark" id="social-proof">
       <Reveal>
         <h2>Trusted for Events That Need to Feel Polished, Welcoming and Well Organized</h2>
         <p className="social-proof__subhead">

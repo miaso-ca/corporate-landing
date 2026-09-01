@@ -3,7 +3,7 @@
   margin: 14px 0 0;
   font-size: 15px;
   line-height: 1.6;
-  color: #4a3c2c;
+  color: rgba(255, 249, 243, 0.72); /* WCAG AA on dark --ink section background */
 }
 
 .slot-card {
@@ -41,7 +41,8 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  border: none;
+  /* section is now dark too — a hairline border keeps this box legible as its own shape */
+  border: 1px solid rgba(255, 249, 243, 0.16);
 }
 
 .social-proof__play {

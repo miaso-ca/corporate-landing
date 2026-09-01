@@ -71,7 +71,7 @@ export default function CateringOptions() {
       </div>
 
       <div className="catering-options__callout">
-        <span className="pill pill--on-light">Need Bar Service Too?</span>
+        <span className="pill pill--on-photo">Need Bar Service Too?</span>
         <p>
           Combine MIASO catering with North Spirit Distillery bar service through one
           coordinated booking.
