@@ -62,12 +62,15 @@
   font-size: 13px;
   line-height: 1.6;
   color: #4a3c2c;
-  margin: 10px 20px 0;
+  margin: 10px 20px 12px;
 }
 
 .catering-card__best-for {
-  margin: 12px 20px 20px;
-  margin-top: auto;
+  /* margin-top:auto only fills LEFTOVER row height (0 in the tallest card
+     of the row) — the real minimum gap above the pill comes from
+     .catering-card__desc's own margin-bottom, which never collapses
+     against a flex sibling's auto margin. */
+  margin: auto 20px 20px;
   align-self: flex-start;
 }
 
