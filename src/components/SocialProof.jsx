@@ -2,24 +2,6 @@ import { useEffect, useRef } from 'react'
 import './SocialProof.css'
 import useReveal from '../hooks/useReveal.js'
 import clientVideo from '../assets/videos/client-event-clip.mp4'
-import galleryPhoto1 from '../assets/photos/gallery/staff-arranging-buffet-table.jpg'
-import galleryPhoto2 from '../assets/photos/gallery/staff-plating-watermelon-feta.jpg'
-import galleryPhoto3 from '../assets/photos/gallery/buffet-spread-sliders-charcuterie.jpg'
-
-const GALLERY_PHOTOS = [
-  {
-    src: galleryPhoto1,
-    alt: 'MIASO catering staff member arranging a buffet table with bread and floral accents',
-  },
-  {
-    src: galleryPhoto2,
-    alt: 'MIASO catering staff member plating watermelon-feta skewers for service',
-  },
-  {
-    src: galleryPhoto3,
-    alt: 'Styled MIASO buffet spread of sliders and charcuterie ready for guests',
-  },
-]
 
 function Reveal({ delay = 0, className = '', children }) {
   const { ref, visible } = useReveal({ delay })
@@ -70,22 +52,14 @@ export default function SocialProof() {
 
         <Reveal delay={100} className="social-proof__top">
           <ClientVideo />
-          <div className="social-proof__gallery">
-            {GALLERY_PHOTOS.map((photo) => (
-              <div className="social-proof__photo" key={photo.src}>
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
+          <div className="social-proof__reviews">
+            {[0, 1, 2].map((i) => (
+              <div className="review-card slot-card" key={i}>
+                <span className="review-card__stars" aria-hidden="true">☆☆☆☆☆</span>
+                <span className="slot-card__caption">Reviews coming soon</span>
               </div>
             ))}
           </div>
-        </Reveal>
-
-        <Reveal delay={150} className="social-proof__reviews">
-          {[0, 1, 2].map((i) => (
-            <div className="review-card slot-card" key={i}>
-              <span className="review-card__stars" aria-hidden="true">☆☆☆☆☆</span>
-              <span className="slot-card__caption">Reviews coming soon</span>
-            </div>
-          ))}
         </Reveal>
 
         <Reveal delay={200} className="social-proof__logos slot-card">

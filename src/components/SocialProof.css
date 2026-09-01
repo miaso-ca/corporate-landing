@@ -25,12 +25,16 @@
   color: rgba(255, 249, 243, 0.72);
 }
 
-/* Top row: video slot + photo gallery.
+/* Top row: video slot + review cards.
    The real clip is portrait (464x848 source), so this row now has an
    explicit height instead of stretching to a landscape video's aspect-ratio
    — the old 16/10 placeholder box made this whole block read as roughly a
    block-and-a-half tall on desktop. Video width is now aspect-ratio-derived
-   from that fixed height (flex, not grid-fr), gallery fills what's left. */
+   from that fixed height (flex, not grid-fr), reviews fill what's left.
+   (A 3-photo gallery lived here too until it started reading as redundant
+   next to WhyMiaso's own photo carousel and CateringOptions' card photos —
+   reviews reuse the existing honest "coming soon" cards instead of adding
+   a 4th round of near-identical event photography.) */
 .social-proof__top {
   display: flex;
   gap: 24px;
@@ -79,41 +83,22 @@
   color: #fff;
 }
 
-.social-proof__gallery {
+/* Google-review-style cards — now the video's row-mate instead of a
+   separate full-width row below it. */
+.social-proof__reviews {
   flex: 1 1 auto;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px;
-}
-
-.social-proof__photo {
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: #f0e2d0;
-}
-
-.social-proof__photo:first-child {
-  grid-row: 1 / 3;
-}
-
-.social-proof__photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Google-review-style cards */
-.social-proof__reviews {
-  display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 24px;
+  gap: 16px;
 }
 
 .review-card {
-  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   text-align: center;
 }
 
@@ -161,11 +146,9 @@
     margin: 0 auto;
   }
 
-  .social-proof__gallery {
-    height: 320px;
-  }
-
   .social-proof__reviews {
+    height: auto;
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
