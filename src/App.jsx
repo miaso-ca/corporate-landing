@@ -10,6 +10,7 @@ import FAQ from './components/FAQ.jsx'
 import FinalForm from './components/FinalForm.jsx'
 import Footer from './components/Footer.jsx'
 import VideoModal from './components/VideoModal.jsx'
+import StickyCta from './components/StickyCta.jsx'
 
 export default function App() {
   const [videoOpen, setVideoOpen] = useState(false)
@@ -27,6 +28,7 @@ export default function App() {
       <FinalForm />
       <Footer />
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
+      <StickyCta />
     </>
   )
 }
