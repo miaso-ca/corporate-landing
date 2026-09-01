@@ -105,7 +105,7 @@
   display: block;
   font-size: 18px;
   letter-spacing: 4px;
-  color: var(--accent);
+  color: #d8c9b8; /* muted outline — placeholder, not an asserted 5-star rating */
   margin-bottom: 12px;
 }
 

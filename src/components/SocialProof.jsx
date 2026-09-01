@@ -59,8 +59,8 @@ export default function SocialProof() {
         <Reveal delay={150} className="social-proof__reviews">
           {[0, 1, 2].map((i) => (
             <div className="review-card slot-card" key={i}>
-              <span className="review-card__stars" aria-hidden="true">★★★★★</span>
-              <span className="slot-card__caption">Reviews loading soon</span>
+              <span className="review-card__stars" aria-hidden="true">☆☆☆☆☆</span>
+              <span className="slot-card__caption">Reviews coming soon</span>
             </div>
           ))}
         </Reveal>
@@ -73,7 +73,7 @@ export default function SocialProof() {
             <span className="logos-strip__mark" />
             <span className="logos-strip__mark" />
           </div>
-          <span className="slot-card__caption">Trusted by Toronto businesses</span>
+          <span className="slot-card__caption">Client logos coming soon</span>
         </Reveal>
       </section>
     </div>
