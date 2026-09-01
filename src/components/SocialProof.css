@@ -84,21 +84,13 @@
 }
 
 /* Google-review-style cards — now the video's row-mate instead of a
-   separate full-width row below it. Wrap holds the card grid plus a
-   prev/next + dots nav row for flipping through more than fit on screen
-   at once (currently: sample copy, see SAMPLE_REVIEWS comment in the .jsx
-   — not live-deployed until real reviews replace it). */
-.social-proof__reviews-wrap {
-  flex: 1 1 auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
+   separate full-width row below it. height:100% matches the video card
+   exactly (420px) — the nav row (prev/next + dots) lives OUTSIDE this row
+   entirely instead of sharing its height budget, which previously ate
+   ~40px off the cards and left them visibly shorter than the video. */
 .social-proof__reviews {
   flex: 1 1 auto;
-  min-height: 0;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
@@ -138,7 +130,7 @@
 }
 
 .social-proof__reviews-nav {
-  flex: 0 0 auto;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,29 +172,6 @@
 
 .social-proof__reviews-dot--active {
   background: #fff;
-}
-
-/* Client logos strip */
-.social-proof__logos {
-  margin-top: 24px;
-  padding: 32px;
-  text-align: center;
-}
-
-.logos-strip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 14px;
-}
-
-.logos-strip__mark {
-  width: 96px;
-  height: 36px;
-  background: #dcdcdc;
-  border-radius: var(--radius-sm);
 }
 
 @media (max-width: 720px) {

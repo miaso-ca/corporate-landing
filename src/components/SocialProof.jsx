@@ -70,56 +70,21 @@ function ClientVideo() {
   )
 }
 
-function ReviewsCarousel() {
+function useReviewsPage() {
   const [page, setPage] = useState(0)
   const pageCount = Math.ceil(REVIEWS.length / REVIEWS_PER_PAGE)
-  const visible = REVIEWS.slice(page * REVIEWS_PER_PAGE, page * REVIEWS_PER_PAGE + REVIEWS_PER_PAGE)
-
-  return (
-    <div className="social-proof__reviews-wrap">
-      <div className="social-proof__reviews">
-        {visible.map((r) => (
-          <div className="review-card slot-card" key={r.name}>
-            <span className="review-card__name">{r.name}</span>
-            <p className="review-card__text">{r.text}</p>
-            <span className="review-card__stars" aria-hidden="true">★★★★★</span>
-          </div>
-        ))}
-      </div>
-
-      {pageCount > 1 && (
-        <div className="social-proof__reviews-nav">
-          <button
-            type="button"
-            aria-label="Previous reviews"
-            onClick={() => setPage((p) => (p - 1 + pageCount) % pageCount)}
-          >
-            ‹
-          </button>
-          <div className="social-proof__reviews-dots">
-            {Array.from({ length: pageCount }).map((_, i) => (
-              <span
-                key={i}
-                className={`social-proof__reviews-dot ${
-                  i === page ? 'social-proof__reviews-dot--active' : ''
-                }`}
-              />
-            ))}
-          </div>
-          <button
-            type="button"
-            aria-label="Next reviews"
-            onClick={() => setPage((p) => (p + 1) % pageCount)}
-          >
-            ›
-          </button>
-        </div>
-      )}
-    </div>
-  )
+  return {
+    page,
+    pageCount,
+    visible: REVIEWS.slice(page * REVIEWS_PER_PAGE, page * REVIEWS_PER_PAGE + REVIEWS_PER_PAGE),
+    prev: () => setPage((p) => (p - 1 + pageCount) % pageCount),
+    next: () => setPage((p) => (p + 1) % pageCount),
+  }
 }
 
 export default function SocialProof() {
+  const { visible, pageCount, page, prev, next } = useReviewsPage()
+
   return (
     <div className="section-dark">
       <section className="section" id="social-proof">
@@ -133,19 +98,37 @@ export default function SocialProof() {
 
         <Reveal delay={100} className="social-proof__top">
           <ClientVideo />
-          <ReviewsCarousel />
+          <div className="social-proof__reviews">
+            {visible.map((r) => (
+              <div className="review-card slot-card" key={r.name}>
+                <span className="review-card__name">{r.name}</span>
+                <p className="review-card__text">{r.text}</p>
+                <span className="review-card__stars" aria-hidden="true">★★★★★</span>
+              </div>
+            ))}
+          </div>
         </Reveal>
 
-        <Reveal delay={200} className="social-proof__logos slot-card">
-          <div className="logos-strip" aria-hidden="true">
-            <span className="logos-strip__mark" />
-            <span className="logos-strip__mark" />
-            <span className="logos-strip__mark" />
-            <span className="logos-strip__mark" />
-            <span className="logos-strip__mark" />
+        {pageCount > 1 && (
+          <div className="social-proof__reviews-nav">
+            <button type="button" aria-label="Previous reviews" onClick={prev}>
+              ‹
+            </button>
+            <div className="social-proof__reviews-dots">
+              {Array.from({ length: pageCount }).map((_, i) => (
+                <span
+                  key={i}
+                  className={`social-proof__reviews-dot ${
+                    i === page ? 'social-proof__reviews-dot--active' : ''
+                  }`}
+                />
+              ))}
+            </div>
+            <button type="button" aria-label="Next reviews" onClick={next}>
+              ›
+            </button>
           </div>
-          <span className="slot-card__caption">Client logos coming soon</span>
-        </Reveal>
+        )}
       </section>
     </div>
   )
