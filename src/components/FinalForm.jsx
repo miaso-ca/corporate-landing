@@ -22,13 +22,12 @@ const BUDGET_RANGES = [
 
 const FIELDS = [
   { name: 'name', label: 'Full Name', type: 'text', required: true },
-  { name: 'company', label: 'Company', type: 'text', required: true },
-  { name: 'email', label: 'Work Email', type: 'email', required: true },
+  { name: 'email', label: 'Email', type: 'email', required: true },
   { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
-  { name: 'eventType', label: 'Event Type', type: 'text', required: true },
-  { name: 'eventDate', label: 'Event Date', type: 'date', required: true },
+  { name: 'company', label: 'Company', type: 'text', required: false },
+  { name: 'eventDate', label: 'Event Date', type: 'date', required: false },
   { name: 'guests', label: 'Number of Guests', type: 'number', required: true },
-  { name: 'venue', label: 'Venue or Location', type: 'text', required: true },
+  { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
   { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
   { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
   { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false },
@@ -80,7 +79,7 @@ export default function FinalForm() {
   return (
     <section className="section" id="quote">
       <div className={`final-form reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
-        <h2>Let&rsquo;s Plan a Corporate Event Your Guests Will Remember</h2>
+        <h2>Let&rsquo;s Plan an Event Your Guests Will Remember</h2>
         <p className="final-form__intro">
           Tell us a little about your event, and we&rsquo;ll recommend the right catering format
           and prepare a personalized quote.
