@@ -19,6 +19,10 @@ export default function WhyMiaso() {
       id="why-miaso"
       ref={ref}
     >
+      <h2 className="why-miaso__heading">
+        You Manage the Event. We Manage the Catering Details.
+      </h2>
+
       <div className="why-miaso">
         <div className="why-miaso__text">
           <img
@@ -27,7 +31,6 @@ export default function WhyMiaso() {
             alt="Three MIASO canapé trays arranged together with a floral accent"
             loading="lazy"
           />
-          <h2>You Manage the Event. We Manage the Catering Details.</h2>
           <p>
             Corporate catering involves more than choosing food. Timing, presentation, dietary
             requirements, delivery, setup and service all need to work together.
