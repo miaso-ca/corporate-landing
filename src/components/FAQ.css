@@ -2,6 +2,7 @@
    bar-service banner — so this reads as a real section instead of a
    contained card floating on cream. */
 #faq.section {
+  padding-top: 0;
   padding-bottom: 56px;
 }
 
