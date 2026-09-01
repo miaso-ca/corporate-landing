@@ -51,8 +51,8 @@
   position: absolute;
   top: 100%;
   left: 0;
+  width: 100%;
   margin-top: 4px;
-  white-space: nowrap;
   font-size: 11px;
   color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
 }
