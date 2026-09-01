@@ -81,12 +81,9 @@ export default function CateringOptions() {
           <p>
             We&rsquo;ve partnered with North Spirit Distillery for years to pair full bar
             service — bartenders, mixers and glassware — with every MIASO event, so nothing
-            about your day feels stitched together.
+            about your day feels stitched together. Just mention it in the quote form below.
           </p>
         </div>
-        <a className="btn catering-options__callout-btn" href="#quote">
-          Ask About Bar Service
-        </a>
       </div>
 
       <div className="catering-options__quote">

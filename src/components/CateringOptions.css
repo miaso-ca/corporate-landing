@@ -80,13 +80,9 @@
    still 100% of its .section parent's content width, so 50% of itself
    minus 50vw exactly cancels the parent's own centering offset. */
 .catering-options__callout {
-  margin: 56px calc(50% - 50vw) 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  margin: 72px calc(50% - 50vw) 0;
   background: var(--cta);
-  padding: 40px clamp(24px, calc(50vw - 536px), 220px);
+  padding: 48px clamp(24px, calc(50vw - 536px), 220px);
 }
 
 .catering-options__callout-copy {
@@ -96,23 +92,17 @@
   gap: 12px;
 }
 
-.btn.catering-options__callout-btn {
-  background: var(--bg);
-  color: var(--cta);
-  flex-shrink: 0;
-}
-
 .catering-options__callout p {
   font-size: 14px;
   line-height: 1.6;
   color: var(--bg); /* cream-white text on --cta red */
   margin: 0;
-  max-width: 480px;
+  max-width: 620px;
 }
 
 .catering-options__quote {
   max-width: 640px;
-  margin: 48px auto 0;
+  margin: 64px auto 0;
   text-align: center;
 }
 
