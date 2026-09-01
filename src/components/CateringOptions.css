@@ -75,17 +75,18 @@
 }
 
 /* One deliberate brand-red background moment on the page — used once, sparingly.
-   Full-width banner (not a small centered box) so it reads as a real upsell
-   moment, with its own light-on-red mini-CTA. */
+   True full-bleed (edge to edge of the viewport, not just wider inside the
+   1120px section) via the standard negative-margin trick — the element is
+   still 100% of its .section parent's content width, so 50% of itself
+   minus 50vw exactly cancels the parent's own centering offset. */
 .catering-options__callout {
-  margin: 40px 0 0;
+  margin: 56px calc(50% - 50vw) 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   background: var(--cta);
-  border-radius: var(--radius);
-  padding: 32px clamp(24px, 5vw, 48px);
+  padding: 40px clamp(24px, calc(50vw - 536px), 220px);
 }
 
 .catering-options__callout-copy {
@@ -111,7 +112,7 @@
 
 .catering-options__quote {
   max-width: 640px;
-  margin: 32px auto 0;
+  margin: 48px auto 0;
   text-align: center;
 }
 
