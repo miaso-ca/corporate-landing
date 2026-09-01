@@ -18,7 +18,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #9c8a76;
+  color: #766859; /* WCAG AA on white slot-card — #9c8a76 was only 3.3:1 */
 }
 
 .slot-card__caption--on-dark {

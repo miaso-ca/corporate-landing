@@ -33,7 +33,11 @@
 
 .why-miaso__checklist .pill {
   flex-shrink: 0;
-  padding: 4px 9px;
+  /* Asymmetric top/bottom padding — the ✓ glyph's own ink sits low relative
+     to the font's line box (verified via Range.getBoundingClientRect: 7px
+     clearance above vs 5px below at 4px/4px padding), so equal padding reads
+     visually off-center. 3px/5px makes it 6px/6px, actually centered. */
+  padding: 3px 9px 5px;
   font-size: 11px;
 }
 

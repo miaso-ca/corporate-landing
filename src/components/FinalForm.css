@@ -80,7 +80,7 @@
 .final-form__disclaimer {
   font-size: 11px;
   line-height: 1.5;
-  color: #9c8a76;
+  color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
   margin: 14px 0 0;
 }
 
