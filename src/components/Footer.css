@@ -34,11 +34,13 @@
   opacity: 0.8;
   text-decoration: none;
   font-size: 13px;
-  transition: opacity 0.15s ease-out;
+  transition: opacity 0.15s var(--ease-out);
 }
 
-.footer__links a:hover {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .footer__links a:hover {
+    opacity: 1;
+  }
 }
 
 .footer__contact {

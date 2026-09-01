@@ -43,7 +43,7 @@ export default function QuickCaptureForm({ source }) {
 
   if (done) {
     return (
-      <div className="quick-form quick-form--done">
+      <div className="quick-form quick-form--done state-swap-in">
         <span className="pill pill--on-light">Thanks — we'll follow up within 1 business day.</span>
       </div>
     )

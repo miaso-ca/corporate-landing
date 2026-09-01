@@ -10,6 +10,11 @@
 
   --radius: 12px;
   --radius-sm: 8px;
+
+  /* Motion tokens — strong curves, not the weak built-in `ease-out` keyword.
+     Source: emilkowal.ski animation-vocabulary skill. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 * { box-sizing: border-box; }
@@ -68,12 +73,18 @@ img { max-width: 100%; display: block; }
   border: none;
   cursor: pointer;
   font-family: var(--font-sans);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
 }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(199, 61, 45, 0.32);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(199, 61, 45, 0.32);
+  }
+}
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+  transition: transform 0.16s var(--ease-out);
 }
 
 /* One stat component */
@@ -86,7 +97,6 @@ img { max-width: 100%; display: block; }
 .stat span {
   font-size: 11px;
   color: #c9b8a3; /* WCAG AA on dark --ink backgrounds (StatsBar) */
-  color: #8a7a68;
 }
 
 .section {
@@ -109,6 +119,8 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   z-index: 100;
   padding: 20px;
+  opacity: 0;
+  animation: video-modal-in 0.25s var(--ease-out) forwards;
 }
 
 .video-modal__box {
@@ -118,6 +130,20 @@ img { max-width: 100%; display: block; }
   max-width: 420px;
   text-align: center;
   position: relative;
+  transform: scale(0.95);
+  animation: video-modal-box-in 0.25s var(--ease-out) forwards;
+}
+
+@keyframes video-modal-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes video-modal-box-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .video-modal, .video-modal__box { animation: none; opacity: 1; transform: none; }
 }
 
 .video-modal__close {
@@ -135,7 +161,7 @@ img { max-width: 100%; display: block; }
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 .reveal--visible {
   opacity: 1;
@@ -143,11 +169,11 @@ img { max-width: 100%; display: block; }
 }
 /* Modifiers for choreographed entrances (e.g. Hero) — pair with `.reveal` */
 .reveal--fast {
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
 }
 .reveal--rise {
   transform: translateY(32px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -157,6 +183,19 @@ img { max-width: 100%; display: block; }
     transform: none;
     transition: none;
   }
+}
+
+/* Fade-in for a state swap (e.g. form -> success message) so the content
+   change doesn't teleport. Apply to the element that just mounted. */
+.state-swap-in {
+  animation: state-swap-in 0.35s var(--ease-out) forwards;
+}
+@keyframes state-swap-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .state-swap-in { animation: none; }
 }
 
 .placeholder-block {

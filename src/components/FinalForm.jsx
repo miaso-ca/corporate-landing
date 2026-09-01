@@ -78,7 +78,7 @@ export default function FinalForm() {
         </p>
 
         {done ? (
-          <div className="final-form__done">
+          <div className="final-form__done state-swap-in">
             <span className="pill pill--on-light">
               Thanks — we&rsquo;ll follow up within 1 business day.
             </span>
