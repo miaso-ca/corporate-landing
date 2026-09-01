@@ -13,7 +13,6 @@
   min-height: 88vh;
   max-height: 900px;
   overflow: hidden;
-  border: 1px solid #eee2d4;
 }
 
 .hero__photo img {
@@ -68,14 +67,14 @@
   padding: clamp(24px, 5vw, 64px);
   padding-top: clamp(92px, 12vw, 128px);
   justify-content: space-between;
-  gap: 24px;
+  gap: 40px;
 }
 
 .hero__text-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 28px;
 }
 
 .hero__title {

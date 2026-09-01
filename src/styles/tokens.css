@@ -126,6 +126,9 @@ img { max-width: 100%; display: block; }
 .section-dark {
   background: var(--ink);
   color: #fff;
+  /* A dark section directly after Hero's dark-bottomed photo has no natural
+     edge between them otherwise — both read as one continuous dark mass. */
+  border-top: 1px solid rgba(255, 249, 243, 0.1);
 }
 
 .video-modal {
