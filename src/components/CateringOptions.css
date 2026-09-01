@@ -97,7 +97,7 @@
   line-height: 1.6;
   color: var(--bg); /* cream-white text on --cta red */
   margin: 0;
-  max-width: 620px;
+  max-width: 900px;
 }
 
 .catering-options__quote {
