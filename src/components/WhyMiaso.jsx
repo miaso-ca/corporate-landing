@@ -1,5 +1,6 @@
 import './WhyMiaso.css'
 import useReveal from '../hooks/useReveal.js'
+import detailPhoto from '../assets/photos/gallery/mixed-canapes-trio-spread.jpg'
 
 const CHECKLIST = [
   'Fresh food prepared to order',
@@ -20,6 +21,12 @@ export default function WhyMiaso() {
     >
       <div className="why-miaso">
         <div className="why-miaso__text">
+          <img
+            className="why-miaso__photo"
+            src={detailPhoto}
+            alt="Three MIASO canapé trays arranged together with a floral accent"
+            loading="lazy"
+          />
           <h2>You Manage the Event. We Manage the Catering Details.</h2>
           <p>
             Corporate catering involves more than choosing food. Timing, presentation, dietary

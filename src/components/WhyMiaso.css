@@ -1,8 +1,24 @@
+/* Scoped to this section's own id — every other .section still uses the
+   shared 96px token; this block just had an unusually large amount of
+   empty space above/below relative to how little content fills it. */
+#why-miaso.section {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
 .why-miaso {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
   align-items: start;
+}
+
+.why-miaso__photo {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 24px;
 }
 
 .why-miaso__text p {
