@@ -1,3 +1,20 @@
+/* Full-bleed white band — same negative-margin technique as the bar-service
+   banner and Hero's inset formula, so this panel's content lines up with
+   the rest of the page while the white fill itself runs edge to edge. */
+.how-it-works__panel {
+  margin: 0 calc(50% - 50vw);
+  background: var(--card);
+  padding: 56px clamp(24px, calc(50vw - 536px), 220px);
+}
+
+.how-it-works__intro {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4a3c2c;
+  max-width: 680px;
+  margin: 12px 0 40px;
+}
+
 .how-it-works__steps {
   display: flex;
   flex-direction: column;

@@ -1,4 +1,5 @@
-import QuickCaptureForm from './QuickCaptureForm.jsx'
+import { useState } from 'react'
+import QuoteModal from './QuoteModal.jsx'
 import useReveal from '../hooks/useReveal.js'
 import './HowItWorks.css'
 
@@ -23,14 +24,21 @@ const STEPS = [
 
 export default function HowItWorks() {
   const { ref, visible } = useReveal()
+  const [quoteOpen, setQuoteOpen] = useState(false)
+
   return (
     <section
       className={`section reveal ${visible ? 'reveal--visible' : ''}`}
       id="how-it-works"
       ref={ref}
     >
-      <h2>From Your Brief to a Beautifully Served Event</h2>
-      <div className="content-card">
+      <div className="how-it-works__panel">
+        <h2>From Your Brief to a Beautifully Served Event</h2>
+        <p className="how-it-works__intro">
+          Every MIASO corporate event runs on the same process, from your first message to the
+          last tray cleared — no guesswork, no surprises on the day:
+        </p>
+
         <div className="how-it-works__steps">
           {STEPS.map((step, i) => (
             <div className="how-it-works__step" key={step.title}>
@@ -42,9 +50,17 @@ export default function HowItWorks() {
             </div>
           ))}
         </div>
-        <a className="btn how-it-works__cta" href="#quote">Request a Corporate Quote</a>
+
+        <button
+          className="btn how-it-works__cta"
+          type="button"
+          onClick={() => setQuoteOpen(true)}
+        >
+          Request a Corporate Quote
+        </button>
       </div>
-      <QuickCaptureForm source="block-5" />
+
+      <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
     </section>
   )
 }
