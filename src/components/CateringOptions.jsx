@@ -29,10 +29,7 @@ const OPTIONS = [
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
-    // ponytail: testing video here — photo kept on the object so reverting
-    // is a one-line change (delete/comment the `video` field below).
     photo: cartPhoto,
-    video: cartVideo,
     alt: 'MIASO mobile catering cart in action at an outdoor event',
   },
   {
