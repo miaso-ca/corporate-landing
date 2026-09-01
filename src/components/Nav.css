@@ -124,23 +124,28 @@
     display: flex;
   }
 
+  /* Grid-template-rows 0fr->1fr instead of animating max-height/padding —
+     avoids layout thrash, GPU-friendly. Inner wrapper clips via overflow. */
   .nav__mobile-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    background: var(--bg);
+    border-top: 1px solid transparent;
+    transition: grid-template-rows 0.28s ease-out, border-top-color 0.28s ease-out;
+  }
+
+  .nav--open .nav__mobile-panel {
+    grid-template-rows: 1fr;
+    border-top-color: #f0e2d0;
+  }
+
+  .nav__mobile-panel-inner {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-    max-height: 0;
-    overflow: hidden;
-    padding: 0 24px;
-    background: var(--bg);
-    border-top: 1px solid transparent;
-    transition: max-height 0.28s ease-out, padding 0.28s ease-out;
-  }
-
-  .nav--open .nav__mobile-panel {
-    max-height: 320px;
     padding: 8px 24px 20px;
-    border-top-color: #f0e2d0;
   }
 
   .nav__mobile-panel a {

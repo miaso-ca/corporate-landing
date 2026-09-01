@@ -65,17 +65,19 @@ export default function Nav() {
       </div>
 
       <div className="nav__mobile-panel" aria-hidden={!menuOpen}>
-        {LINKS.map((l) => (
-          <a key={l.href} href={l.href} onClick={closeMenu}>
-            {l.label}
+        <div className="nav__mobile-panel-inner">
+          {LINKS.map((l) => (
+            <a key={l.href} href={l.href} onClick={closeMenu}>
+              {l.label}
+            </a>
+          ))}
+          <a href="tel:416-613-0078" onClick={closeMenu}>
+            416-613-0078
           </a>
-        ))}
-        <a href="tel:416-613-0078" onClick={closeMenu}>
-          416-613-0078
-        </a>
-        <a className="btn" href="#quote" onClick={closeMenu}>
-          Request a Quote
-        </a>
+          <a className="btn" href="#quote" onClick={closeMenu}>
+            Request a Quote
+          </a>
+        </div>
       </div>
     </header>
   )
