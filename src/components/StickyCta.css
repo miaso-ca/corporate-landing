@@ -31,8 +31,13 @@
   }
 
   /* Reserve space at the foot of the page so the fixed bar never permanently
-     covers the footer/final-form content once scrolled to the bottom. */
-  body {
+     covers the footer/final-form content once scrolled to the bottom.
+     `html body` (not plain `body`) deliberately outranks tokens.css's
+     `html, body { padding: 0 }` reset — same specificity otherwise, and
+     ES module evaluation order puts tokens.css's import (main.jsx, after
+     App.jsx's whole import graph) later in the cascade than this file, so
+     the shorthand reset was silently winning and zeroing this out. */
+  html body {
     padding-bottom: 72px;
   }
 }

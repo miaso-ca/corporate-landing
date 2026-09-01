@@ -33,3 +33,16 @@
   justify-self: stretch;
   text-align: center;
 }
+
+/* Shared .video-modal__close renders a bare 25x27px glyph — under the 44px
+   touch-target minimum. Scoped override here (tokens.css is shared, out of
+   scope) enlarges the hit area without changing how the × looks. */
+.quote-modal__box .video-modal__close {
+  top: 4px;
+  right: 4px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

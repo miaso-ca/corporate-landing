@@ -29,6 +29,11 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  /* Grid items default to min-width:auto, so a wide <select> option or long
+     placeholder can force the 1fr track past the grid's own width, pushing
+     every field in that column off the edge of the card. QuickCaptureForm's
+     .quick-form__field already carries this fix — same class of bug. */
+  min-width: 0;
 }
 
 .final-form__field--full {

@@ -209,12 +209,18 @@
   .social-proof__top {
     flex-direction: column;
     height: auto;
+    gap: 20px;
+    margin-top: 28px;
   }
 
+  /* Capping by max-width (as before) let the 9/16 video run to ~570px tall —
+     70% of a phone viewport for one element before any reviews were visible.
+     Cap by height instead so it reads as a considered portrait preview, not
+     a wall the visitor has to scroll past. */
   .social-proof__video {
-    height: auto;
-    width: 100%;
-    max-width: 320px;
+    height: clamp(280px, 40vh, 360px);
+    width: auto;
+    max-width: 100%;
     margin: 0 auto;
   }
 
@@ -222,5 +228,18 @@
     height: auto;
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .review-card {
+    padding: 16px 20px;
+  }
+
+  /* Prev/next arrow buttons are 28x28px visually — fine for a pointer, under
+     the 44px touch-target minimum for a fingertip. Bump the hit area on
+     mobile only; the dots next to them are non-interactive (display only). */
+  .social-proof__reviews-nav button {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 }
