@@ -1,11 +1,19 @@
 import './Hero.css'
 import heroPhoto from '../assets/photos/hero-table.jpg'
+import useReveal from '../hooks/useReveal.js'
 
 export default function Hero({ onWatchVideo }) {
+  // Above-the-fold: reveal on mount rather than waiting for scroll.
+  const photo = useReveal({ immediate: true })
+  const card = useReveal({ immediate: true, delay: 150 })
+
   return (
     <section className="hero">
       <div className="hero__frame">
-        <div className="hero__photo">
+        <div
+          className={`hero__photo reveal ${photo.visible ? 'reveal--visible' : ''}`}
+          ref={photo.ref}
+        >
           <img src={heroPhoto} alt="MIASO catering spread, styled table" />
           <div className="hero__gradient" />
           <div className="hero__photo-content">
@@ -16,7 +24,10 @@ export default function Hero({ onWatchVideo }) {
           </div>
         </div>
 
-        <div className="hero__card">
+        <div
+          className={`hero__card reveal ${card.visible ? 'reveal--visible' : ''}`}
+          ref={card.ref}
+        >
           <p className="hero__desc">
             From polished office lunches and client receptions to grazing tables, a staffed
             Mobile Cart and full-service events, MIASO delivers fresh food, thoughtful
