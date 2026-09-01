@@ -9,29 +9,82 @@
 .why-miaso__heading {
   text-align: center;
   max-width: 700px;
+  margin: 0 auto 24px;
+}
+
+.why-miaso__arrow {
+  color: var(--cta);
+}
+
+.why-miaso__intro {
+  max-width: 620px;
   margin: 0 auto 40px;
+  text-align: center;
+}
+
+.why-miaso__intro p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4a3c2c;
+  margin: 16px 0 0;
+}
+
+.why-miaso__intro p:first-child {
+  margin-top: 0;
 }
 
 .why-miaso {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: start;
+  /* Stretch (the default) instead of start — the photo frame below fills
+     this row's resolved height with height:100%, so it matches the
+     checklist card instead of being sized off its own aspect-ratio. */
+  align-items: stretch;
+}
+
+.why-miaso__photo-frame {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .why-miaso__photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--radius);
-  margin-bottom: 24px;
+  opacity: 0;
+  transition: opacity 1s var(--ease-out);
 }
 
-.why-miaso__text p {
-  font-size: 15px;
-  line-height: 1.7;
-  color: #4a3c2c;
-  margin: 16px 0 0;
+.why-miaso__photo--active {
+  opacity: 1;
+}
+
+.why-miaso__dots {
+  position: absolute;
+  z-index: 1;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+}
+
+.why-miaso__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 249, 243, 0.5);
+  cursor: pointer;
+}
+
+.why-miaso__dot--active {
+  background: var(--bg);
 }
 
 .why-miaso__checklist {
@@ -73,5 +126,13 @@
   .why-miaso {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  /* Stacked layout: photo-frame and checklist become separate grid rows
+     instead of stretching to match each other, and the frame's images are
+     all position:absolute (no intrinsic height) — without an explicit
+     aspect-ratio here the frame's own row would collapse to 0 height. */
+  .why-miaso__photo-frame {
+    aspect-ratio: 16 / 10;
   }
 }
