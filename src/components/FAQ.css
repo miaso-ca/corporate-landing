@@ -22,6 +22,11 @@
   font-weight: 600;
   color: var(--ink);
   text-align: left;
+  transition: color 0.2s ease-out;
+}
+
+.faq__question:hover {
+  color: var(--cta);
 }
 
 .faq__icon {
@@ -30,6 +35,11 @@
   font-weight: 400;
   color: var(--cta);
   flex-shrink: 0;
+  transition: transform 0.2s ease-out;
+}
+
+.faq__question:hover .faq__icon {
+  transform: translateX(2px);
 }
 
 .faq__answer-wrap {

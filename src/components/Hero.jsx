@@ -3,22 +3,38 @@ import heroPhoto from '../assets/photos/hero-table.jpg'
 import useReveal from '../hooks/useReveal.js'
 
 export default function Hero({ onWatchVideo }) {
-  // Above-the-fold: reveal on mount rather than waiting for scroll.
-  const photo = useReveal({ immediate: true })
-  const card = useReveal({ immediate: true, delay: 150 })
+  // Above-the-fold: reveal on mount rather than waiting for scroll, staggered
+  // so the eyebrow settles first, then the headline, then the card — a small
+  // choreography instead of one flat fade.
+  const eyebrow = useReveal({ immediate: true, delay: 100 })
+  const headline = useReveal({ immediate: true, delay: 280 })
+  const card = useReveal({ immediate: true, delay: 520 })
 
   return (
-    <section className="hero">
+    <section className="hero" id="top">
       <div className="hero__frame">
-        <div
-          className={`hero__photo reveal ${photo.visible ? 'reveal--visible' : ''}`}
-          ref={photo.ref}
-        >
-          <img src={heroPhoto} alt="MIASO catering spread, styled table" />
+        <div className="hero__photo">
+          <img
+            src={heroPhoto}
+            alt="MIASO catering spread, styled table"
+            className="hero__photo-img"
+          />
           <div className="hero__gradient" />
           <div className="hero__photo-content">
-            <span className="pill pill--on-photo">Corporate Catering · Toronto &amp; GTA</span>
-            <h1 className="hero__title">
+            <span
+              className={`pill pill--on-photo reveal reveal--fast ${
+                eyebrow.visible ? 'reveal--visible' : ''
+              }`}
+              ref={eyebrow.ref}
+            >
+              Corporate Catering · Toronto &amp; GTA
+            </span>
+            <h1
+              className={`hero__title reveal reveal--rise ${
+                headline.visible ? 'reveal--visible' : ''
+              }`}
+              ref={headline.ref}
+            >
               Corporate Catering in Toronto That Makes Hosting Effortless
             </h1>
           </div>

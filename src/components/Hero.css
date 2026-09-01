@@ -24,6 +24,22 @@
   object-fit: cover;
 }
 
+/* Ken Burns: slow zoom-out on load, once, purely cosmetic */
+.hero__photo-img {
+  transform: scale(1.08);
+  animation: hero-kenburns 11s ease-out forwards;
+}
+@keyframes hero-kenburns {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__photo-img {
+    animation: none;
+    transform: none;
+  }
+}
+
 .hero__gradient {
   position: absolute;
   inset: 0;
@@ -37,6 +53,7 @@
   align-items: flex-start;
   gap: 16px;
   padding: clamp(24px, 5vw, 64px);
+  padding-top: clamp(92px, 12vw, 128px);
   height: 100%;
   justify-content: flex-start;
 }

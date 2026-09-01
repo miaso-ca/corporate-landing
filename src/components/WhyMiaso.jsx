@@ -13,7 +13,11 @@ const CHECKLIST = [
 export default function WhyMiaso() {
   const { ref, visible } = useReveal()
   return (
-    <section className={`section reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
+    <section
+      className={`section reveal ${visible ? 'reveal--visible' : ''}`}
+      id="why-miaso"
+      ref={ref}
+    >
       <div className="why-miaso">
         <div className="why-miaso__text">
           <h2>You Manage the Event. We Manage the Catering Details.</h2>

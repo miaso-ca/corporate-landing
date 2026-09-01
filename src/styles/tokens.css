@@ -140,8 +140,18 @@ img { max-width: 100%; display: block; }
   opacity: 1;
   transform: translateY(0);
 }
+/* Modifiers for choreographed entrances (e.g. Hero) — pair with `.reveal` */
+.reveal--fast {
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+.reveal--rise {
+  transform: translateY(32px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .reveal--fast,
+  .reveal--rise {
     opacity: 1;
     transform: none;
     transition: none;

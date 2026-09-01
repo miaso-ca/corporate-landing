@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import StatsBar from './components/StatsBar.jsx'
 import CateringOptions from './components/CateringOptions.jsx'
@@ -7,6 +8,7 @@ import HowItWorks from './components/HowItWorks.jsx'
 import SocialProof from './components/SocialProof.jsx'
 import FAQ from './components/FAQ.jsx'
 import FinalForm from './components/FinalForm.jsx'
+import Footer from './components/Footer.jsx'
 import VideoModal from './components/VideoModal.jsx'
 
 export default function App() {
@@ -14,6 +16,7 @@ export default function App() {
 
   return (
     <>
+      <Nav />
       <Hero onWatchVideo={() => setVideoOpen(true)} />
       <StatsBar />
       <CateringOptions />
@@ -22,6 +25,7 @@ export default function App() {
       <SocialProof />
       <FAQ />
       <FinalForm />
+      <Footer />
       <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
     </>
   )

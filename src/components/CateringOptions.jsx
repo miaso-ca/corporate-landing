@@ -37,6 +37,19 @@ const OPTIONS = [
   },
 ]
 
+function CateringCard({ option, delay }) {
+  const { ref, visible } = useReveal({ delay })
+  return (
+    <div className={`catering-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
+      <div className="catering-card__photo">
+        <img src={option.photo} alt={option.alt} loading="lazy" />
+      </div>
+      <h3 className="catering-card__title">{option.title}</h3>
+      <p className="catering-card__desc">{option.description}</p>
+    </div>
+  )
+}
+
 export default function CateringOptions() {
   const { ref, visible } = useReveal()
   return (
@@ -52,14 +65,8 @@ export default function CateringOptions() {
       </p>
 
       <div className="catering-options__grid">
-        {OPTIONS.map((option) => (
-          <div className="catering-card" key={option.title}>
-            <div className="catering-card__photo">
-              <img src={option.photo} alt={option.alt} loading="lazy" />
-            </div>
-            <h3 className="catering-card__title">{option.title}</h3>
-            <p className="catering-card__desc">{option.description}</p>
-          </div>
+        {OPTIONS.map((option, i) => (
+          <CateringCard option={option} delay={i * 80} key={option.title} />
         ))}
       </div>
 
