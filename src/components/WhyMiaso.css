@@ -70,20 +70,35 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 7px;
 }
 
+/* Visible dot stays 7px (::after) — the button itself is a 32px square
+   invisible hit area so it's actually tappable on a real phone. Was a
+   literal 7x7px hit target with zero padding: fine for a mouse pointer,
+   unusable with a fingertip. */
 .why-miaso__dot {
-  width: 7px;
-  height: 7px;
+  position: relative;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: none;
-  border-radius: 50%;
-  background: rgba(255, 249, 243, 0.5);
+  background: none;
   cursor: pointer;
 }
 
-.why-miaso__dot--active {
+.why-miaso__dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 249, 243, 0.5);
+  transform: translate(-50%, -50%);
+}
+
+.why-miaso__dot--active::after {
   background: var(--bg);
 }
 
