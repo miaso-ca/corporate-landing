@@ -33,6 +33,14 @@
   margin-top: 40px;
 }
 
+/* Grid items default to min-width:auto, which lets a child's intrinsic size
+   (here, `.social-proof__video`'s aspect-ratio) blow out its own track and
+   starve the sibling column. min-width:0 lets both tracks size to the 1.1fr/1fr
+   split as intended. */
+.social-proof__top > * {
+  min-width: 0;
+}
+
 .social-proof__video {
   aspect-ratio: 16 / 10;
   background: linear-gradient(135deg, var(--ink) 0%, #4a3420 100%);

@@ -68,13 +68,15 @@ function Stat({ stat, delay }) {
 
 export default function StatsBar() {
   return (
-    <section className="section section--dark">
-      <h2 className="stats-bar__heading">Corporate Events, Thoughtfully Handled</h2>
-      <div className="stats-bar__grid">
-        {STATS.map((s, i) => (
-          <Stat key={s.value ?? s.countTo} stat={s} delay={i * 100} />
-        ))}
-      </div>
-    </section>
+    <div className="section-dark">
+      <section className="section">
+        <h2 className="stats-bar__heading">Corporate Events, Thoughtfully Handled</h2>
+        <div className="stats-bar__grid">
+          {STATS.map((s, i) => (
+            <Stat key={s.value ?? s.countTo} stat={s} delay={i * 100} />
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }

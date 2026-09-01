@@ -115,17 +115,17 @@ img { max-width: 100%; display: block; }
   padding: 40px clamp(20px, 5vw, 48px);
 }
 
-.section--dark {
+/* Full-bleed dark band wrapper — bg goes on THIS (unconstrained) element,
+   `.section` nests inside it for the max-width:1120px content column. Same
+   pattern Nav/Footer already use correctly. Do NOT put background+max-width
+   on the same element — a `box-shadow: 0 0 0 100vmax` "full-bleed" hack was
+   tried here and reverted: box-shadow blooms in every direction including
+   vertically, painting over neighbouring sections above/below since they
+   have no opaque background of their own to cover it (confirmed live —
+   WhyMiaso's text became near-invisible dark-on-dark). */
+.section-dark {
   background: var(--ink);
   color: #fff;
-  /* .section already caps this element at max-width:1120px + margin:0 auto,
-     so a plain background only paints that centered box (confirmed via
-     getBoundingClientRect: 160px of cream showing on each side at 1440px
-     viewport) instead of the full-bleed band this dark block is meant to
-     read as. box-shadow paints outside the box's own width without
-     affecting layout; body's overflow-x:hidden (tokens.css) clips it at
-     the viewport edge. */
-  box-shadow: 0 0 0 100vmax var(--ink);
 }
 
 .video-modal {
