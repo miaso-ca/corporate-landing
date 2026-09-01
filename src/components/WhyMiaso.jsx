@@ -81,12 +81,9 @@ export default function WhyMiaso() {
 
       <div className="why-miaso__intro">
         <p>
-          Corporate catering involves more than choosing food. Timing, presentation, dietary
-          requirements, delivery, setup and service all need to work together.
-        </p>
-        <p>
-          MIASO helps you select the right format and coordinates the catering around your
-          schedule, venue, guests and budget — so you can focus on hosting.
+          Catering takes more than good food — timing, presentation, dietary needs, delivery,
+          setup and service all have to align. MIASO picks the right format and coordinates it
+          around your venue, guests and budget, so you can focus on hosting.
         </p>
       </div>
 
