@@ -81,6 +81,12 @@
     grid-column: 1 / -1;
     justify-self: end;
   }
+
+  /* Same fix as FinalForm's mobile override — 10px 12px is a ~36px hit
+     area, under the 44px touch-target floor a thumb needs. */
+  .quick-form__field input {
+    padding: 14px 12px;
+  }
 }
 
 @media (max-width: 560px) {

@@ -45,6 +45,27 @@
   grid-column: 1 / -1;
 }
 
+/* Splits the 11-field grid into three short legs instead of one
+   undifferentiated list — mainly a mobile concern, where the single-column
+   stack runs 1.5+ screens of scrolling with nothing to signal progress.
+   The first one sits flush against the intro copy above (no border, no
+   extra top gap); the later two get a rule to read as a fresh section. */
+.final-form__group-label {
+  grid-column: 1 / -1;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cta);
+}
+
+.final-form__group-label:not(:first-child) {
+  margin-top: 10px;
+  padding-top: 20px;
+  border-top: 1px solid #f0e2d0;
+}
+
 .final-form__field label {
   font-size: 11px;
   font-weight: 600;
@@ -118,5 +139,14 @@
 
   .final-form__grid {
     grid-template-columns: 1fr;
+  }
+
+  /* 10px 12px is a ~36px tall hit area — under the 44px touch-target
+     floor. Fine with a mouse pointer (desktop keeps the tighter padding);
+     worth the extra room once a thumb is doing the tapping. */
+  .final-form__field input,
+  .final-form__field select,
+  .final-form__field textarea {
+    padding: 14px 12px;
   }
 }

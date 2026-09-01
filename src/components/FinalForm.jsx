@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import useReveal from '../hooks/useReveal.js'
 import './FinalForm.css'
@@ -20,17 +20,22 @@ const BUDGET_RANGES = [
   'Not sure yet',
 ]
 
+// `group` only marks where a new cluster starts — it's read once, to drop a
+// section label ahead of that field, purely so the mobile single-column
+// stack (11 fields, one screen-and-a-half of scrolling) reads as three short
+// legs instead of one undifferentiated list. Doesn't change field order,
+// requirements or the data shape submitted.
 const FIELDS = [
-  { name: 'name', label: 'Full Name', type: 'text', required: true },
+  { name: 'name', label: 'Full Name', type: 'text', required: true, group: 'Your Details' },
   { name: 'email', label: 'Email', type: 'email', required: true },
   { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
   { name: 'company', label: 'Company', type: 'text', required: false },
-  { name: 'eventDate', label: 'Event Date', type: 'date', required: false },
+  { name: 'eventDate', label: 'Event Date', type: 'date', required: false, group: 'Event Details' },
   { name: 'guests', label: 'Number of Guests', type: 'number', required: true },
   { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
   { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
   { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
-  { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false },
+  { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false, group: 'Anything Else?' },
   { name: 'details', label: 'Additional Details', type: 'textarea', required: false },
 ]
 
@@ -94,46 +99,48 @@ export default function FinalForm() {
         ) : (
           <form className="final-form__form" onSubmit={handleSubmit} noValidate>
             <div className="final-form__grid">
-              {FIELDS.map(({ name, label, type, options }) => (
-                <div
-                  className={`final-form__field${
-                    type === 'textarea' ? ' final-form__field--full' : ''
-                  }`}
-                  key={name}
-                >
-                  <label htmlFor={`final-${name}`}>{label}</label>
-                  {type === 'select' ? (
-                    <select
-                      id={`final-${name}`}
-                      value={values[name]}
-                      onChange={(e) => handleChange(name, e.target.value)}
-                    >
-                      <option value="" disabled>
-                        Select an option
-                      </option>
-                      {options.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
+              {FIELDS.map(({ name, label, type, options, group }) => (
+                <Fragment key={name}>
+                  {group && <span className="final-form__group-label">{group}</span>}
+                  <div
+                    className={`final-form__field${
+                      type === 'textarea' ? ' final-form__field--full' : ''
+                    }`}
+                  >
+                    <label htmlFor={`final-${name}`}>{label}</label>
+                    {type === 'select' ? (
+                      <select
+                        id={`final-${name}`}
+                        value={values[name]}
+                        onChange={(e) => handleChange(name, e.target.value)}
+                      >
+                        <option value="" disabled>
+                          Select an option
                         </option>
-                      ))}
-                    </select>
-                  ) : type === 'textarea' ? (
-                    <textarea
-                      id={`final-${name}`}
-                      rows={3}
-                      value={values[name]}
-                      onChange={(e) => handleChange(name, e.target.value)}
-                    />
-                  ) : (
-                    <input
-                      id={`final-${name}`}
-                      type={type}
-                      value={values[name]}
-                      onChange={(e) => handleChange(name, e.target.value)}
-                    />
-                  )}
-                  {errors[name] && <span className="final-form__error">{errors[name]}</span>}
-                </div>
+                        {options.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    ) : type === 'textarea' ? (
+                      <textarea
+                        id={`final-${name}`}
+                        rows={3}
+                        value={values[name]}
+                        onChange={(e) => handleChange(name, e.target.value)}
+                      />
+                    ) : (
+                      <input
+                        id={`final-${name}`}
+                        type={type}
+                        value={values[name]}
+                        onChange={(e) => handleChange(name, e.target.value)}
+                      />
+                    )}
+                    {errors[name] && <span className="final-form__error">{errors[name]}</span>}
+                  </div>
+                </Fragment>
               ))}
             </div>
 

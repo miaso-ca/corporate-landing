@@ -36,9 +36,14 @@
      `html, body { padding: 0 }` reset — same specificity otherwise, and
      ES module evaluation order puts tokens.css's import (main.jsx, after
      App.jsx's whole import graph) later in the cascade than this file, so
-     the shorthand reset was silently winning and zeroing this out. */
+     the shorthand reset was silently winning and zeroing this out.
+     calc(), not a flat 72px — the bar's own height grows by
+     env(safe-area-inset-bottom) on notched phones (its bottom padding is
+     `12px + env(...)`), so a static reserve undershoots on exactly the
+     devices this breakpoint targets and lets the bar clip the last few
+     pixels of Footer. Matching the same env() term keeps the two in sync. */
   html body {
-    padding-bottom: 72px;
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
   }
 }
 

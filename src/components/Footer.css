@@ -131,4 +131,20 @@
   .footer__contact {
     align-items: center;
   }
+
+  /* Text stays the same size — only the invisible hit area grows — so a
+     thumb has real room around "FAQ" or a phone number without the link
+     list looking any more spaced out than it does today. */
+  .footer__links a,
+  .footer__contact a {
+    padding: 6px 0;
+    margin: -6px 0;
+  }
+
+  /* 34px circles are under the 44px touch-target floor — same class of fix
+     already applied to VideoModal's close button (see VideoModal.css). */
+  .footer__social a {
+    width: 44px;
+    height: 44px;
+  }
 }
