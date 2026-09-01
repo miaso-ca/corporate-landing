@@ -1,5 +1,7 @@
+import { useEffect, useRef } from 'react'
 import './SocialProof.css'
 import useReveal from '../hooks/useReveal.js'
+import clientVideo from '../assets/videos/client-event-clip.mp4'
 import galleryPhoto1 from '../assets/photos/gallery/staff-arranging-buffet-table.jpg'
 import galleryPhoto2 from '../assets/photos/gallery/staff-plating-watermelon-feta.jpg'
 import galleryPhoto3 from '../assets/photos/gallery/buffet-spread-sliders-charcuterie.jpg'
@@ -28,6 +30,32 @@ function Reveal({ delay = 0, className = '', children }) {
   )
 }
 
+function ClientVideo() {
+  const videoRef = useRef(null)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      videoRef.current?.pause()
+    }
+  }, [])
+
+  return (
+    <div className="social-proof__video">
+      <video
+        ref={videoRef}
+        src={clientVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-label="Behind-the-scenes footage from a MIASO corporate event"
+      />
+      <div className="social-proof__video-gradient" aria-hidden="true" />
+      <span className="social-proof__video-caption">Behind the scenes at a MIASO event</span>
+    </div>
+  )
+}
+
 export default function SocialProof() {
   return (
     <div className="section-dark">
@@ -41,12 +69,7 @@ export default function SocialProof() {
         </Reveal>
 
         <Reveal delay={100} className="social-proof__top">
-          <div className="social-proof__video slot-card">
-            <span className="social-proof__play" aria-hidden="true">▶</span>
-            <span className="slot-card__caption slot-card__caption--on-dark">
-              Client video — coming soon
-            </span>
-          </div>
+          <ClientVideo />
           <div className="social-proof__gallery">
             {GALLERY_PHOTOS.map((photo) => (
               <div className="social-proof__photo" key={photo.src}>
