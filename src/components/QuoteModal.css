@@ -1,4 +1,10 @@
-.quote-modal__box {
+/* Same-specificity selector as the shared .video-modal__box (tokens.css) —
+   whichever stylesheet the bundler emits second silently wins ties, which in
+   the production build is tokens.css, so this override was dead code (max-
+   width stuck at 420px, text-align stuck at center). Chaining both classes
+   (already both present on the element) raises specificity so this reliably
+   wins regardless of bundle order. */
+.video-modal__box.quote-modal__box {
   max-width: 480px;
   text-align: left;
 }
