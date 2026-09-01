@@ -1,9 +1,11 @@
 /* Full-bleed white band — same technique as HowItWorks' panel and the
    bar-service banner — so this reads as a real section instead of a
-   contained card floating on cream. */
+   contained card floating on cream. Top stays 0 — deliberately touches
+   SocialProof's dark background with no gap. Bottom is 0 too now: the
+   section after this one owns the standardized --section-gap instead. */
 #faq.section {
   padding-top: 0;
-  padding-bottom: 56px;
+  padding-bottom: 0;
 }
 
 .faq__panel {

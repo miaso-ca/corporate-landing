@@ -1,5 +1,6 @@
+/* Standardized inter-section gap (see --section-gap in tokens.css). */
 #quote.section {
-  padding-top: 56px;
+  padding-top: var(--section-gap);
 }
 
 .final-form {

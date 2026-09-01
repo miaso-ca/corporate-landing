@@ -1,7 +1,9 @@
-/* The panel bleeds full-width horizontally, but its parent .section still
-   had its own 96px bottom padding — that left a cream strip between the
-   white panel's bottom edge and the dark section right after it. */
+/* Bottom stays 0 — deliberately touches SocialProof's dark background with
+   no gap (full-bleed continuation, not part of the standard inter-section
+   gap). Top uses --section-gap (tokens.css) like every other boundary that
+   ISN'T a deliberate full-bleed touch. */
 #how-it-works.section {
+  padding-top: var(--section-gap);
   padding-bottom: 0;
 }
 

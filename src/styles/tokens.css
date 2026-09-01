@@ -11,6 +11,15 @@
   --radius: 12px;
   --radius-sm: 8px;
 
+  /* Standard cream-background gap between two sections that AREN'T meant to
+     touch directly (full-bleed bands like the bar-service banner or the
+     HowItWorks/FAQ white panels deliberately touch their dark/light
+     neighbours with zero gap — that's a separate, intentional pattern).
+     Convention: the LATER section's own top padding equals this value, the
+     EARLIER section's bottom padding is 0 — one rule, not a per-boundary
+     guess. Value matches .catering-options__quote's existing margin-top. */
+  --section-gap: 64px;
+
   /* Motion tokens — strong curves, not the weak built-in `ease-out` keyword.
      Source: emilkowal.ski animation-vocabulary skill. */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);

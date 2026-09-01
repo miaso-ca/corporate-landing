@@ -1,8 +1,9 @@
-/* Scoped bottom padding — this section already ends on the quote form's
-   own visual weight, so the shared 96px token plus Why MIASO's own top
-   padding right after it added up to a ~168px combined gap. */
+/* Standardized inter-section gap (see --section-gap in tokens.css): this
+   section owns the top of its own gap, none of the bottom — the section
+   after it is responsible for its own top spacing instead. */
 #catering-options.section {
-  padding-bottom: 56px;
+  padding-top: var(--section-gap);
+  padding-bottom: 0;
 }
 
 .catering-options__intro {
@@ -109,7 +110,7 @@
 
 .catering-options__quote {
   max-width: 960px;
-  margin: 64px auto 0;
+  margin: var(--section-gap) auto 0;
   text-align: center;
 }
 
