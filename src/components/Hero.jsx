@@ -28,7 +28,7 @@ export default function Hero({ onWatchVideo, onRequestQuote }) {
                 }`}
                 ref={eyebrow.ref}
               >
-                Catering in Toronto &amp; GTA
+                Catering in Toronto &amp;&nbsp;GTA
               </span>
               <h1
                 className={`hero__title reveal reveal--rise ${
@@ -36,7 +36,7 @@ export default function Hero({ onWatchVideo, onRequestQuote }) {
                 }`}
                 ref={headline.ref}
               >
-                Corporate Catering That Makes Hosting Effortless
+                Corporate Catering That Makes Hosting&nbsp;Effortless
               </h1>
             </div>
 
@@ -51,11 +51,11 @@ export default function Hero({ onWatchVideo, onRequestQuote }) {
               </p>
               <div className="hero__actions">
                 <button className="btn" type="button" onClick={onRequestQuote}>
-                  Request a Corporate Quote
+                  Request a Corporate&nbsp;Quote
                 </button>
                 <button className="hero__watch" onClick={onWatchVideo} type="button">
                   <span className="hero__play">▶</span>
-                  Watch 45 sec
+                  Watch 45&nbsp;sec
                 </button>
               </div>
               <div className="hero__trust">

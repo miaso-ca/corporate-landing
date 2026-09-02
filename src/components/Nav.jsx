@@ -3,8 +3,8 @@ import './Nav.css'
 
 const LINKS = [
   { href: '#catering-options', label: 'Catering' },
-  { href: '#why-miaso', label: 'Why MIASO' },
-  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#why-miaso', label: 'Why MIASO' },
+  { href: '#how-it-works', label: 'How It Works' },
   { href: '#faq', label: 'FAQ' },
 ]
 
@@ -47,7 +47,7 @@ export default function Nav({ onRequestQuote }) {
             416-613-0078
           </a>
           <button className="btn nav__cta" type="button" onClick={onRequestQuote}>
-            Request a Quote
+            Request a Quote
           </button>
         </div>
 
@@ -83,7 +83,7 @@ export default function Nav({ onRequestQuote }) {
                 onRequestQuote()
               }}
             >
-              Request a Quote
+              Request a Quote
             </button>
           </div>
         </div>

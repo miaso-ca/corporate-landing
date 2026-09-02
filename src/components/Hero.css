@@ -97,6 +97,7 @@
   line-height: 1.12;
   color: #fff;
   max-width: 620px;
+  text-wrap: balance;
   /* Guarantees legibility against whatever the photo happens to show behind
      the headline at any breakpoint/crop — measured on the narrowest tested
      width (375px, where the headline wraps to 3 lines) that the existing
@@ -128,6 +129,7 @@
   color: #4a3c2c;
   margin: 0;
   max-width: 520px;
+  text-wrap: pretty;
 }
 
 .hero__actions {
@@ -170,6 +172,7 @@
   font-size: 11px;
   color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
   margin-top: 14px;
+  text-wrap: pretty;
 }
 
 @media (max-width: 560px) {
