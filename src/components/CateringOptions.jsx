@@ -30,9 +30,10 @@ const OPTIONS = [
     bestFor: 'conferences, expos, brand activations',
     photo: cartPhoto,
     // ponytail: source photo is a tall phone screenshot (782x1382) — the
-    // shared 16:9 photo frame would crop out the girl and the MIASO logo
-    // on the cart. This one card gets a taller frame instead.
-    photoTall: true,
+    // shared 16:9 frame only ever shows ~32% of that height, not enough
+    // for both the face and the MIASO logo lower on the cart. Chose the
+    // face — the logo already appears in the site's own branding.
+    photoPosition: '50% 46.7%',
     alt: 'MIASO mobile catering cart, staffed and styled at an outdoor event',
   },
   {
@@ -49,8 +50,13 @@ function CateringCard({ option, delay }) {
   const { ref, visible } = useReveal({ delay })
   return (
     <div className={`catering-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
-      <div className={`catering-card__photo ${option.photoTall ? 'catering-card__photo--tall' : ''}`}>
-        <img src={option.photo} alt={option.alt} loading="lazy" />
+      <div className="catering-card__photo">
+        <img
+          src={option.photo}
+          alt={option.alt}
+          loading="lazy"
+          style={option.photoPosition ? { objectPosition: option.photoPosition } : undefined}
+        />
       </div>
       <h3 className="catering-card__title">{option.title}</h3>
       <p className="catering-card__desc">{option.description}</p>
