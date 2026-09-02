@@ -173,13 +173,31 @@
 }
 
 @media (max-width: 560px) {
-  .hero__photo { min-height: 78vh; min-height: 78svh; max-height: none; }
+  .hero__photo { max-height: none; }
   .hero__card { padding: 20px 20px 22px; max-width: none; }
-  /* space-between stretches the pill+headline to the top and the card to
-     the bottom of the full 78svh photo — on a phone that's most of the
-     screen, so the gap between them reads as empty dead space rather than
-     "breathing room". flex-end keeps the top padding (so the pill isn't
-     jammed under the nav) but groups text and card together at the bottom,
-     the same distance apart (gap: 40px) without the stretch. */
-  .hero__photo-content { justify-content: flex-end; }
+  /* Above this width, .hero__photo-content is position:absolute;inset:0 —
+     stretched to EXACTLY .hero__photo's own height (see the comment on
+     that rule), which relies on the pill+headline+card always fitting
+     inside that fixed height. That held on the devices/text this was
+     tuned against, but a 3-line headline plus a full card (desc + CTA +
+     watch link + trust line) can genuinely be taller than 78svh on some
+     real phones — a fixed-height absolute box can't grow for that, so the
+     content overflowed. With justify-content:flex-end (an earlier attempt
+     at closing the pill-to-card gap) the overflow spilled upward, badly
+     enough to render on top of the fixed nav bar.
+
+     Fix: take .hero__photo-content out of absolute positioning here and
+     let it sit in normal flow. min-height keeps the usual tall-hero look
+     when content is short, but now it's a FLOOR, not a fixed box the
+     content must be clipped/overlapped to fit inside — .hero__photo grows
+     to match however tall the content actually needs to be, and the
+     absolutely-positioned img/gradient behind it (inset:0, unaffected)
+     stretch to cover whatever height that ends up being. */
+  .hero__photo-content {
+    position: relative;
+    inset: auto;
+    min-height: 78vh;
+    min-height: 78svh;
+    justify-content: flex-end;
+  }
 }
