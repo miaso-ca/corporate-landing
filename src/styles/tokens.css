@@ -54,6 +54,12 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  /* The sans font's line-height leaves more space below the glyphs than
+     above (ascent/descent aren't symmetric around the em-box), so equal
+     top/bottom padding still read as bottom-heavy. line-height:1 collapses
+     the line-box down to the glyphs themselves so the padding is what
+     actually centers the text. */
+  line-height: 1;
   /* letter-spacing adds trailing space after the LAST character with no
      matching space before the first — at 0.12em/11px that's ~1.3px of
      "phantom" width on the right that visually shifts the text left of
