@@ -3,19 +3,19 @@ import './HowItWorks.css'
 
 const STEPS = [
   {
-    title: 'Tell Us About Your Event',
+    title: 'Tell Us About Your Event',
     desc: 'Share your preferred date, venue, guest count, budget, event format and dietary requirements.',
   },
   {
-    title: 'Receive a Tailored Recommendation',
+    title: 'Receive a Tailored Recommendation',
     desc: "We'll recommend the most suitable catering format and prepare a personalized menu and quote.",
   },
   {
-    title: 'Confirm the Details',
+    title: 'Confirm the Details',
     desc: 'Approve the menu and service package. Your date is reserved once availability is confirmed and the required deposit is received.',
   },
   {
-    title: 'Enjoy Your Event',
+    title: 'Enjoy Your Event',
     desc: 'Depending on your selected package, the MIASO team will prepare, deliver, style, serve and clean up.',
   },
 ]
@@ -49,7 +49,7 @@ export default function HowItWorks({ onRequestQuote }) {
         </div>
 
         <button className="btn how-it-works__cta" type="button" onClick={onRequestQuote}>
-          Request a Corporate Quote
+          Request a Corporate&nbsp;Quote
         </button>
       </div>
     </section>

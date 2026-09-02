@@ -5,31 +5,31 @@ import clientVideo from '../assets/videos/client-event-clip.mp4'
 
 const REVIEWS = [
   {
-    name: 'Emily Carter',
+    name: 'Emily Carter',
     text: 'MIASO made our corporate reception feel effortless. The food was fresh, beautifully presented, and thoughtfully prepared for different dietary needs. Their team was professional from setup to cleanup, and several guests asked us who handled the catering.',
   },
   {
-    name: 'Olivia Bennett',
+    name: 'Olivia Bennett',
     text: 'We hired MIASO for a family celebration and couldn’t have been happier. Every dish was flavourful, the presentation was elegant, and the team handled all the details seamlessly. We were able to relax and truly enjoy the evening with our guests.',
   },
   {
-    name: 'Lauren Mitchell',
+    name: 'Lauren Mitchell',
     text: 'MIASO catered a team appreciation event at our Toronto office, and everything was excellent. The menu offered plenty of variety, the food arrived fresh and on time, and the setup looked polished. Our entire team had wonderful things to say.',
   },
   {
-    name: 'Rachel Thompson',
+    name: 'Rachel Thompson',
     text: 'From the first conversation, MIASO understood exactly what we wanted for our engagement celebration. The team was responsive, organized, and attentive to every detail. The food looked beautiful, tasted incredible, and made the evening feel genuinely special.',
   },
   {
-    name: 'Daniel Brooks',
+    name: 'Daniel Brooks',
     text: 'MIASO delivered an exceptional experience for our client dinner. The menu felt refined yet approachable, the presentation was impressive, and the service was attentive without being intrusive. Everything came together beautifully and left a strong impression on our guests.',
   },
   {
-    name: 'Michael Anderson',
+    name: 'Michael Anderson',
     text: 'Excellent food, thoughtful service, and seamless coordination from start to finish. MIASO accommodated our guests’ dietary preferences and made sure everything arrived fresh and on time. The setup was beautiful, and the entire event felt relaxed and well organized.',
   },
   {
-    name: 'James Wilson',
+    name: 'James Wilson',
     text: 'Our guests are still talking about the food. Every dish was full of flavour and presented with care. The MIASO team was friendly, flexible, and professional throughout the event. They helped create a warm and memorable experience for everyone.',
   },
 ]
@@ -65,7 +65,7 @@ function ClientVideo() {
         aria-label="Behind-the-scenes footage from a MIASO corporate event"
       />
       <div className="social-proof__video-gradient" aria-hidden="true" />
-      <span className="social-proof__video-caption">Behind the scenes at a MIASO event</span>
+      <span className="social-proof__video-caption">Behind the scenes at a MIASO&nbsp;event</span>
     </div>
   )
 }
