@@ -159,28 +159,4 @@
     border-radius: var(--radius-sm);
     line-height: 1.4;
   }
-
-  /* ponytail: reorder is a CSS-only flip (card is already flex-column) —
-     visual order becomes photo -> pill -> title -> desc without touching
-     the JSX/DOM. Photo keeps the implicit order:0 from source position.
-     Revert: delete this rule (git revert the commit that added it) to
-     restore photo -> title -> desc -> pill on mobile. */
-  .catering-card__best-for {
-    order: 1;
-    /* Desktop pins the pill to the card's bottom via margin-top:auto; here
-       it sits right under the photo instead, so swap back to a normal gap
-       on both sides. */
-    margin: 20px 24px 14px;
-  }
-
-  .catering-card__title {
-    order: 2;
-    /* Pill's own margin-bottom above already provides the gap now that the
-       photo no longer directly precedes the title. */
-    margin-top: 0;
-  }
-
-  .catering-card__desc {
-    order: 3;
-  }
 }
