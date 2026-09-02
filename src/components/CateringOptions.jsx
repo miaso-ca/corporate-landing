@@ -3,8 +3,7 @@ import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing.jpg'
-import cartPhoto from '../assets/photos/gallery/staff-serving-canapes-smile.jpg'
-import cartVideo from '../assets/videos/mobile-cart-clip.mp4'
+import cartPhoto from '../assets/photos/catering-cart-live.jpg'
 import fullservicePhoto from '../assets/photos/catering-fullservice.jpg'
 
 const OPTIONS = [
@@ -30,7 +29,11 @@ const OPTIONS = [
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
     photo: cartPhoto,
-    alt: 'MIASO mobile catering cart in action at an outdoor event',
+    // ponytail: source photo is a tall phone screenshot (782x1382) — the
+    // shared 16:9 photo frame would crop out the girl and the MIASO logo
+    // on the cart. This one card gets a taller frame instead.
+    photoTall: true,
+    alt: 'MIASO mobile catering cart, staffed and styled at an outdoor event',
   },
   {
     title: 'Full-Service Corporate Catering',
@@ -46,19 +49,8 @@ function CateringCard({ option, delay }) {
   const { ref, visible } = useReveal({ delay })
   return (
     <div className={`catering-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
-      <div className="catering-card__photo">
-        {option.video ? (
-          <video
-            src={option.video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            aria-label={option.alt}
-          />
-        ) : (
-          <img src={option.photo} alt={option.alt} loading="lazy" />
-        )}
+      <div className={`catering-card__photo ${option.photoTall ? 'catering-card__photo--tall' : ''}`}>
+        <img src={option.photo} alt={option.alt} loading="lazy" />
       </div>
       <h3 className="catering-card__title">{option.title}</h3>
       <p className="catering-card__desc">{option.description}</p>

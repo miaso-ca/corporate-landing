@@ -53,8 +53,18 @@
   overflow: hidden;
 }
 
-.catering-card__photo img,
-.catering-card__photo video {
+/* Mobile Cart's source photo is a tall phone shot (782x1382) — 16:9 cover
+   would crop the girl's head and the MIASO logo on the cart. A taller
+   frame + bottom-anchored object-position keeps the full width and crops
+   only off the top (the umbrella canopy), where nothing essential sits. */
+.catering-card__photo--tall {
+  aspect-ratio: 3 / 4;
+}
+.catering-card__photo--tall img {
+  object-position: center bottom;
+}
+
+.catering-card__photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -62,8 +72,7 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .catering-card:hover .catering-card__photo img,
-  .catering-card:hover .catering-card__photo video {
+  .catering-card:hover .catering-card__photo img {
     transform: scale(1.04);
   }
 }
