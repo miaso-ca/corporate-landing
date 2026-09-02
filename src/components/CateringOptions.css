@@ -12,6 +12,11 @@
   font-size: 15px;
   line-height: 1.6;
   color: #4a3c2c;
+  text-wrap: pretty;
+}
+
+#catering-options > h2 {
+  text-wrap: balance;
 }
 
 .catering-options__grid {
@@ -73,6 +78,7 @@
   line-height: 1.65;
   color: #4a3c2c;
   margin: 12px 24px 14px;
+  text-wrap: pretty;
 }
 
 .catering-card__best-for {
@@ -108,6 +114,7 @@
   color: var(--bg); /* cream-white text on --cta red */
   margin: 0;
   max-width: 900px;
+  text-wrap: pretty;
 }
 
 .catering-options__quote {
@@ -118,6 +125,7 @@
 
 .catering-options__quote h3 {
   margin-bottom: 8px;
+  text-wrap: balance;
 }
 
 .catering-options__quote-intro {
@@ -126,6 +134,7 @@
   color: #4a3c2c;
   max-width: 600px;
   margin: 0 auto;
+  text-wrap: pretty;
 }
 
 .catering-options__quote-intro a {

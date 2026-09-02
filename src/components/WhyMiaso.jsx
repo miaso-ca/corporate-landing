@@ -8,12 +8,12 @@ import photo4 from '../assets/photos/gallery/prosciutto-blackberry-brie-skewers.
 import photo5 from '../assets/photos/gallery/cheese-skewers-mirror.jpg'
 
 const CHECKLIST = [
-  'Fresh food prepared to order',
-  'A menu tailored to your event and guest count',
-  'Dietary accommodations confirmed during planning',
-  'Presentation and signage options matched to your event',
-  'Delivery, setup, staffing and cleanup available depending on the package',
-  'A clear quote with all services and inclusions defined upfront',
+  'Fresh food prepared to order',
+  'A menu tailored to your event and guest count',
+  'Dietary accommodations confirmed during planning',
+  'Presentation and signage options matched to your event',
+  'Delivery, setup, staffing and cleanup available depending on the package',
+  'A clear quote with all services and inclusions defined upfront',
 ]
 
 const PHOTOS = [

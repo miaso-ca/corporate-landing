@@ -9,34 +9,34 @@ import fullservicePhoto from '../assets/photos/catering-fullservice.jpg'
 
 const OPTIONS = [
   {
-    title: 'Corporate Lunches & Drop-Off Catering',
+    title: 'Corporate Lunches & Drop-Off Catering',
     description:
-      'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
-    bestFor: 'meetings, training days, office celebrations',
+      'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
+    bestFor: 'meetings, training days, office celebrations',
     photo: lunchesPhoto,
     alt: 'Individually styled catering cups ready for drop-off',
   },
   {
-    title: 'Grazing Tables',
+    title: 'Grazing Tables',
     description:
-      'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
-    bestFor: 'networking events, client receptions',
+      'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
+    bestFor: 'networking events, client receptions',
     photo: grazingPhoto,
     alt: 'Grazing table spread with cheeses, breads and canapés',
   },
   {
-    title: 'Mobile Cart Experience',
+    title: 'Mobile Cart Experience',
     description:
-      'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
-    bestFor: 'conferences, expos, brand activations',
+      'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
+    bestFor: 'conferences, expos, brand activations',
     photo: cartPhoto,
     alt: 'MIASO mobile catering cart in action at an outdoor event',
   },
   {
-    title: 'Full-Service Corporate Catering',
+    title: 'Full-Service Corporate Catering',
     description:
-      'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
-    bestFor: 'galas, product launches, award nights',
+      'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
+    bestFor: 'galas, product launches, award nights',
     photo: fullservicePhoto,
     alt: 'Full-service buffet spread set for a corporate event',
   },
@@ -89,7 +89,7 @@ export default function CateringOptions() {
 
       <div className="catering-options__callout">
         <div className="catering-options__callout-copy">
-          <span className="pill pill--on-photo">Need Bar Service Too?</span>
+          <span className="pill pill--on-photo">Need Bar Service&nbsp;Too?</span>
           <p>
             We&rsquo;ve partnered with North Spirit Distillery for years to pair full bar
             service — bartenders, mixers and glassware — with every MIASO event, so nothing
