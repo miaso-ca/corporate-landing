@@ -54,18 +54,24 @@ img { max-width: 100%; display: block; }
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  /* The sans font's line-height leaves more space below the glyphs than
-     above (ascent/descent aren't symmetric around the em-box), so equal
-     top/bottom padding still read as bottom-heavy. line-height:1 collapses
-     the line-box down to the glyphs themselves so the padding is what
-     actually centers the text. */
+  /* line-height:1 collapses the line-box to exactly ascent+descent (Josefin
+     Sans: 8px/3px at this font-size) instead of adding extra half-leading
+     on top of them — a prerequisite for the padding split below to land
+     where the math says it should. */
   line-height: 1;
-  /* letter-spacing adds trailing space after the LAST character with no
-     matching space before the first — at 0.12em/11px that's ~1.3px of
-     "phantom" width on the right that visually shifts the text left of
-     true-center even though the box itself measures symmetric. Trim the
-     right padding to compensate so the ink, not just the box, centers. */
-  padding: 6px 12.5px 6px 14px;
+  /* Pill text is always uppercase, so it only ever uses the ascent portion
+     of the line-box — the ~3px descent reserve (for lowercase descenders
+     that never appear here) sits unused below the baseline. Equal padding
+     therefore still reads bottom-heavy: measured on real devices as
+     visibly more air below the text than above. Splitting the same total
+     padding unevenly (padding-top absorbs the descent gap) puts the ink,
+     not just the box, at the vertical center.
+     letter-spacing adds a second, horizontal version of the same problem:
+     trailing space after the LAST character with no matching space before
+     the first — at 0.12em/11px that's ~1.3px of "phantom" width on the
+     right that shifts the text left of true-center. Right padding is
+     trimmed to compensate there too. */
+  padding: 7.5px 12.5px 4.5px 14px;
   border-radius: 100px;
 }
 .pill--on-photo {
