@@ -3,15 +3,15 @@ import { submitLead } from '../lib/submitLead.js'
 import './QuickCaptureForm.css'
 
 const FIELDS = [
-  { name: 'name', label: 'Full Name', type: 'text', required: true },
+  { name: 'name', label: 'Full Name', type: 'text', required: true },
   { name: 'email', label: 'Email', type: 'email', required: true },
-  { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
+  { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
   {
     name: 'eventDate',
-    label: 'Event Date',
+    label: 'Event Date',
     type: 'date',
     required: false,
-    hint: "Optional — leave blank if you're not sure yet",
+    hint: "Optional — leave blank if you're not sure yet",
   },
 ]
 
@@ -58,7 +58,7 @@ export default function QuickCaptureForm({ source }) {
   if (done) {
     return (
       <div className="quick-form quick-form--done state-swap-in">
-        <span className="pill pill--on-light">Thanks — we'll follow up within 1 business day.</span>
+        <span className="pill pill--on-light">Thanks — we'll follow up within 1 business day.</span>
       </div>
     )
   }
@@ -79,7 +79,7 @@ export default function QuickCaptureForm({ source }) {
         </div>
       ))}
       <button className="btn" type="submit" disabled={submitting}>
-        {submitting ? 'Sending…' : 'Get My Quote'}
+        {submitting ? 'Sending…' : 'Get My Quote'}
       </button>
     </form>
   )

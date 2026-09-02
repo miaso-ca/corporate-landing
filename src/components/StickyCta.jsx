@@ -19,7 +19,7 @@ export default function StickyCta({ onRequestQuote }) {
   return (
     <div className={`sticky-cta ${visible ? 'sticky-cta--visible' : ''}`} aria-hidden={!visible}>
       <button className="btn sticky-cta__btn" type="button" onClick={onRequestQuote}>
-        Request a Corporate Quote
+        Request a Corporate Quote
       </button>
     </div>
   )

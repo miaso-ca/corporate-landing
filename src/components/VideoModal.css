@@ -10,3 +10,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.video-modal__box--info h3 {
+  text-wrap: balance;
+}
+
+.video-modal__box--info p {
+  text-wrap: pretty;
+}

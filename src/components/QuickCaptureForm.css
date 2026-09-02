@@ -55,6 +55,7 @@
   margin-top: 4px;
   font-size: 11px;
   color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
+  text-wrap: pretty;
 }
 
 .quick-form__error {

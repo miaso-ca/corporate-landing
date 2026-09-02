@@ -26,17 +26,17 @@ const BUDGET_RANGES = [
 // legs instead of one undifferentiated list. Doesn't change field order,
 // requirements or the data shape submitted.
 const FIELDS = [
-  { name: 'name', label: 'Full Name', type: 'text', required: true, group: 'Your Details' },
+  { name: 'name', label: 'Full Name', type: 'text', required: true, group: 'Your Details' },
   { name: 'email', label: 'Email', type: 'email', required: true },
-  { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
+  { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
   { name: 'company', label: 'Company', type: 'text', required: false },
-  { name: 'eventDate', label: 'Event Date', type: 'date', required: false, group: 'Event Details' },
-  { name: 'guests', label: 'Number of Guests', type: 'number', required: true },
-  { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
-  { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
-  { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
-  { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false, group: 'Anything Else?' },
-  { name: 'details', label: 'Additional Details', type: 'textarea', required: false },
+  { name: 'eventDate', label: 'Event Date', type: 'date', required: false, group: 'Event Details' },
+  { name: 'guests', label: 'Number of Guests', type: 'number', required: true },
+  { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
+  { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
+  { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
+  { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false, group: 'Anything Else?' },
+  { name: 'details', label: 'Additional Details', type: 'textarea', required: false },
 ]
 
 const INITIAL_VALUES = FIELDS.reduce((acc, { name }) => ({ ...acc, [name]: '' }), {})
@@ -93,7 +93,7 @@ export default function FinalForm() {
         {done ? (
           <div className="final-form__done state-swap-in">
             <span className="pill pill--on-light">
-              Thanks — we&rsquo;ll follow up within 1 business day.
+              Thanks — we&rsquo;ll follow up within 1 business day.
             </span>
           </div>
         ) : (
@@ -145,7 +145,7 @@ export default function FinalForm() {
             </div>
 
             <button className="btn" type="submit" disabled={submitting}>
-              {submitting ? 'Sending…' : 'Request a Corporate Quote'}
+              {submitting ? 'Sending…' : 'Request a Corporate Quote'}
             </button>
 
             <p className="final-form__disclaimer">
@@ -155,7 +155,7 @@ export default function FinalForm() {
             </p>
 
             <p className="final-form__contact">
-              Prefer to speak with us? <a href="tel:416-613-0078">416-613-0078</a> ·{' '}
+              Prefer to speak with us? <a href="tel:416-613-0078">416-613-0078</a> ·{' '}
               <a href="mailto:info@miaso.ca">info@miaso.ca</a>
             </p>
           </form>

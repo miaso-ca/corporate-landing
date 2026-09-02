@@ -2,10 +2,10 @@ import './Footer.css'
 
 const LINKS = [
   { href: '#catering-options', label: 'Catering' },
-  { href: '#why-miaso', label: 'Why MIASO' },
-  { href: '#how-it-works', label: 'How It Works' },
+  { href: '#why-miaso', label: 'Why MIASO' },
+  { href: '#how-it-works', label: 'How It Works' },
   { href: '#faq', label: 'FAQ' },
-  { href: '#quote', label: 'Get a Quote' },
+  { href: '#quote', label: 'Get a Quote' },
 ]
 
 export default function Footer() {
@@ -16,7 +16,7 @@ export default function Footer() {
           <a className="footer__logo" href="#top">
             MIASO
           </a>
-          <p className="footer__tagline">Toronto &amp; GTA · Corporate Catering</p>
+          <p className="footer__tagline">Toronto &amp; GTA · Corporate Catering</p>
         </div>
 
         <div className="footer__col">
@@ -65,7 +65,7 @@ export default function Footer() {
       </div>
 
       <div className="footer__bottom">
-        <p className="footer__copyright">© 2026 MIASO. All rights reserved.</p>
+        <p className="footer__copyright">© 2026 MIASO. All rights reserved.</p>
       </div>
     </footer>
   )
