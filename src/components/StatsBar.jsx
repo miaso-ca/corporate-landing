@@ -3,10 +3,10 @@ import useReveal from '../hooks/useReveal.js'
 import './StatsBar.css'
 
 const STATS = [
-  { type: 'count', countTo: 5, decimals: 1, suffix: ' ★', label: 'Google rating' },
-  { type: 'count', countTo: 4, decimals: 0, suffix: '', label: 'Flexible catering formats' },
-  { type: 'text', value: 'Toronto & GTA', label: 'Delivery and on-site service' },
-  { type: 'text', value: 'Quote within', label: '1 business day' },
+  { type: 'count', countTo: 5, decimals: 1, suffix: ' ★', label: 'Google rating' },
+  { type: 'count', countTo: 4, decimals: 0, suffix: '', label: 'Flexible catering formats' },
+  { type: 'text', value: 'Toronto & GTA', label: 'Delivery and on-site service' },
+  { type: 'text', value: 'Quote within', label: '1 business day' },
 ]
 
 function prefersReducedMotion() {
@@ -70,7 +70,7 @@ export default function StatsBar() {
   return (
     <div className="section-dark">
       <section className="section stats-bar">
-        <h2 className="stats-bar__heading">Corporate Events, Thoughtfully Handled</h2>
+        <h2 className="stats-bar__heading">Corporate Events, Thoughtfully&nbsp;Handled</h2>
         <div className="stats-bar__grid">
           {STATS.map((s, i) => (
             <Stat key={s.value ?? s.countTo} stat={s} delay={i * 100} />
