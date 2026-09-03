@@ -63,6 +63,10 @@
   color: var(--cta);
 }
 
+.quick-form__error--submit {
+  grid-column: 1 / -1;
+}
+
 .quick-form--done {
   display: flex;
   justify-content: center;

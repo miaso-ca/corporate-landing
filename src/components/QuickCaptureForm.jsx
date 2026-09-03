@@ -23,6 +23,7 @@ export default function QuickCaptureForm({ source }) {
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   function handleChange(name, value) {
     setValues((v) => ({ ...v, [name]: value }))
@@ -46,10 +47,13 @@ export default function QuickCaptureForm({ source }) {
     if (submitting || !validate()) return
 
     setSubmitting(true)
+    setSubmitError('')
     try {
       await submitLead({ ...values, source })
       await new Promise((r) => setTimeout(r, 600))
       setDone(true)
+    } catch (err) {
+      setSubmitError("Something went wrong — please try again, or call us at 416-613-0078.")
     } finally {
       setSubmitting(false)
     }
@@ -78,6 +82,7 @@ export default function QuickCaptureForm({ source }) {
           {errors[name] && <span className="quick-form__error">{errors[name]}</span>}
         </div>
       ))}
+      {submitError && <span className="quick-form__error quick-form__error--submit">{submitError}</span>}
       <button className="btn" type="submit" disabled={submitting}>
         {submitting ? 'Sending…' : 'Get My Quote'}
       </button>

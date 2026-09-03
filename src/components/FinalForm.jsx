@@ -50,6 +50,7 @@ export default function FinalForm() {
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   function handleChange(name, value) {
     setValues((v) => ({ ...v, [name]: value }))
@@ -73,9 +74,12 @@ export default function FinalForm() {
     if (submitting || !validate()) return
 
     setSubmitting(true)
+    setSubmitError('')
     try {
       await submitLead({ ...values, source: 'full-form' })
       setDone(true)
+    } catch (err) {
+      setSubmitError('Something went wrong — please try again, or call us at 416-613-0078.')
     } finally {
       setSubmitting(false)
     }
@@ -144,6 +148,7 @@ export default function FinalForm() {
               ))}
             </div>
 
+            {submitError && <p className="final-form__error final-form__error--submit">{submitError}</p>}
             <button className="btn" type="submit" disabled={submitting}>
               {submitting ? 'Sending…' : 'Request a Corporate Quote'}
             </button>
