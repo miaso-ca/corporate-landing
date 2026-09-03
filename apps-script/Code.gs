@@ -10,6 +10,10 @@
  *   TELEGRAM_BOT_TOKEN  - token from @BotFather
  *   TELEGRAM_CHAT_ID    - numeric chat id the bot should post leads into
  *   NOTIFY_EMAIL        - comma-separated email address(es) for notifications
+ * Optional:
+ *   TELEGRAM_THREAD_ID  - forum topic id, only if the target chat is a
+ *                         supergroup with topics and leads should land in
+ *                         one specific topic instead of General
  *
  * One row per lead, one sheet ("Leads") shared by all three site forms
  * (quick-capture x2 + full form) - the `source` column tells them apart.
@@ -115,14 +119,15 @@ function sendTelegramNotification(payload) {
   // silently never reaches this channel) or renders as a clickable link.
   // Nothing here needs formatting badly enough to be worth escaping for.
   var text = 'New MIASO lead\n' + leadSummaryLines(payload).join('\n');
+  var body = { chat_id: chatId, text: text };
+  var threadId = props.getProperty('TELEGRAM_THREAD_ID');
+  if (threadId) body.message_thread_id = Number(threadId);
+
   var url = 'https://api.telegram.org/bot' + token + '/sendMessage';
   var response = UrlFetchApp.fetch(url, {
     method: 'post',
     contentType: 'application/json',
-    payload: JSON.stringify({
-      chat_id: chatId,
-      text: text,
-    }),
+    payload: JSON.stringify(body),
     muteHttpExceptions: true,
   });
 
