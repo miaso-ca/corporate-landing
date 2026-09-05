@@ -2,7 +2,7 @@ import './CateringOptions.css'
 import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
-import grazingPhoto from '../assets/photos/catering-grazing.jpg'
+import grazingPhoto from '../assets/photos/catering-grazing-table.jpg'
 import cartPhoto from '../assets/photos/catering-cart-wide.jpg'
 import fullservicePhoto from '../assets/photos/catering-fullservice-spread.jpg'
 
@@ -26,7 +26,11 @@ const OPTIONS = [
       'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
     bestFor: 'networking events, client receptions',
     photo: grazingPhoto,
-    alt: 'Grazing table spread with cheeses, breads and canapés',
+    // ponytail: source has a shallow depth of field - flowers/sliders up
+    // top are soft-focus, the sharp plane is lower (bread, blackberry-
+    // prosciutto-brie bites, sushi). Bias down to the sharp food.
+    photoPosition: '50% 85%',
+    alt: 'Bread, blackberry-prosciutto-brie bites and sushi rolls on a grazing table',
   },
   {
     title: 'Mobile Cart Experience',
