@@ -4,7 +4,7 @@ import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing-table.jpg'
 import cartPhoto from '../assets/photos/catering-cart-wide.jpg'
-import fullservicePhoto from '../assets/photos/catering-fullservice-spread.jpg'
+import fullservicePhoto from '../assets/photos/catering-fullservice-cups.jpg'
 
 const OPTIONS = [
   {
@@ -50,11 +50,12 @@ const OPTIONS = [
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
     photo: fullservicePhoto,
-    // ponytail: portrait source, MIASO-branded grazing cups + fruit board +
-    // pastries sit in the upper-middle band - stage lighting/framed art up
-    // top and a plain napkin basket at the bottom aren't worth keeping.
-    photoPosition: '50% 62%',
-    alt: 'MIASO branded grazing cups, fruit board and pastries at a corporate event',
+    // ponytail: portrait source, both shelf tiers of MIASO-labeled grazing
+    // cups sit lower in frame than the previous photo (~45-83% of height) -
+    // stage lighting/framed art up top and the napkin basket at the very
+    // bottom aren't worth keeping over cutting into either cup tier.
+    photoPosition: '50% 75%',
+    alt: 'Two shelf tiers of MIASO-branded kraft grazing cups with breadsticks, charcuterie and fruit at a corporate event',
   },
 ]
 
