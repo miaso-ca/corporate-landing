@@ -128,7 +128,9 @@
   line-height: 1.6;
   color: #4a3c2c;
   margin: 0;
-  max-width: 520px;
+  /* No max-width here on purpose - .hero__card's own max-width (640px)
+     already caps the line length. A tighter cap (520px) left a visible
+     dead-space gap on the right side of the card at desktop widths. */
   text-wrap: pretty;
 }
 
