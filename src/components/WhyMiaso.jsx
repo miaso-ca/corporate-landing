@@ -8,6 +8,7 @@ import photo4 from '../assets/photos/gallery/prosciutto-blackberry-brie-skewers.
 import photo5 from '../assets/photos/gallery/cheese-skewers-mirror.jpg'
 
 const CHECKLIST = [
+  'Prepared by our own team in a licensed commercial kitchen',
   'Fresh food prepared to order',
   'A menu tailored to your event and guest count',
   'Dietary accommodations confirmed during planning',

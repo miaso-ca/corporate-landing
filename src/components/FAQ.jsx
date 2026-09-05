@@ -4,8 +4,12 @@ import './FAQ.css'
 
 const FAQS = [
   {
-    q: 'What types of corporate events do you cater?',
+    q: 'What types of corporate events do you cater?',
     a: 'MIASO caters office lunches, business meetings, training days, client receptions, conferences, expos, product launches, open houses, galas and company celebrations.',
+  },
+  {
+    q: 'Can you provide both catering and bar service?',
+    a: 'Yes. MIASO can coordinate food with North Spirit Distillery bar service through a combined booking, subject to event requirements and availability.',
   },
   {
     q: 'Do you deliver throughout Toronto and the GTA?',
@@ -22,10 +26,6 @@ const FAQS = [
   {
     q: 'Are setup, staffing and cleanup included?',
     a: 'It depends on the selected package. Drop-off catering, grazing tables, Mobile Cart and full-service catering include different service levels. Your quote will clearly specify everything included.',
-  },
-  {
-    q: 'Can you provide both catering and bar service?',
-    a: 'Yes. MIASO can coordinate food with North Spirit Distillery bar service through a combined booking, subject to event requirements and availability.',
   },
 ]
 
