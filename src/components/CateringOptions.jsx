@@ -1,7 +1,7 @@
 import './CateringOptions.css'
 import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
-import lunchesPhoto from '../assets/photos/catering-lunches.jpg'
+import lunchesPhoto from '../assets/photos/catering-lunches-spread.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing.jpg'
 import cartPhoto from '../assets/photos/catering-cart-live.jpg'
 import fullservicePhoto from '../assets/photos/catering-fullservice.jpg'
@@ -13,7 +13,11 @@ const OPTIONS = [
       'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
     bestFor: 'meetings, training days, office celebrations',
     photo: lunchesPhoto,
-    alt: 'Individually styled catering cups ready for drop-off',
+    // ponytail: source is a portrait shot of the full spread table with
+    // ductwork/ceiling in the top ~half - bias the 16:9 crop toward the
+    // bottom so it shows the food, not the ceiling.
+    photoPosition: '50% 90%',
+    alt: 'Charcuterie, cheese board and caprese skewers spread on a grazing table',
   },
   {
     title: 'Grazing Tables',
