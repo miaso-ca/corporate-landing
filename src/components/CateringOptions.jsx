@@ -3,7 +3,7 @@ import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-spread.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing.jpg'
-import cartPhoto from '../assets/photos/catering-cart-live.jpg'
+import cartPhoto from '../assets/photos/catering-cart-wide.jpg'
 import fullservicePhoto from '../assets/photos/catering-fullservice-spread.jpg'
 
 const OPTIONS = [
@@ -33,12 +33,11 @@ const OPTIONS = [
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
     photo: cartPhoto,
-    // ponytail: source photo is a tall phone screenshot (782x1382) — the
-    // shared 16:9 frame only ever shows ~32% of that height, not enough
-    // for both the face and the MIASO logo lower on the cart. Chose the
-    // face — the logo already appears in the site's own branding.
-    photoPosition: '50% 46.7%',
-    alt: 'MIASO mobile catering cart, staffed and styled at an outdoor event',
+    // ponytail: wider/more zoomed-out shot than the old phone screenshot -
+    // staff member's head and the MIASO logo are close enough together
+    // vertically that both fit in the 16:9 window at this offset.
+    photoPosition: '50% 52%',
+    alt: 'MIASO mobile catering cart with staff member and MIASO logo, styled under an umbrella at an outdoor event',
   },
   {
     title: 'Full-Service Corporate Catering',
