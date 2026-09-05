@@ -4,7 +4,7 @@ import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-spread.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing.jpg'
 import cartPhoto from '../assets/photos/catering-cart-live.jpg'
-import fullservicePhoto from '../assets/photos/catering-fullservice.jpg'
+import fullservicePhoto from '../assets/photos/catering-fullservice-spread.jpg'
 
 const OPTIONS = [
   {
@@ -46,7 +46,11 @@ const OPTIONS = [
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
     photo: fullservicePhoto,
-    alt: 'Full-service buffet spread set for a corporate event',
+    // ponytail: portrait source, MIASO-branded grazing cups + fruit board +
+    // pastries sit in the upper-middle band - stage lighting/framed art up
+    // top and a plain napkin basket at the bottom aren't worth keeping.
+    photoPosition: '50% 62%',
+    alt: 'MIASO branded grazing cups, fruit board and pastries at a corporate event',
   },
 ]
 
