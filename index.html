@@ -2,9 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- ?v= busts favicon caching, which browsers key by URL and hold onto
+         far more stubbornly than normal page assets - bump it whenever the
+         favicon file itself changes again. -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=3" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MIASO Corporate Catering — Toronto &amp; GTA</title>
     <meta name="description" content="Corporate catering in Toronto that makes hosting effortless. Office lunches, grazing tables, Mobile Cart and full-service events." />
