@@ -1,6 +1,7 @@
 // Google Apps Script Web App deployed from apps-script/Code.gs — see that
 // file's header comment for the deploy steps and required script properties.
-const ENDPOINT_URL = ''
+const ENDPOINT_URL =
+  'https://script.google.com/macros/s/AKfycbx9hByc4kOO0B9WL73Dg-H0vhRc82x8U47biaO16Ph1cZWLUDq9tWAJPj64x59RQ66w6Q/exec'
 
 const TIMEOUT_MS = 12000
 
