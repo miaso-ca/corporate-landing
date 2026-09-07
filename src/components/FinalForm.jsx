@@ -31,7 +31,7 @@ const FIELDS = [
   { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
   { name: 'company', label: 'Company', type: 'text', required: false },
   { name: 'eventDate', label: 'Event Date', type: 'date', required: false, group: 'Event Details' },
-  { name: 'guests', label: 'Number of Guests', type: 'number', required: true },
+  { name: 'guests', label: 'Number of Guests', type: 'number', required: true, min: 1, max: 2000 },
   { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
   { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
   { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
@@ -40,6 +40,16 @@ const FIELDS = [
 ]
 
 const INITIAL_VALUES = FIELDS.reduce((acc, { name }) => ({ ...acc, [name]: '' }), { website: '' })
+
+// yyyy-mm-dd in the visitor's own timezone (not UTC — toISOString() would
+// roll a late-evening local date back to "yesterday" for anyone west of
+// UTC), used as the date input's min so the picker can't select the past.
+function todayLocalISO() {
+  const d = new Date()
+  const offset = d.getTimezoneOffset() * 60000
+  return new Date(d - offset).toISOString().slice(0, 10)
+}
+const TODAY = todayLocalISO()
 
 // ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -58,11 +68,22 @@ export default function FinalForm() {
 
   function validate() {
     const next = {}
-    FIELDS.forEach(({ name, label, required }) => {
-      if (required && !values[name].trim()) {
+    FIELDS.forEach(({ name, label, required, type, min, max }) => {
+      const value = values[name].trim()
+      if (required && !value) {
         next[name] = `${label} is required`
-      } else if (name === 'email' && values.email.trim() && !EMAIL_RE.test(values.email.trim())) {
+      } else if (name === 'email' && value && !EMAIL_RE.test(value)) {
         next[name] = 'Enter a valid email address'
+      } else if (type === 'number' && value) {
+        // Native number inputs already block letters as you type, but not
+        // "-5", "0" or "1e10" - all syntactically valid numbers with no
+        // min/max set. Guard against those explicitly.
+        const num = Number(value)
+        if (!Number.isInteger(num) || num < min || num > max) {
+          next[name] = `Enter a number between ${min} and ${max}`
+        }
+      } else if (type === 'date' && value && value < TODAY) {
+        next[name] = "Pick today's date or later"
       }
     })
     setErrors(next)
@@ -124,7 +145,7 @@ export default function FinalForm() {
               style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
             />
             <div className="final-form__grid">
-              {FIELDS.map(({ name, label, type, options, group }) => (
+              {FIELDS.map(({ name, label, type, options, group, min, max }) => (
                 <Fragment key={name}>
                   {group && <span className="final-form__group-label">{group}</span>}
                   <div
@@ -161,6 +182,9 @@ export default function FinalForm() {
                         type={type}
                         value={values[name]}
                         onChange={(e) => handleChange(name, e.target.value)}
+                        min={type === 'date' ? TODAY : min}
+                        max={type === 'number' ? max : undefined}
+                        step={type === 'number' ? 1 : undefined}
                       />
                     )}
                     {errors[name] && <span className="final-form__error">{errors[name]}</span>}

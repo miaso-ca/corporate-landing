@@ -18,6 +18,16 @@ const FIELDS = [
 // ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// yyyy-mm-dd in the visitor's own timezone (not UTC — toISOString() would
+// roll a late-evening local date back to "yesterday" for anyone west of
+// UTC), used as the date input's min so the picker can't select the past.
+function todayLocalISO() {
+  const d = new Date()
+  const offset = d.getTimezoneOffset() * 60000
+  return new Date(d - offset).toISOString().slice(0, 10)
+}
+const TODAY = todayLocalISO()
+
 export default function QuickCaptureForm({ source }) {
   const [values, setValues] = useState({ name: '', email: '', phone: '', eventDate: '', website: '' })
   const [errors, setErrors] = useState({})
@@ -31,11 +41,14 @@ export default function QuickCaptureForm({ source }) {
 
   function validate() {
     const next = {}
-    FIELDS.forEach(({ name, label, required }) => {
-      if (required && !values[name].trim()) {
+    FIELDS.forEach(({ name, label, required, type }) => {
+      const value = values[name].trim()
+      if (required && !value) {
         next[name] = `${label} is required`
-      } else if (name === 'email' && values.email.trim() && !EMAIL_RE.test(values.email.trim())) {
+      } else if (name === 'email' && value && !EMAIL_RE.test(value)) {
         next[name] = 'Enter a valid email address'
+      } else if (type === 'date' && value && value < TODAY) {
+        next[name] = "Pick today's date or later"
       }
     })
     setErrors(next)
@@ -103,6 +116,7 @@ export default function QuickCaptureForm({ source }) {
             type={type}
             value={values[name]}
             onChange={(e) => handleChange(name, e.target.value)}
+            min={type === 'date' ? TODAY : undefined}
           />
           {hint && !errors[name] && <span className="quick-form__hint">{hint}</span>}
           {errors[name] && <span className="quick-form__error">{errors[name]}</span>}
