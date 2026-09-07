@@ -1,3 +1,4 @@
+import { trackContact, trackSocialClick } from '../lib/analytics.js'
 import './Footer.css'
 
 const LINKS = [
@@ -33,8 +34,8 @@ export default function Footer() {
         <div className="footer__col">
           <span className="footer__col-title">Contact</span>
           <div className="footer__contact">
-            <a href="tel:416-613-0078">416-613-0078</a>
-            <a href="mailto:info@miaso.ca">info@miaso.ca</a>
+            <a href="tel:416-613-0078" onClick={() => trackContact('phone')}>416-613-0078</a>
+            <a href="mailto:info@miaso.ca" onClick={() => trackContact('email')}>info@miaso.ca</a>
           </div>
 
           <div className="footer__social">
@@ -43,6 +44,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="MIASO on Instagram"
+              onClick={() => trackSocialClick('instagram')}
             >
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
                 <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -55,6 +57,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="MIASO on Facebook"
+              onClick={() => trackSocialClick('facebook')}
             >
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
                 <path d="M15 8.5h-2a1.5 1.5 0 0 0-1.5 1.5v2H15l-.5 3H11.5v6h-3v-6H6v-3h2.5v-2.3A4.2 4.2 0 0 1 12.9 5H15v3.5Z" />

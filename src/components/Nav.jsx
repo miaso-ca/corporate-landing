@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { trackContact } from '../lib/analytics.js'
 import './Nav.css'
 
 const LINKS = [
@@ -43,7 +44,7 @@ export default function Nav({ onRequestQuote }) {
         </nav>
 
         <div className="nav__actions">
-          <a className="nav__phone" href="tel:416-613-0078">
+          <a className="nav__phone" href="tel:416-613-0078" onClick={() => trackContact('phone')}>
             416-613-0078
           </a>
           <button className="btn nav__cta" type="button" onClick={onRequestQuote}>
@@ -72,7 +73,13 @@ export default function Nav({ onRequestQuote }) {
                 {l.label}
               </a>
             ))}
-            <a href="tel:416-613-0078" onClick={closeMenu}>
+            <a
+              href="tel:416-613-0078"
+              onClick={() => {
+                closeMenu()
+                trackContact('phone')
+              }}
+            >
               416-613-0078
             </a>
             <button

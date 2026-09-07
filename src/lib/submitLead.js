@@ -1,3 +1,5 @@
+import { trackLead } from './analytics.js'
+
 // Google Apps Script Web App deployed from apps-script/Code.gs — see that
 // file's header comment for the deploy steps and required script properties.
 const ENDPOINT_URL =
@@ -30,6 +32,7 @@ export async function submitLead(payload) {
     const data = await res.json()
     if (!data.ok) throw new Error('All notification channels failed')
 
+    trackLead()
     return data
   } finally {
     clearTimeout(timeout)

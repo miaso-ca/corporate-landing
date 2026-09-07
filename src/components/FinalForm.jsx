@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
+import { trackContact } from '../lib/analytics.js'
 import useReveal from '../hooks/useReveal.js'
 import './FinalForm.css'
 
@@ -214,8 +215,8 @@ export default function FinalForm() {
             </p>
 
             <p className="final-form__contact">
-              Prefer to speak with us? <a href="tel:416-613-0078">416-613-0078</a> ·{' '}
-              <a href="mailto:info@miaso.ca">info@miaso.ca</a>
+              Prefer to speak with us? <a href="tel:416-613-0078" onClick={() => trackContact('phone')}>416-613-0078</a> ·{' '}
+              <a href="mailto:info@miaso.ca" onClick={() => trackContact('email')}>info@miaso.ca</a>
             </p>
           </form>
         )}
