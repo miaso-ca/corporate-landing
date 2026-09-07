@@ -1,4 +1,4 @@
-import { trackLead } from './analytics.js'
+import { trackLead, generateEventId } from './analytics.js'
 
 // Google Apps Script Web App deployed from apps-script/Code.gs — see that
 // file's header comment for the deploy steps and required script properties.
@@ -16,6 +16,11 @@ export async function submitLead(payload) {
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
+  // Same id used for both the browser Pixel event below and the
+  // server-side Conversions API event Code.gs fires for this same
+  // submission, so Meta dedupes them into one Lead instead of two.
+  const eventId = generateEventId()
+
   try {
     const res = await fetch(ENDPOINT_URL, {
       method: 'POST',
@@ -23,7 +28,7 @@ export async function submitLead(payload) {
       // OPTIONS requests) — the body is still valid JSON, Apps Script's
       // doPost just needs to JSON.parse it itself.
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ ...payload, eventId }),
       signal: controller.signal,
     })
 
@@ -32,7 +37,7 @@ export async function submitLead(payload) {
     const data = await res.json()
     if (!data.ok) throw new Error('All notification channels failed')
 
-    trackLead()
+    trackLead(eventId)
     return data
   } finally {
     clearTimeout(timeout)

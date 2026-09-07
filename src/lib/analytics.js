@@ -4,8 +4,19 @@
 // fire in practice since these all trigger from user clicks well after
 // page load).
 
-export function trackLead() {
-  if (typeof window.fbq === 'function') window.fbq('track', 'Lead')
+// Shared between the browser Pixel event and the server-side Conversions
+// API event (fired from Code.gs for the same submission) so Meta
+// deduplicates the two into one Lead instead of double-counting it.
+export function generateEventId() {
+  return typeof crypto.randomUUID === 'function'
+    ? crypto.randomUUID()
+    : `${Date.now()}-${Math.random().toString(36).slice(2)}`
+}
+
+export function trackLead(eventId) {
+  if (typeof window.fbq === 'function') {
+    window.fbq('track', 'Lead', {}, eventId ? { eventID: eventId } : undefined)
+  }
   if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead')
 }
 

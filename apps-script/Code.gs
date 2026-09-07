@@ -10,6 +10,9 @@
  *   TELEGRAM_BOT_TOKEN  - token from @BotFather
  *   TELEGRAM_CHAT_ID    - numeric chat id the bot should post leads into
  *   NOTIFY_EMAIL        - comma-separated email address(es) for notifications
+ *   META_CAPI_TOKEN     - Conversions API access token, from Events Manager
+ *                         > (the Pixel) > Settings > Conversions API >
+ *                         "Generate access token"
  * Optional:
  *   TELEGRAM_THREAD_ID  - forum topic id, only if the target chat is a
  *                         supergroup with topics and leads should land in
@@ -17,11 +20,14 @@
  *
  * One row per lead, one sheet ("Leads") shared by all three site forms
  * (quick-capture x2 + full form) - the `source` column tells them apart.
- * Each of the three channels (Sheet / email / Telegram) is wrapped in its
- * own try/catch so one failing never blocks the other two.
+ * Each of the four channels (Sheet / email / Telegram / Meta Conversions
+ * API) is wrapped in its own try/catch so one failing never blocks the
+ * others. Meta CAPI is a pure analytics side-channel - success/failure
+ * there doesn't count toward whether the lead "worked" for the visitor.
  */
 
 var SHEET_NAME = 'Leads';
+var META_PIXEL_ID = '1650470559273087';
 
 var COLUMNS = [
   'timestamp', 'source', 'name', 'email', 'phone', 'eventDate',
@@ -66,6 +72,12 @@ function doPost(e) {
     results.telegram = true;
   } catch (err) {
     Logger.log('Telegram send failed: ' + err);
+  }
+
+  try {
+    sendMetaCapiEvent(payload);
+  } catch (err) {
+    Logger.log('Meta Conversions API send failed: ' + err);
   }
 
   var anyOk = results.sheet || results.email || results.telegram;
@@ -146,6 +158,58 @@ function sendTelegramNotification(payload) {
   if (code < 200 || code >= 300) {
     throw new Error('Telegram API returned ' + code + ': ' + response.getContentText());
   }
+}
+
+// Server-side duplicate of the browser's fbq('track','Lead') call, sent
+// directly to Meta from here - unaffected by ad blockers, Safari ITP or
+// third-party-cookie restrictions that quietly drop a chunk of the
+// client-side Pixel's events. Shares `event_id` with the browser call
+// (both fire for the same form submission) so Meta's deduplication
+// collapses them into a single Lead instead of counting it twice.
+function sendMetaCapiEvent(payload) {
+  var props = PropertiesService.getScriptProperties();
+  var token = props.getProperty('META_CAPI_TOKEN');
+  if (!token) throw new Error('META_CAPI_TOKEN script property not set');
+
+  // Meta requires email/phone as SHA-256 hashes, never plaintext, in
+  // user_data - lowercase+trimmed email, digits-only phone (their spec
+  // wants country code included, no leading +/spaces/punctuation).
+  var userData = {};
+  if (payload.email) userData.em = [sha256Hex(payload.email.trim().toLowerCase())];
+  if (payload.phone) {
+    var digits = String(payload.phone).replace(/\D/g, '');
+    if (digits) userData.ph = [sha256Hex(digits)];
+  }
+
+  var eventData = {
+    event_name: 'Lead',
+    event_time: Math.floor(Date.now() / 1000),
+    action_source: 'website',
+    event_source_url: 'https://events.miaso.ca/',
+    user_data: userData,
+  };
+  if (payload.eventId) eventData.event_id = String(payload.eventId);
+
+  var url = 'https://graph.facebook.com/v19.0/' + META_PIXEL_ID + '/events?access_token=' + encodeURIComponent(token);
+  var response = UrlFetchApp.fetch(url, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({ data: [eventData] }),
+    muteHttpExceptions: true,
+  });
+
+  var code = response.getResponseCode();
+  if (code < 200 || code >= 300) {
+    throw new Error('Meta CAPI returned ' + code + ': ' + response.getContentText());
+  }
+}
+
+function sha256Hex(str) {
+  var bytes = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, str, Utilities.Charset.UTF_8);
+  return bytes.map(function (b) {
+    var v = (b < 0 ? b + 256 : b).toString(16);
+    return v.length === 1 ? '0' + v : v;
+  }).join('');
 }
 
 // Shared plain-text summary used by both the email body and the Telegram
