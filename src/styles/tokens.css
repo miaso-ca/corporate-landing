@@ -11,6 +11,12 @@
   --radius: 12px;
   --radius-sm: 8px;
 
+  /* Nav is position:fixed (Nav.css), so it doesn't take up document flow
+     space — clicking a #section link lands the section's own top exactly
+     at viewport y=0, tucked directly behind the bar, heading hidden.
+     Rounded up from the bar's measured ~78-82px. */
+  --nav-height: 84px;
+
   /* Standard cream-background gap between two sections that AREN'T meant to
      touch directly (full-bleed bands like the bar-service banner or the
      HowItWorks/FAQ white panels deliberately touch their dark/light
@@ -129,6 +135,12 @@ img { max-width: 100%; display: block; }
   padding: 96px 24px;
   max-width: 1120px;
   margin: 0 auto;
+}
+
+/* Every #section-id the Nav/Footer link to - attribute selector, not
+   .section, since HowItWorks/WhyMiaso/Hero don't all use that class. */
+section[id] {
+  scroll-margin-top: var(--nav-height);
 }
 
 /* Reusable containment card — white surface for text-only blocks that would
