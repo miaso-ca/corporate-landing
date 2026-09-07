@@ -127,7 +127,9 @@ function sendTelegramNotification(payload) {
   // unescaped _/*/`/[ that either breaks Telegram's parser (400, lead
   // silently never reaches this channel) or renders as a clickable link.
   // Nothing here needs formatting badly enough to be worth escaping for.
-  var text = 'New MIASO lead\n' + leadSummaryLines(payload).join('\n');
+  var text = 'New MIASO lead\n' + leadSummaryLines(payload).join('\n') +
+    '\n\nAlso saved to the Sheet and emailed to ' + (props.getProperty('NOTIFY_EMAIL') || 'the team') +
+    '.\nFull list: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl();
   var body = { chat_id: chatId, text: text };
   var threadId = props.getProperty('TELEGRAM_THREAD_ID');
   if (threadId) body.message_thread_id = Number(threadId);
