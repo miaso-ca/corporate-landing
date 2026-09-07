@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import './QuickCaptureForm.css'
 
@@ -41,6 +41,11 @@ export default function QuickCaptureForm({ source }) {
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
   const [submitError, setSubmitError] = useState('')
+  // Mirrors `submitting` but updates synchronously, unlike React state
+  // (which batches) - a real guard against two clicks landing in the same
+  // tick before a re-render has disabled the button, each seeing the
+  // stale pre-render `submitting=false` and both slipping past the check.
+  const submittingRef = useRef(false)
 
   function handleChange(name, value) {
     setValues((v) => ({ ...v, [name]: value }))
@@ -66,7 +71,8 @@ export default function QuickCaptureForm({ source }) {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    if (submitting || !validate()) return
+    if (submittingRef.current || !validate()) return
+    submittingRef.current = true
 
     // Honeypot tripped — a bot filled the hidden field. Fake a normal
     // success without ever hitting the network, so it doesn't learn
@@ -76,6 +82,7 @@ export default function QuickCaptureForm({ source }) {
       await new Promise((r) => setTimeout(r, 600))
       setDone(true)
       setSubmitting(false)
+      submittingRef.current = false
       return
     }
 
@@ -89,6 +96,7 @@ export default function QuickCaptureForm({ source }) {
       setSubmitError("Something went wrong — please try again, or call us at 416-613-0078.")
     } finally {
       setSubmitting(false)
+      submittingRef.current = false
     }
   }
 
