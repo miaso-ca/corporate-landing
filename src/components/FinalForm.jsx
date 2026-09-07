@@ -54,6 +54,13 @@ const TODAY = todayLocalISO()
 // ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// type="tel" accepts any text (no built-in format), so "asdf" passed
+// straight through with zero pushback. Not a full E.164 parser — just:
+// only phone-shaped characters, and enough digits to plausibly be a number.
+function isValidPhone(value) {
+  return /^[+\d\s().-]+$/.test(value) && (value.match(/\d/g) || []).length >= 7
+}
+
 export default function FinalForm() {
   const { ref, visible } = useReveal()
   const [values, setValues] = useState(INITIAL_VALUES)
@@ -74,6 +81,8 @@ export default function FinalForm() {
         next[name] = `${label} is required`
       } else if (name === 'email' && value && !EMAIL_RE.test(value)) {
         next[name] = 'Enter a valid email address'
+      } else if (name === 'phone' && value && !isValidPhone(value)) {
+        next[name] = 'Enter a valid phone number'
       } else if (type === 'number' && value) {
         // Native number inputs already block letters as you type, but not
         // "-5", "0" or "1e10" - all syntactically valid numbers with no

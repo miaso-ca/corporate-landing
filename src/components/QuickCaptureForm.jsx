@@ -18,6 +18,13 @@ const FIELDS = [
 // ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+// type="tel" accepts any text (no built-in format), so "asdf" passed
+// straight through with zero pushback. Not a full E.164 parser — just:
+// only phone-shaped characters, and enough digits to plausibly be a number.
+function isValidPhone(value) {
+  return /^[+\d\s().-]+$/.test(value) && (value.match(/\d/g) || []).length >= 7
+}
+
 // yyyy-mm-dd in the visitor's own timezone (not UTC — toISOString() would
 // roll a late-evening local date back to "yesterday" for anyone west of
 // UTC), used as the date input's min so the picker can't select the past.
@@ -47,6 +54,8 @@ export default function QuickCaptureForm({ source }) {
         next[name] = `${label} is required`
       } else if (name === 'email' && value && !EMAIL_RE.test(value)) {
         next[name] = 'Enter a valid email address'
+      } else if (name === 'phone' && value && !isValidPhone(value)) {
+        next[name] = 'Enter a valid phone number'
       } else if (type === 'date' && value && value < TODAY) {
         next[name] = "Pick today's date or later"
       }
