@@ -19,7 +19,7 @@ const FIELDS = [
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export default function QuickCaptureForm({ source }) {
-  const [values, setValues] = useState({ name: '', email: '', phone: '', eventDate: '' })
+  const [values, setValues] = useState({ name: '', email: '', phone: '', eventDate: '', website: '' })
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
@@ -46,6 +46,17 @@ export default function QuickCaptureForm({ source }) {
     e.preventDefault()
     if (submitting || !validate()) return
 
+    // Honeypot tripped — a bot filled the hidden field. Fake a normal
+    // success without ever hitting the network, so it doesn't learn
+    // anything from the response and no bogus lead is sent anywhere.
+    if (values.website) {
+      setSubmitting(true)
+      await new Promise((r) => setTimeout(r, 600))
+      setDone(true)
+      setSubmitting(false)
+      return
+    }
+
     setSubmitting(true)
     setSubmitError('')
     try {
@@ -69,6 +80,21 @@ export default function QuickCaptureForm({ source }) {
 
   return (
     <form className="quick-form" onSubmit={handleSubmit} noValidate>
+      {/* Honeypot — invisible to sighted/screen-reader users (off-screen,
+          aria-hidden, unreachable by Tab), but spam bots that blindly fill
+          every input on a scraped form land right in it. Checked again
+          server-side in Code.gs since a scripted attacker could skip the
+          HTML entirely and POST straight to the endpoint. */}
+      <input
+        type="text"
+        name="website"
+        value={values.website}
+        onChange={(e) => handleChange('website', e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+      />
       {FIELDS.map(({ name, label, type, hint }) => (
         <div className="quick-form__field" key={name}>
           <label htmlFor={`${source}-${name}`}>{label}</label>

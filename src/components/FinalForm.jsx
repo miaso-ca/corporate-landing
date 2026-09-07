@@ -39,7 +39,7 @@ const FIELDS = [
   { name: 'details', label: 'Additional Details', type: 'textarea', required: false },
 ]
 
-const INITIAL_VALUES = FIELDS.reduce((acc, { name }) => ({ ...acc, [name]: '' }), {})
+const INITIAL_VALUES = FIELDS.reduce((acc, { name }) => ({ ...acc, [name]: '' }), { website: '' })
 
 // ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -73,6 +73,16 @@ export default function FinalForm() {
     e.preventDefault()
     if (submitting || !validate()) return
 
+    // Honeypot tripped — fake a normal success without ever hitting the
+    // network. See QuickCaptureForm.jsx for the matching field/comment.
+    if (values.website) {
+      setSubmitting(true)
+      await new Promise((r) => setTimeout(r, 600))
+      setDone(true)
+      setSubmitting(false)
+      return
+    }
+
     setSubmitting(true)
     setSubmitError('')
     try {
@@ -102,6 +112,17 @@ export default function FinalForm() {
           </div>
         ) : (
           <form className="final-form__form" onSubmit={handleSubmit} noValidate>
+            {/* Honeypot — see QuickCaptureForm.jsx for the full comment */}
+            <input
+              type="text"
+              name="website"
+              value={values.website}
+              onChange={(e) => handleChange('website', e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
+            />
             <div className="final-form__grid">
               {FIELDS.map(({ name, label, type, options, group }) => (
                 <Fragment key={name}>

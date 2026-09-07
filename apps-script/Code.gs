@@ -36,6 +36,15 @@ function doPost(e) {
     return jsonResponse({ ok: false, error: 'Invalid JSON payload' });
   }
 
+  // Honeypot: the site's forms carry a hidden "website" field real users
+  // never see or fill. A filled value means either a bot that blindly
+  // fills every field on the scraped HTML form, or a scripted attacker
+  // POSTing straight to this endpoint using the same field name. Fake a
+  // normal success either way - do nothing, tell them nothing.
+  if (payload.website) {
+    return jsonResponse({ ok: true, channels: { sheet: true, email: true, telegram: true } });
+  }
+
   var results = { sheet: false, email: false, telegram: false };
 
   try {
