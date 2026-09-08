@@ -37,25 +37,24 @@ const OPTIONS = [
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
-    photo: cartPhoto,
-    // ponytail: wider/more zoomed-out shot than the old phone screenshot -
-    // staff member's head and the MIASO logo are close enough together
-    // vertically that both fit in the 16:9 window at this offset.
-    photoPosition: '50% 52%',
-    alt: 'MIASO mobile catering cart with staff member and MIASO logo, styled under an umbrella at an outdoor event',
+    // ponytail: swapped with Full-Service's old photo - two shelf tiers of
+    // individual grazing cups is a much closer match for a card literally
+    // named "Cups & Boats" than the mobile-cart-with-staff shot was.
+    photo: fullservicePhoto,
+    photoPosition: '50% 75%',
+    alt: 'Two shelf tiers of MIASO-branded kraft grazing cups with breadsticks, charcuterie and fruit at a corporate event',
   },
   {
     title: 'Full-Service Catering',
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
-    photo: fullservicePhoto,
-    // ponytail: portrait source, both shelf tiers of MIASO-labeled grazing
-    // cups sit lower in frame than the previous photo (~45-83% of height) -
-    // stage lighting/framed art up top and the napkin basket at the very
-    // bottom aren't worth keeping over cutting into either cup tier.
-    photoPosition: '50% 75%',
-    alt: 'Two shelf tiers of MIASO-branded kraft grazing cups with breadsticks, charcuterie and fruit at a corporate event',
+    // ponytail: swapped with Cups & Boats' old photo - a staffed cart with
+    // a MIASO team member reads as "full-service" (people doing the
+    // serving) much better than a shelf of individual cups did.
+    photo: cartPhoto,
+    photoPosition: '50% 52%',
+    alt: 'MIASO staff member serving at a styled full-service catering setup with MIASO branding at an outdoor event',
   },
 ]
 
