@@ -59,6 +59,21 @@ const OPTIONS = [
   },
 ]
 
+function BarCard({ delay }) {
+  const { ref, visible } = useReveal({ delay })
+  return (
+    <div className={`catering-options__bar-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
+      <span className="pill pill--on-photo">Need Bar Service&nbsp;Too?</span>
+      <p>
+        We&rsquo;ve partnered with North Spirit Distillery for years to pair full bar
+        service — bartenders, mixers and glassware — with every MIASO event. One
+        booking, one point of contact — no juggling two vendors. Just mention it in
+        the quote form below.
+      </p>
+    </div>
+  )
+}
+
 function CateringCard({ option, delay }) {
   const { ref, visible } = useReveal({ delay })
   return (
@@ -96,17 +111,7 @@ export default function CateringOptions() {
         {OPTIONS.map((option, i) => (
           <CateringCard option={option} delay={i * 80} key={option.title} />
         ))}
-      </div>
-
-      <div className="catering-options__callout">
-        <div className="catering-options__callout-copy">
-          <span className="pill pill--on-photo">Need Bar Service&nbsp;Too?</span>
-          <p>
-            We&rsquo;ve partnered with North Spirit Distillery for years to pair full bar
-            service — bartenders, mixers and glassware — with every MIASO event, so nothing
-            about your day feels stitched together. Just mention it in the quote form below.
-          </p>
-        </div>
+        <BarCard delay={OPTIONS.length * 80} />
       </div>
 
       <div className="catering-options__quote">

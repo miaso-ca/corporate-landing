@@ -88,30 +88,28 @@
   align-self: flex-start;
 }
 
-/* One deliberate brand-red background moment on the page — used once, sparingly.
-   True full-bleed (edge to edge of the viewport, not just wider inside the
-   1120px section) via the standard negative-margin trick — the element is
-   still 100% of its .section parent's content width, so 50% of itself
-   minus 50vw exactly cancels the parent's own centering offset. */
-.catering-options__callout {
-  margin: 72px calc(50% - 50vw) 0;
+/* One deliberate brand-red background moment on the page — used once,
+   sparingly. Was a separate full-bleed section below the grid; now a 5th
+   grid item spanning both columns instead, so a 5-card grid doesn't leave
+   a lone card stranded alone in row 3 - and there's no longer a second,
+   separate bar-service mention directly underneath it either. */
+.catering-options__bar-card {
+  grid-column: 1 / -1;
   background: var(--cta);
-  padding: 48px clamp(24px, calc(50vw - 536px), 220px);
-}
-
-.catering-options__callout-copy {
+  border-radius: var(--radius);
+  padding: 40px clamp(24px, 5vw, 56px);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
 }
 
-.catering-options__callout p {
+.catering-options__bar-card p {
   font-size: 14px;
   line-height: 1.6;
   color: var(--bg); /* cream-white text on --cta red */
   margin: 0;
-  max-width: 900px;
+  max-width: 760px;
   text-wrap: pretty;
 }
 
