@@ -4,7 +4,7 @@ import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing-table.jpg'
 import cartPhoto from '../assets/photos/catering-cart-wide.jpg'
-import fullservicePhoto from '../assets/photos/catering-fullservice-cups.jpg'
+import cupStudioPhoto from '../assets/photos/catering-cup-studio.jpg'
 
 const OPTIONS = [
   {
@@ -37,12 +37,13 @@ const OPTIONS = [
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
-    // ponytail: swapped with Full-Service's old photo - two shelf tiers of
-    // individual grazing cups is a much closer match for a card literally
-    // named "Cups & Boats" than the mobile-cart-with-staff shot was.
-    photo: fullservicePhoto,
-    photoPosition: '50% 75%',
-    alt: 'Two shelf tiers of MIASO-branded kraft grazing cups with breadsticks, charcuterie and fruit at a corporate event',
+    // ponytail: clean studio product shot (prosciutto, brie, olive,
+    // strawberry, breadstick in a MIASO-branded kraft cup) - client sent
+    // this specifically as a better hero image than the shelf-of-cups
+    // event photo it replaces.
+    photo: cupStudioPhoto,
+    photoPosition: '50% 70%',
+    alt: 'MIASO-branded kraft cup filled with prosciutto, brie, olive, strawberry and a breadstick',
   },
   {
     title: 'Full-Service Catering',
