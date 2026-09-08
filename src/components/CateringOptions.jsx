@@ -8,7 +8,7 @@ import fullservicePhoto from '../assets/photos/catering-fullservice-cups.jpg'
 
 const OPTIONS = [
   {
-    title: 'Corporate Lunches & Drop-Off Catering',
+    title: 'Boxed Lunches',
     description:
       'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
     bestFor: 'meetings, training days, office celebrations',
@@ -21,7 +21,7 @@ const OPTIONS = [
     alt: 'Cheese board, caprese skewers and charcuterie platter spread on wood tables in a modern venue',
   },
   {
-    title: 'Grazing Tables',
+    title: 'Shareable Platters',
     description:
       'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
     bestFor: 'networking events, client receptions',
@@ -33,7 +33,7 @@ const OPTIONS = [
     alt: 'Bread, blackberry-prosciutto-brie bites and sushi rolls on a grazing table',
   },
   {
-    title: 'Mobile Cart Experience',
+    title: 'Individual Cups & Boats',
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
@@ -45,7 +45,7 @@ const OPTIONS = [
     alt: 'MIASO mobile catering cart with staff member and MIASO logo, styled under an umbrella at an outdoor event',
   },
   {
-    title: 'Full-Service Corporate Catering',
+    title: 'Full-Service Catering',
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',

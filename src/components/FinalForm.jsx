@@ -4,11 +4,19 @@ import { trackContact } from '../lib/analytics.js'
 import useReveal from '../hooks/useReveal.js'
 import './FinalForm.css'
 
+const EVENT_TYPES = [
+  'Office Lunch or Meeting',
+  'Team Celebration',
+  'Client Event',
+  'Company Milestone',
+  'Not sure yet',
+]
+
 const CATERING_FORMATS = [
-  'Corporate Lunches & Drop-Off Catering',
-  'Grazing Tables',
-  'Mobile Cart Experience',
-  'Full-Service Corporate Catering',
+  'Boxed Lunches',
+  'Shareable Platters',
+  'Individual Cups & Boats',
+  'Full-Service Catering',
   'Not sure yet',
 ]
 
@@ -31,7 +39,15 @@ const FIELDS = [
   { name: 'email', label: 'Email', type: 'email', required: true },
   { name: 'phone', label: 'Phone Number', type: 'tel', required: true },
   { name: 'company', label: 'Company', type: 'text', required: false },
-  { name: 'eventDate', label: 'Event Date', type: 'date', required: false, group: 'Event Details' },
+  {
+    name: 'eventType',
+    label: 'Event Type',
+    type: 'select',
+    required: true,
+    options: EVENT_TYPES,
+    group: 'Event Details',
+  },
+  { name: 'eventDate', label: 'Event Date', type: 'date', required: false },
   { name: 'guests', label: 'Number of Guests', type: 'number', required: true, min: 1, max: 2000 },
   { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
   { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
