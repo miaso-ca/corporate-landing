@@ -13,10 +13,12 @@ const EVENT_TYPES = [
 ]
 
 const CATERING_FORMATS = [
-  'Boxed Lunches',
+  'Office Lunches & Drop-Off Catering',
   'Shareable Platters',
   'Individual Cups & Boats',
+  'Mobile Cart',
   'Full-Service Catering',
+  'Catering + Bar Service',
   'Not sure yet',
 ]
 

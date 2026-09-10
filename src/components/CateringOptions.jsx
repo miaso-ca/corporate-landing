@@ -5,10 +5,11 @@ import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
 import platterSpreadPhoto from '../assets/photos/catering-platter-spread.jpg'
 import fullserviceTableWidePhoto from '../assets/photos/catering-fullservice-tablewide.jpg'
 import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.jpg'
+import cartWidePhoto from '../assets/photos/catering-cart-wide.jpg'
 
 const OPTIONS = [
   {
-    title: 'Boxed Lunches',
+    title: 'Office Lunches & Drop-Off Catering',
     description:
       'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
     bestFor: 'meetings, training days, office celebrations',
@@ -36,14 +37,27 @@ const OPTIONS = [
   {
     title: 'Individual Cups & Boats',
     description:
-      'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
-    bestFor: 'conferences, expos, brand activations',
+      'Individually portioned charcuterie cups and grazing boats, prepared for easy serving at meetings, conferences, networking events and team celebrations. A polished, convenient option with minimal setup and cleanup.',
+    bestFor: 'meetings, networking events, team celebrations',
     // ponytail: client sent an even stronger shot - five cups lined up
     // instead of one, better conveys "corporate catering at scale".
     // Source is 3:2, close to 16:9 already, only ~10% crop needed.
     photo: cupsLineupPhoto,
     photoPosition: '50% 50%',
     alt: 'Five MIASO-branded kraft cups filled with charcuterie, cheese, fruit and breadsticks lined up in a row',
+  },
+  {
+    title: 'Mobile Cart',
+    description:
+      'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
+    bestFor: 'conferences, expos, brand activations',
+    // ponytail: this card was missing entirely - its description had
+    // been sitting (wrongly) on Individual Cups & Boats. Photo is the
+    // same staffed-cart shot originally used before Full-Service's
+    // swap, unused since - genuinely shows the mobile cart format.
+    photo: cartWidePhoto,
+    photoPosition: '50% 52%',
+    alt: 'MIASO mobile catering cart with staff member and MIASO logo, styled under an umbrella at an outdoor event',
   },
   {
     title: 'Full-Service Catering',
