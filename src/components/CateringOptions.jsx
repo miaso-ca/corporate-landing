@@ -64,6 +64,11 @@ const OPTIONS = [
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
+    // ponytail: 5 single-column cards + the full-width bar banner means
+    // this one (the 5th) would otherwise sit alone in its row with an
+    // empty gap beside it - `wide` gives it the same full-width
+    // treatment as the bar banner instead, photo+text side by side.
+    wide: true,
     // ponytail: client sent an even wider crop of the same moment -
     // shows the full length of the table (more dish variety) alongside
     // her plating, a stronger "full-service" shot than the tighter crop
@@ -92,7 +97,10 @@ function BarCard({ delay }) {
 function CateringCard({ option, delay }) {
   const { ref, visible } = useReveal({ delay })
   return (
-    <div className={`catering-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
+    <div
+      className={`catering-card ${option.wide ? 'catering-card--wide' : ''} reveal ${visible ? 'reveal--visible' : ''}`}
+      ref={ref}
+    >
       <div className="catering-card__photo">
         <img
           src={option.photo}
@@ -101,9 +109,11 @@ function CateringCard({ option, delay }) {
           style={option.photoPosition ? { objectPosition: option.photoPosition } : undefined}
         />
       </div>
-      <h3 className="catering-card__title">{option.title}</h3>
-      <p className="catering-card__desc">{option.description}</p>
-      <span className="pill pill--on-light catering-card__best-for">Best for: {option.bestFor}</span>
+      <div className="catering-card__body">
+        <h3 className="catering-card__title">{option.title}</h3>
+        <p className="catering-card__desc">{option.description}</p>
+        <span className="pill pill--on-light catering-card__best-for">Best for: {option.bestFor}</span>
+      </div>
     </div>
   )
 }

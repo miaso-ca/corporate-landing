@@ -66,6 +66,18 @@
   }
 }
 
+/* Wraps title/desc/pill so .catering-card--wide can lay photo+body side by
+   side. flex:1 + column keeps the regular (non-wide) cards behaving
+   exactly as before this wrapper existed: body fills the remaining height
+   below the photo, so the pill's margin-top:auto still pushes it to the
+   bottom of the card, not just of this wrapper. */
+.catering-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
 .catering-card__title {
   font-size: 21px;
   margin: 22px 24px 0;
@@ -86,6 +98,39 @@
      against a flex sibling's auto margin. */
   margin: auto 24px 24px;
   align-self: flex-start;
+}
+
+/* Full-width variant of .catering-card, used for whichever card lands last
+   before the bar banner - with an odd number of regular (1-column) cards,
+   that one card is otherwise stranded alone in its row next to a large
+   empty gap (the bar banner needs the full row to itself, so it can't sit
+   beside it). Same white-card look as the rest, just laid out sideways -
+   photo and text share a row instead of stacking, photo on the right
+   (row-reverse; the photo is still first in the DOM/alt-text reading
+   order). Row 1 count was even (4 cards) when the bar-card comment above
+   was written; adding Mobile Cart made it 5, reintroducing the stranding
+   this class now fixes. */
+.catering-card--wide {
+  grid-column: 1 / -1;
+  flex-direction: row-reverse;
+}
+
+.catering-card--wide .catering-card__photo {
+  flex: 0 0 42%;
+}
+
+.catering-card--wide .catering-card__body {
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .catering-card--wide {
+    flex-direction: column;
+  }
+  .catering-card--wide .catering-card__photo {
+    flex: none;
+    aspect-ratio: 16 / 9;
+  }
 }
 
 /* One deliberate brand-red background moment on the page — used once,
