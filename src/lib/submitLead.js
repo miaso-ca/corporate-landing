@@ -1,4 +1,5 @@
 import { trackLead, generateEventId } from './analytics.js'
+import { getUtm } from './utm.js'
 
 // Google Apps Script Web App deployed from apps-script/Code.gs — see that
 // file's header comment for the deploy steps and required script properties.
@@ -28,7 +29,7 @@ export async function submitLead(payload) {
       // OPTIONS requests) — the body is still valid JSON, Apps Script's
       // doPost just needs to JSON.parse it itself.
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ ...payload, eventId }),
+      body: JSON.stringify({ ...payload, eventId, ...getUtm() }),
       signal: controller.signal,
     })
 

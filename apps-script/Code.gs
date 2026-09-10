@@ -29,9 +29,14 @@
 var SHEET_NAME = 'Leads';
 var META_PIXEL_ID = '1650470559273087';
 
+// New fields get appended to the END, never inserted in the middle - the
+// Sheet already has real rows written under the old column order, and
+// inserting a column here would silently shift every value in those rows
+// one cell to the right of its real header.
 var COLUMNS = [
   'timestamp', 'source', 'name', 'email', 'phone', 'eventDate',
   'company', 'guests', 'venue', 'budget', 'format', 'dietary', 'details',
+  'eventType', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
 ];
 
 function doPost(e) {
@@ -95,6 +100,19 @@ function getSheet() {
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
     sheet.appendRow(COLUMNS);
+    return sheet;
+  }
+
+  // Self-healing header: if COLUMNS has grown since this sheet's header row
+  // was written (e.g. a new field added after real rows already exist),
+  // fill in only the missing header cells at the end - existing header
+  // cells and every row already written under them are left untouched, so
+  // old data never shifts out from under its real column.
+  var lastCol = sheet.getLastColumn();
+  var existingHeader = lastCol > 0 ? sheet.getRange(1, 1, 1, lastCol).getValues()[0] : [];
+  if (existingHeader.length < COLUMNS.length) {
+    var missing = COLUMNS.slice(existingHeader.length);
+    sheet.getRange(1, existingHeader.length + 1, 1, missing.length).setValues([missing]);
   }
   return sheet;
 }
@@ -218,9 +236,11 @@ function sha256Hex(str) {
 function leadSummaryLines(payload) {
   var labels = {
     source: 'Source', name: 'Name', email: 'Email', phone: 'Phone',
-    eventDate: 'Event date', company: 'Company', guests: 'Guests',
+    eventType: 'Event type', eventDate: 'Event date', company: 'Company', guests: 'Guests',
     venue: 'Venue', budget: 'Budget', format: 'Format',
     dietary: 'Dietary', details: 'Details',
+    utm_source: 'UTM source', utm_medium: 'UTM medium', utm_campaign: 'UTM campaign',
+    utm_term: 'UTM term', utm_content: 'UTM content',
   };
   return COLUMNS.filter(function (key) { return key !== 'timestamp'; })
     .filter(function (key) { return payload[key]; })
