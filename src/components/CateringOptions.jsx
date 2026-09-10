@@ -2,7 +2,7 @@ import './CateringOptions.css'
 import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
-import grazingPhoto from '../assets/photos/catering-grazing-table.jpg'
+import platterSpreadPhoto from '../assets/photos/catering-platter-spread.jpg'
 import fullserviceTablePhoto from '../assets/photos/catering-fullservice-table.jpg'
 import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.jpg'
 
@@ -25,12 +25,13 @@ const OPTIONS = [
     description:
       'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
     bestFor: 'networking events, client receptions',
-    photo: grazingPhoto,
-    // ponytail: source has a shallow depth of field - flowers/sliders up
-    // top are soft-focus, the sharp plane is lower (bread, blackberry-
-    // prosciutto-brie bites, sushi). Bias down to the sharp food.
-    photoPosition: '50% 85%',
-    alt: 'Bread, blackberry-prosciutto-brie bites and sushi rolls on a grazing table',
+    photo: platterSpreadPhoto,
+    // ponytail: client sent a brighter, more colorful daylight spread -
+    // sliders, sandwiches, dried apricots and roses all sharp in frame,
+    // a stronger match for "beautifully styled spreads" than the dusk
+    // shot it replaces.
+    photoPosition: '50% 50%',
+    alt: 'Sliders, sandwiches, dried apricots and roses on a beautifully styled catering table',
   },
   {
     title: 'Individual Cups & Boats',
