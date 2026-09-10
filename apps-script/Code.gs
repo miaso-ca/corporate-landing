@@ -216,7 +216,7 @@ function sendMetaCapiEvent(payload) {
     event_name: 'Lead',
     event_time: Math.floor(Date.now() / 1000),
     action_source: 'website',
-    event_source_url: 'https://events.miaso.ca/',
+    event_source_url: payload.site === 'catering' ? 'https://catering.miaso.ca/' : 'https://events.miaso.ca/',
     user_data: userData,
   };
   if (payload.eventId) eventData.event_id = String(payload.eventId);
