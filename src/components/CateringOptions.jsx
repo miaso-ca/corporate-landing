@@ -3,7 +3,7 @@ import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
 import platterSpreadPhoto from '../assets/photos/catering-platter-spread.jpg'
-import fullserviceTablePhoto from '../assets/photos/catering-fullservice-table.jpg'
+import fullserviceTableWidePhoto from '../assets/photos/catering-fullservice-tablewide.jpg'
 import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.jpg'
 
 const OPTIONS = [
@@ -50,12 +50,13 @@ const OPTIONS = [
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
-    // ponytail: client sent a proper full-service action shot - staff
-    // plating at a full outdoor table with a "BAR" sign visible in the
-    // background, reads as "full-service" far better than a mobile cart.
-    photo: fullserviceTablePhoto,
+    // ponytail: client sent an even wider crop of the same moment -
+    // shows the full length of the table (more dish variety) alongside
+    // her plating, a stronger "full-service" shot than the tighter crop
+    // it replaces.
+    photo: fullserviceTableWidePhoto,
     photoPosition: '50% 50%',
-    alt: 'MIASO staff member plating canapes at a full outdoor catering table with a bar station in the background',
+    alt: 'MIASO staff member plating canapes at a full outdoor catering table with dishes spanning the table and a bar station in the background',
   },
 ]
 
