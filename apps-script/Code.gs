@@ -17,16 +17,27 @@
  *   TELEGRAM_THREAD_ID  - forum topic id, only if the target chat is a
  *                         supergroup with topics and leads should land in
  *                         one specific topic instead of General
+ *   TELEGRAM_THREAD_ID_CATERING - forum topic id for catering.miaso.ca leads
+ *                                  in the same Telegram group (optional,
+ *                                  only if that group uses topics and
+ *                                  catering leads should land in their own)
  *
- * One row per lead, one sheet ("Leads") shared by all three site forms
- * (quick-capture x2 + full form) - the `source` column tells them apart.
+ * Shared by two sites (events.miaso.ca "corporate" + catering.miaso.ca
+ * "catering"), one Sheet, one Telegram chat. `payload.site` (set by each
+ * site's submitLead.js) picks the Sheet tab via SHEET_NAMES and, if set,
+ * a dedicated Telegram topic - undefined/unrecognized site falls back to
+ * "corporate" so old clients or a bad payload still land somewhere sane.
+ * Within a tab, one row per lead, the `source` column tells forms apart.
  * Each of the four channels (Sheet / email / Telegram / Meta Conversions
  * API) is wrapped in its own try/catch so one failing never blocks the
  * others. Meta CAPI is a pure analytics side-channel - success/failure
  * there doesn't count toward whether the lead "worked" for the visitor.
  */
 
-var SHEET_NAME = 'Leads';
+var SHEET_NAMES = {
+  corporate: 'Leads',
+  catering: 'Catering Leads',
+};
 var META_PIXEL_ID = '1650470559273087';
 
 // New fields get appended to the END, never inserted in the middle - the
@@ -94,11 +105,11 @@ function jsonResponse(obj) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
-function getSheet() {
+function getSheet(sheetName) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = ss.getSheetByName(SHEET_NAME);
+  var sheet = ss.getSheetByName(sheetName);
   if (!sheet) {
-    sheet = ss.insertSheet(SHEET_NAME);
+    sheet = ss.insertSheet(sheetName);
     sheet.appendRow(COLUMNS);
     return sheet;
   }
@@ -118,7 +129,8 @@ function getSheet() {
 }
 
 function appendToSheet(payload) {
-  var sheet = getSheet();
+  var sheetName = SHEET_NAMES[payload.site] || SHEET_NAMES.corporate;
+  var sheet = getSheet(sheetName);
   var row = COLUMNS.map(function (key) {
     if (key === 'timestamp') return new Date();
     return sheetSafe(payload[key] || '');
@@ -161,7 +173,8 @@ function sendTelegramNotification(payload) {
     '\n\nAlso saved to the Sheet and emailed to ' + (props.getProperty('NOTIFY_EMAIL') || 'the team') +
     '.\nFull list: ' + SpreadsheetApp.getActiveSpreadsheet().getUrl();
   var body = { chat_id: chatId, text: text };
-  var threadId = props.getProperty('TELEGRAM_THREAD_ID');
+  var threadIdKey = payload.site === 'catering' ? 'TELEGRAM_THREAD_ID_CATERING' : 'TELEGRAM_THREAD_ID';
+  var threadId = props.getProperty(threadIdKey);
   if (threadId) body.message_thread_id = Number(threadId);
 
   var url = 'https://api.telegram.org/bot' + token + '/sendMessage';

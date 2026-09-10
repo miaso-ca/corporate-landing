@@ -29,7 +29,7 @@ export async function submitLead(payload) {
       // OPTIONS requests) — the body is still valid JSON, Apps Script's
       // doPost just needs to JSON.parse it itself.
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ ...payload, eventId, ...getUtm() }),
+      body: JSON.stringify({ ...payload, eventId, site: 'corporate', ...getUtm() }),
       signal: controller.signal,
     })
 
