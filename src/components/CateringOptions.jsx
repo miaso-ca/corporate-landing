@@ -3,7 +3,7 @@ import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
 import grazingPhoto from '../assets/photos/catering-grazing-table.jpg'
-import cartPhoto from '../assets/photos/catering-cart-wide.jpg'
+import fullserviceTablePhoto from '../assets/photos/catering-fullservice-table.jpg'
 import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.jpg'
 
 const OPTIONS = [
@@ -49,12 +49,12 @@ const OPTIONS = [
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
-    // ponytail: swapped with Cups & Boats' old photo - a staffed cart with
-    // a MIASO team member reads as "full-service" (people doing the
-    // serving) much better than a shelf of individual cups did.
-    photo: cartPhoto,
-    photoPosition: '50% 52%',
-    alt: 'MIASO staff member serving at a styled full-service catering setup with MIASO branding at an outdoor event',
+    // ponytail: client sent a proper full-service action shot - staff
+    // plating at a full outdoor table with a "BAR" sign visible in the
+    // background, reads as "full-service" far better than a mobile cart.
+    photo: fullserviceTablePhoto,
+    photoPosition: '50% 50%',
+    alt: 'MIASO staff member plating canapes at a full outdoor catering table with a bar station in the background',
   },
 ]
 
