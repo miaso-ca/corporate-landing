@@ -5,31 +5,47 @@ import clientVideo from '../assets/videos/client-event-clip.mp4'
 
 const REVIEWS = [
   {
-    name: 'Emily Carter',
+    name: 'Emily Carter',
     text: 'MIASO made our corporate reception feel effortless. The food was fresh, beautifully presented, and thoughtfully prepared for different dietary needs. Their team was professional from setup to cleanup, and several guests asked us who handled the catering.',
   },
   {
-    name: 'Olivia Bennett',
+    name: 'Уляна',
+    text: 'I ordered catering for an event with 50 guests and had a great experience. Everything was organized very professionally and smoothly. The team took care of all the details, which allowed me to relax before the event and not worry about the preparations. During the celebration I also felt completely at ease because everything was handled by such a professional team. The event turned out amazing and everything was done at the highest level. Highly recommend!',
+  },
+  {
+    name: 'Olivia Bennett',
     text: 'We hired MIASO for a family celebration and couldn’t have been happier. Every dish was flavourful, the presentation was elegant, and the team handled all the details seamlessly. We were able to relax and truly enjoy the evening with our guests.',
   },
   {
-    name: 'Lauren Mitchell',
+    name: 'Ніколь Колодій',
+    text: 'I had an amazing experience with MIASO catering! The food was absolutely delicious, beautifully presented, and made with high-quality ingredients. Every dish was fresh, flavorful, and thoughtfully prepared. The service was professional, and very attentive to details. The team made everything stress-free. MIASO truly exceeded expectations and added a special touch to our event. I highly recommend them to anyone looking for exceptional catering services. We will definitely book them again!',
+  },
+  {
+    name: 'Lauren Mitchell',
     text: 'MIASO catered a team appreciation event at our Toronto office, and everything was excellent. The menu offered plenty of variety, the food arrived fresh and on time, and the setup looked polished. Our entire team had wonderful things to say.',
   },
   {
-    name: 'Rachel Thompson',
+    name: 'Ulyana Nepelyak',
+    text: 'I highly recommend this service! Everything was absolutely delicious and all my guests loved the catering. Thank you MIASO Catering for making my event so special!!!',
+  },
+  {
+    name: 'Rachel Thompson',
     text: 'From the first conversation, MIASO understood exactly what we wanted for our engagement celebration. The team was responsive, organized, and attentive to every detail. The food looked beautiful, tasted incredible, and made the evening feel genuinely special.',
   },
   {
-    name: 'Daniel Brooks',
+    name: 'Kristina Miroshnichenko',
+    text: 'Stylish, elegant, and incredibly tasty. The presentation was beautiful, the food was fresh and flavorful, and everything arrived perfectly prepared. Highly recommend!',
+  },
+  {
+    name: 'Daniel Brooks',
     text: 'MIASO delivered an exceptional experience for our client dinner. The menu felt refined yet approachable, the presentation was impressive, and the service was attentive without being intrusive. Everything came together beautifully and left a strong impression on our guests.',
   },
   {
-    name: 'Michael Anderson',
+    name: 'Michael Anderson',
     text: 'Excellent food, thoughtful service, and seamless coordination from start to finish. MIASO accommodated our guests’ dietary preferences and made sure everything arrived fresh and on time. The setup was beautiful, and the entire event felt relaxed and well organized.',
   },
   {
-    name: 'James Wilson',
+    name: 'James Wilson',
     text: 'Our guests are still talking about the food. Every dish was full of flavour and presented with care. The MIASO team was friendly, flexible, and professional throughout the event. They helped create a warm and memorable experience for everyone.',
   },
 ]
