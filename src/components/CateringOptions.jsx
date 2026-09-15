@@ -85,8 +85,8 @@ function BarCard({ delay }) {
     <div className={`catering-options__bar-card reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
       <span className="pill pill--on-photo">Need Bar Service&nbsp;Too?</span>
       <p>
-        We&rsquo;ve partnered with North Spirit Distillery for years to pair full bar
-        service — bartenders, mixers and glassware — with every MIASO event. One
+        We&rsquo;ve partnered with North Spirit Distillery for years to offer full bar
+        service — bartenders, mixers and glassware — alongside MIASO catering. One
         booking, one point of contact — no juggling two vendors. Just mention it in
         the quote form below.
       </p>
