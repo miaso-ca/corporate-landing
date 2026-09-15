@@ -67,6 +67,19 @@
   grid-column: 1 / -1;
 }
 
+.quick-form__privacy {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 11px;
+  color: #766859;
+  text-align: right;
+}
+
+.quick-form__privacy a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .quick-form--done {
   display: flex;
   justify-content: center;

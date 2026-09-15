@@ -69,6 +69,14 @@ export default function Footer() {
 
       <div className="footer__bottom">
         <p className="footer__copyright">© 2026 MIASO. All rights reserved.</p>
+        <a
+          className="footer__privacy"
+          href="/privacy-policy.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy Policy
+        </a>
       </div>
     </footer>
   )

@@ -143,6 +143,13 @@ export default function QuickCaptureForm({ source }) {
       <button className="btn" type="submit" disabled={submitting}>
         {submitting ? 'Sending…' : 'Get My Quote'}
       </button>
+      <p className="quick-form__privacy">
+        By submitting, you agree to our{' '}
+        <a href="/privacy-policy.html" target="_blank" rel="noopener noreferrer">
+          Privacy Policy
+        </a>
+        .
+      </p>
     </form>
   )
 }

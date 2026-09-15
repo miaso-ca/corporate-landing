@@ -103,15 +103,25 @@
 
 .footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer__bottom .footer__copyright {
   max-width: 760px;
   margin: 0 auto;
   padding: 18px 24px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer__bottom .footer__copyright {
+  margin: 0;
   font-size: 11px;
   color: #c9b8a3; /* WCAG AA on dark footer background */
+}
+
+.footer__privacy {
+  font-size: 11px;
+  color: #c9b8a3;
 }
 
 @media (max-width: 640px) {

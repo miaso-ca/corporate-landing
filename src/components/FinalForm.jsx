@@ -237,7 +237,11 @@ export default function FinalForm() {
             <p className="final-form__disclaimer">
               Submitting this form does not reserve your date. Your booking is confirmed after
               availability has been reviewed, the quote has been approved and the required
-              deposit has been received.
+              deposit has been received. By submitting, you agree to our{' '}
+              <a href="/privacy-policy.html" target="_blank" rel="noopener noreferrer">
+                Privacy Policy
+              </a>
+              .
             </p>
 
             <p className="final-form__contact">
