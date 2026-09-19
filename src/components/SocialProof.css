@@ -127,12 +127,24 @@
   text-wrap: pretty;
 }
 
+.review-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+
 .review-card__stars {
   display: block;
-  margin-top: 12px;
   font-size: 13px;
   letter-spacing: 3px;
   color: var(--accent);
+}
+
+.review-card__source {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #766859; /* WCAG AA on the white review card */
 }
 
 .social-proof__reviews-nav {

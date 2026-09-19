@@ -111,7 +111,10 @@ export default function SocialProof() {
               <div className="review-card slot-card" key={r.name}>
                 <span className="review-card__name">{r.name}</span>
                 <p className="review-card__text">{r.text}</p>
-                <span className="review-card__stars" aria-hidden="true">★★★★★</span>
+                <div className="review-card__meta">
+                  <span className="review-card__stars" aria-hidden="true">★★★★★</span>
+                  <span className="review-card__source">Google review</span>
+                </div>
               </div>
             ))}
           </div>
