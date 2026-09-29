@@ -21,9 +21,14 @@
 
 /* Video variant: the base .video-modal__box (tokens.css) is sized and
    padded for the short text placeholder — a real video needs to fill a
-   much wider box with no padding eating into the frame. */
-.video-modal__box--video {
-  max-width: 720px;
+   much wider box with no padding eating into the frame.
+   Two-class selector (not just `.video-modal__box--video`) is deliberate:
+   it needs specificity strictly higher than tokens.css's own
+   `.video-modal__box` rule (max-width:420px) to win regardless of
+   stylesheet concatenation order — same pattern already used in
+   CateringOptions.css for the equivalent problem. */
+.video-modal__box.video-modal__box--video {
+  max-width: 900px;
   width: 100%;
   padding: 0;
   overflow: hidden;
