@@ -18,3 +18,27 @@
 .video-modal__box--info p {
   text-wrap: pretty;
 }
+
+/* Video variant: the base .video-modal__box (tokens.css) is sized and
+   padded for the short text placeholder — a real video needs to fill a
+   much wider box with no padding eating into the frame. */
+.video-modal__box--video {
+  max-width: 720px;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.video-modal__box--video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.video-modal__box--video .video-modal__close {
+  background: rgba(43, 31, 20, 0.55);
+  color: #fff;
+  border-radius: 50%;
+}

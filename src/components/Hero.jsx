@@ -2,10 +2,8 @@ import './Hero.css'
 import heroPhoto from '../assets/photos/hero-table.jpg'
 import useReveal from '../hooks/useReveal.js'
 
-// ponytail: client's team is still editing the real video (Olya, 2026-09-15) —
-// hide the watch button until it's ready rather than shipping the "coming
-// soon" placeholder modal live. Flip back to true once the video lands.
-const VIDEO_READY = false
+// Real video landed 2026-09-28 (valentina-intro.mp4) — button restored.
+const VIDEO_READY = true
 
 export default function Hero({ onWatchVideo, onRequestQuote }) {
   // Above-the-fold: reveal on mount rather than waiting for scroll, staggered
@@ -61,7 +59,7 @@ export default function Hero({ onWatchVideo, onRequestQuote }) {
                 {VIDEO_READY && (
                   <button className="hero__watch" onClick={onWatchVideo} type="button">
                     <span className="hero__play">▶</span>
-                    Watch 45&nbsp;sec
+                    Watch 1:23
                   </button>
                 )}
               </div>
