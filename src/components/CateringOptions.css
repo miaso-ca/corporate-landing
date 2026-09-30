@@ -91,13 +91,24 @@
   text-wrap: pretty;
 }
 
+.catering-card__price {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cta);
+  margin: 0 24px 10px;
+}
+
 .catering-card__best-for {
-  /* margin-top:auto only fills LEFTOVER row height (0 in the tallest card
-     of the row) — the real minimum gap above the pill comes from
-     .catering-card__desc's own margin-bottom, which never collapses
-     against a flex sibling's auto margin. */
-  margin: auto 24px 24px;
+  margin: 0 24px 16px;
   align-self: flex-start;
+}
+
+.catering-card__cta {
+  /* Pins to the card's bottom edge regardless of how long the
+     description/best-for text runs above it — same auto-margin trick
+     .catering-card__best-for used to do alone. */
+  margin: auto 24px 24px;
+  text-align: center;
 }
 
 /* Full-width variant of .catering-card, used for whichever card lands last

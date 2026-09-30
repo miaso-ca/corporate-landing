@@ -1,6 +1,8 @@
 import './CateringOptions.css'
 import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
+import { setPreselect } from '../lib/preselect.js'
+import { trackCardClick } from '../lib/analytics.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
 import platterSpreadPhoto from '../assets/photos/catering-platter-tray.jpg'
 import fullserviceTableWidePhoto from '../assets/photos/catering-fullservice-tablewide.jpg'
@@ -10,6 +12,8 @@ import cartWidePhoto from '../assets/photos/catering-cart-wide.jpg'
 const OPTIONS = [
   {
     title: 'Office Lunches & Drop-Off Catering',
+    priceLine: 'Coffee breaks from $13.50/guest',
+    minimum: null,
     description:
       'Individual lunch boxes, power bowls, grazing boats, cups and sharing platters for meetings, training days, staff appreciation and office celebrations.',
     bestFor: 'meetings, training days, office celebrations',
@@ -23,6 +27,8 @@ const OPTIONS = [
   },
   {
     title: 'Shareable Platters',
+    priceLine: null,
+    minimum: 'No minimum',
     description:
       'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
     bestFor: 'networking events, client receptions',
@@ -36,6 +42,8 @@ const OPTIONS = [
   },
   {
     title: 'Individual Cups & Boats',
+    priceLine: 'From $14.50 each, down to $12 at 200+',
+    minimum: '10 cups',
     description:
       'Individually portioned charcuterie cups and grazing boats, prepared for easy serving at meetings, conferences, networking events and team celebrations. A polished, convenient option with minimal setup and cleanup.',
     bestFor: 'meetings, networking events, team celebrations',
@@ -48,6 +56,8 @@ const OPTIONS = [
   },
   {
     title: 'Mobile Cart',
+    priceLine: 'From $22/guest + setup · 2-hour staffed service',
+    minimum: null,
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',
     bestFor: 'conferences, expos, brand activations',
@@ -61,6 +71,8 @@ const OPTIONS = [
   },
   {
     title: 'Full-Service Catering',
+    priceLine: 'From $60/guest',
+    minimum: '20 guests',
     description:
       'Customized menus, delivery, setup, professional service and cleanup for conferences, galas, product launches, award nights and larger business events.',
     bestFor: 'galas, product launches, award nights',
@@ -96,6 +108,12 @@ function BarCard({ delay }) {
 
 function CateringCard({ option, delay }) {
   const { ref, visible } = useReveal({ delay })
+
+  function handleQuoteClick() {
+    trackCardClick(option.title)
+    setPreselect({ format: option.title })
+  }
+
   return (
     <div
       className={`catering-card ${option.wide ? 'catering-card--wide' : ''} reveal ${visible ? 'reveal--visible' : ''}`}
@@ -112,7 +130,17 @@ function CateringCard({ option, delay }) {
       <div className="catering-card__body">
         <h3 className="catering-card__title">{option.title}</h3>
         <p className="catering-card__desc">{option.description}</p>
+        {(option.priceLine || option.minimum) && (
+          <p className="catering-card__price">
+            {option.priceLine}
+            {option.priceLine && option.minimum && ' · '}
+            {option.minimum}
+          </p>
+        )}
         <span className="pill pill--on-light catering-card__best-for">Best for: {option.bestFor}</span>
+        <a className="btn catering-card__cta" href="#quote" onClick={handleQuoteClick}>
+          Get a Quote
+        </a>
       </div>
     </div>
   )
