@@ -2,6 +2,16 @@ import { useRef, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import './QuickCaptureForm.css'
 
+const CATERING_FORMATS = [
+  'Office Lunches & Drop-Off Catering',
+  'Shareable Platters',
+  'Individual Cups & Boats',
+  'Mobile Cart',
+  'Full-Service Catering',
+  'Catering + Bar Service',
+  'Not sure yet',
+]
+
 const FIELDS = [
   { name: 'name', label: 'Full Name', type: 'text', required: true },
   { name: 'email', label: 'Email', type: 'email', required: true },
@@ -13,6 +23,8 @@ const FIELDS = [
     required: false,
     hint: "Optional — leave blank if you're not sure yet",
   },
+  { name: 'guests', label: 'Number of Guests', type: 'number', required: true, min: 1, max: 2000 },
+  { name: 'format', label: 'Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
 ]
 
 // ponytail: basic shape check, not full RFC 5322 — good enough to catch typos client-side
@@ -36,7 +48,16 @@ function todayLocalISO() {
 const TODAY = todayLocalISO()
 
 export default function QuickCaptureForm({ source }) {
-  const [values, setValues] = useState({ name: '', email: '', phone: '', eventDate: '', website: '' })
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    eventDate: '',
+    guests: '',
+    format: '',
+    website: '',
+  })
+  const [consent, setConsent] = useState(false)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
@@ -53,7 +74,7 @@ export default function QuickCaptureForm({ source }) {
 
   function validate() {
     const next = {}
-    FIELDS.forEach(({ name, label, required, type }) => {
+    FIELDS.forEach(({ name, label, required, type, min, max }) => {
       const value = values[name].trim()
       if (required && !value) {
         next[name] = `${label} is required`
@@ -61,6 +82,11 @@ export default function QuickCaptureForm({ source }) {
         next[name] = 'Enter a valid email address'
       } else if (name === 'phone' && value && !isValidPhone(value)) {
         next[name] = 'Enter a valid phone number'
+      } else if (type === 'number' && value) {
+        const num = Number(value)
+        if (!Number.isInteger(num) || num < min || num > max) {
+          next[name] = `Enter a number between ${min} and ${max}`
+        }
       } else if (type === 'date' && value && value < TODAY) {
         next[name] = "Pick today's date or later"
       }
@@ -89,7 +115,7 @@ export default function QuickCaptureForm({ source }) {
     setSubmitting(true)
     setSubmitError('')
     try {
-      await submitLead({ ...values, source })
+      await submitLead({ ...values, consent, source })
       await new Promise((r) => setTimeout(r, 600))
       setDone(true)
     } catch (err) {
@@ -125,20 +151,44 @@ export default function QuickCaptureForm({ source }) {
         aria-hidden="true"
         style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
       />
-      {FIELDS.map(({ name, label, type, hint }) => (
+      {FIELDS.map(({ name, label, type, hint, options, min, max }) => (
         <div className="quick-form__field" key={name}>
           <label htmlFor={`${source}-${name}`}>{label}</label>
-          <input
-            id={`${source}-${name}`}
-            type={type}
-            value={values[name]}
-            onChange={(e) => handleChange(name, e.target.value)}
-            min={type === 'date' ? TODAY : undefined}
-          />
+          {type === 'select' ? (
+            <select
+              id={`${source}-${name}`}
+              value={values[name]}
+              onChange={(e) => handleChange(name, e.target.value)}
+            >
+              <option value="" disabled>
+                Select an option
+              </option>
+              {options.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              id={`${source}-${name}`}
+              type={type}
+              value={values[name]}
+              onChange={(e) => handleChange(name, e.target.value)}
+              min={type === 'date' ? TODAY : type === 'number' ? min : undefined}
+              max={type === 'number' ? max : undefined}
+              step={type === 'number' ? 1 : undefined}
+            />
+          )}
           {hint && !errors[name] && <span className="quick-form__hint">{hint}</span>}
           {errors[name] && <span className="quick-form__error">{errors[name]}</span>}
         </div>
       ))}
+      <label className="quick-form__consent">
+        <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+        I agree to receive news and special offers from MIASO by email, SMS and WhatsApp. I can
+        unsubscribe at any time.
+      </label>
       {submitError && <span className="quick-form__error quick-form__error--submit">{submitError}</span>}
       <button className="btn" type="submit" disabled={submitting}>
         {submitting ? 'Sending…' : 'Get My Quote'}

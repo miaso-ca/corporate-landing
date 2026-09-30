@@ -1,10 +1,9 @@
 .quick-form {
   display: grid;
-  /* 4 equal field columns + a 5th "auto" column for the button, all in the
-     SAME row — putting the button on its own row below left a big empty
-     strip under Name/Email/Phone with only the button floating on the
-     right. align-items:end lines every input up on one baseline. */
-  grid-template-columns: repeat(4, minmax(140px, 1fr)) auto;
+  /* 6 field columns now (added guests + format) — the trailing CTA button
+     no longer shares the last field's row at this width, it drops to its
+     own full-width row instead (see .quick-form .btn below). */
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
   align-items: end;
   gap: 16px;
   margin-top: 20px;
@@ -12,6 +11,35 @@
   background: var(--card);
   border-radius: var(--radius);
   border: 1px solid #f0e2d0;
+}
+
+.quick-form__field select {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ink);
+  padding: 10px 12px;
+  border: 1px solid #e0d0ba;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.quick-form .btn {
+  grid-column: 1 / -1;
+}
+
+.quick-form__consent {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4a3c2c;
+}
+
+.quick-form__consent input {
+  margin-top: 3px;
+  flex: none;
 }
 
 .quick-form__field {
@@ -96,7 +124,6 @@
     white-space: normal;
   }
   .quick-form .btn {
-    grid-column: 1 / -1;
     justify-self: end;
   }
 
