@@ -1,5 +1,5 @@
 import './Hero.css'
-import heroPhoto from '../assets/photos/hero-video-frame.jpg'
+import heroPhoto from '../assets/photos/hero-table.jpg'
 import useReveal from '../hooks/useReveal.js'
 
 // Real video landed 2026-09-28 (valentina-intro.mp4) — button restored.
@@ -19,7 +19,7 @@ export default function Hero({ onWatchVideo, onRequestQuote }) {
         <div className="hero__photo">
           <img
             src={heroPhoto}
-            alt="Valentina from MIASO in the kitchen, from the intro video"
+            alt="MIASO catering spread, styled table"
             className="hero__photo-img"
           />
           <div className="hero__gradient" />
