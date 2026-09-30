@@ -4,28 +4,44 @@ import './FAQ.css'
 
 const FAQS = [
   {
+    q: 'How much does corporate catering cost?',
+    a: 'Coffee breaks start at $13.50 per guest, the Mobile Cart at $22 per guest plus setup, and grazing tables at $48 per guest. Your quote confirms the final price.',
+  },
+  {
+    q: 'Is there a minimum order?',
+    a: 'Boards have no minimum. Individual cups start at 10, grazing tables at 15 guests and full-service catering at 20 guests.',
+  },
+  {
+    q: 'How far in advance should we book?',
+    a: 'Boards and cups: 24 hours. Grazing tables: 72 hours. Mobile Cart and full-service catering: 5-7 days. Holiday dates are limited, so book early.',
+  },
+  {
+    q: 'What is included - setup, staffing and cleanup?',
+    a: 'Drop-off orders arrive ready to serve. Grazing tables and catering include delivery, styling and setup; staffing and cleanup can be added. The Mobile Cart includes a staffed two-hour service.',
+  },
+  {
+    q: 'Do you deliver across Toronto and the GTA?',
+    a: 'Yes. Delivery is priced by distance zone and shown in your quote, with morning delivery windows for office orders.',
+  },
+  {
+    q: 'Can you accommodate dietary requirements?',
+    a: 'Yes - vegetarian, Halal-friendly, Kosher-friendly and allergy-aware options are available. List every requirement in your request and we will confirm them in your quote.',
+  },
+  {
+    q: 'Can you provide catering and bar service together?',
+    a: 'Yes. Through our long-time partner North Spirit Distillery, we add bartenders, mixers and glassware to your booking - one quote, one point of contact.',
+  },
+  {
+    q: 'Can we set up recurring office orders?',
+    a: 'Yes. Weekly or monthly breakfasts, lunches and coffee breaks can run as a standing order with a fixed or rotating menu.',
+  },
+  {
     q: 'What types of corporate events do you cater?',
-    a: 'MIASO caters office lunches, business meetings, training days, client receptions, conferences, expos, product launches, open houses, galas and company celebrations.',
+    a: 'Office lunches, meetings, training days, client receptions, conferences, expos, product launches, holiday parties and team celebrations - from small team orders to large receptions.',
   },
   {
-    q: 'Can you provide both catering and bar service?',
-    a: 'Yes. MIASO can coordinate food with North Spirit Distillery bar service through a combined booking, subject to event requirements and availability.',
-  },
-  {
-    q: 'Do you deliver throughout Toronto and the GTA?',
-    a: 'Yes. Delivery and on-site service are available across Toronto and selected GTA locations. Availability and delivery fees depend on the venue, timing and order size.',
-  },
-  {
-    q: 'Can you accommodate dietary requirements?',
-    a: 'Dietary-friendly options are available depending on the selected menu. Please share all allergies and requirements during the inquiry process so the available accommodations can be confirmed in your quote.',
-  },
-  {
-    q: 'How far in advance should we inquire?',
-    a: 'We recommend submitting your request as early as possible. The required lead time depends on the guest count, catering format, menu and level of customization.',
-  },
-  {
-    q: 'Are setup, staffing and cleanup included?',
-    a: 'It depends on the selected package. Drop-off catering, grazing tables, Mobile Cart and full-service catering include different service levels. Your quote will clearly specify everything included.',
+    q: 'When should we book our holiday party?',
+    a: 'As soon as you have a date. December Thursdays and Fridays book first. Send your date and guest count and we will confirm availability within 1 business day.',
   },
 ]
 
