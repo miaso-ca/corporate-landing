@@ -1,39 +1,9 @@
-import { useState } from 'react'
 import './Hero.css'
 import heroPhoto from '../assets/photos/hero-table.jpg'
-import videoPoster from '../assets/photos/hero-video-poster.jpg'
-import valentinaIntro from '../assets/videos/valentina-intro.mp4'
 import useReveal from '../hooks/useReveal.js'
 
 // Real video landed 2026-09-28 (valentina-intro.mp4) — button restored.
 const VIDEO_READY = true
-
-function VideoScreen() {
-  const [playing, setPlaying] = useState(false)
-  const screen = useReveal({ immediate: true, delay: 400 })
-
-  return (
-    <div
-      className={`hero__video-screen reveal ${screen.visible ? 'reveal--visible' : ''}`}
-      ref={screen.ref}
-    >
-      <span className="pill pill--on-photo hero__video-screen-badge">Meet&nbsp;Valentina</span>
-      {playing ? (
-        <video src={valentinaIntro} controls autoPlay playsInline onEnded={() => setPlaying(false)} />
-      ) : (
-        <button
-          className="hero__video-screen-play"
-          onClick={() => setPlaying(true)}
-          type="button"
-          aria-label="Play video"
-        >
-          <img src={videoPoster} alt="" />
-          <span className="hero__video-screen-icon">▶</span>
-        </button>
-      )}
-    </div>
-  )
-}
 
 export default function Hero({ onWatchVideo, onRequestQuote }) {
   // Above-the-fold: reveal on mount rather than waiting for scroll, staggered
@@ -53,14 +23,6 @@ export default function Hero({ onWatchVideo, onRequestQuote }) {
             className="hero__photo-img"
           />
           <div className="hero__gradient" />
-
-          {/* ponytail: 2026-09-29 test per Serhii/Olya reference — video as
-              its own floating "screen" card on the hero photo, independent
-              of the existing text/CTA card and its own Watch-button+modal
-              flow below (left untouched so this is purely additive and easy
-              to remove if the test doesn't land). */}
-          <VideoScreen />
-
           <div className="hero__photo-content">
             <div className="hero__text-group">
               <span
