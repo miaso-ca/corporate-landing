@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { trackContact } from '../lib/analytics.js'
+import logo from '../assets/logo-miaso.png'
 import './Nav.css'
 
 const LINKS = [
@@ -32,7 +33,7 @@ export default function Nav({ onRequestQuote }) {
     <header className={`nav ${solid ? 'nav--solid' : ''} ${menuOpen ? 'nav--open' : ''}`}>
       <div className="nav__bar">
         <a className="nav__logo" href="#top" onClick={closeMenu}>
-          MIASO
+          <img src={logo} alt="MIASO Charcuterie &amp; Catering" />
         </a>
 
         <nav className="nav__links">

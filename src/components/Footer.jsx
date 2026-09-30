@@ -1,4 +1,5 @@
 import { trackContact, trackSocialClick } from '../lib/analytics.js'
+import logo from '../assets/logo-miaso.png'
 import './Footer.css'
 
 const LINKS = [
@@ -15,7 +16,7 @@ export default function Footer() {
       <div className="footer__inner">
         <div className="footer__col footer__col--brand">
           <a className="footer__logo" href="#top">
-            MIASO
+            <img src={logo} alt="MIASO Charcuterie &amp; Catering" />
           </a>
           <p className="footer__tagline">Toronto &amp; GTA · Corporate Catering</p>
         </div>

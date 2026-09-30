@@ -27,16 +27,17 @@
 }
 
 .nav__logo {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  letter-spacing: 0.04em;
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.28s var(--ease-out);
+  display: flex;
+  align-items: center;
 }
 
-.nav--solid .nav__logo {
-  color: var(--ink);
+/* Badge carries its own cream background/red border, so it reads fine
+   whether the bar behind it is transparent-over-photo or solid --bg —
+   unlike the old text logo, it never needs a color swap between states. */
+.nav__logo img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
 .nav__links {
