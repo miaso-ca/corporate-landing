@@ -14,6 +14,12 @@ export function setPreselect(fields) {
     // Private browsing / storage disabled — preselect is a convenience,
     // not worth failing the click over.
   }
+  // Same-tab sessionStorage writes never fire the native `storage` event
+  // (that only fires in OTHER tabs) — FinalForm mounts once with the whole
+  // page and never remounts when a same-document anchor link scrolls to
+  // it, so without this event it would never see a value set after its
+  // own mount (the real-world case: load page once, then click a card).
+  window.dispatchEvent(new CustomEvent('miaso:preselect', { detail: fields }))
 }
 
 export function readAndClearPreselect() {

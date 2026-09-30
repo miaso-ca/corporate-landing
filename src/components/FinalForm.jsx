@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import { trackContact } from '../lib/analytics.js'
 import useReveal from '../hooks/useReveal.js'
@@ -91,6 +91,13 @@ export default function FinalForm() {
   const [values, setValues] = useState(() => ({ ...INITIAL_VALUES, ...readAndClearPreselect() }))
   const [consent, setConsent] = useState(false)
   const [errors, setErrors] = useState({})
+  useEffect(() => {
+    function handlePreselect(e) {
+      setValues((v) => ({ ...v, ...e.detail }))
+    }
+    window.addEventListener('miaso:preselect', handlePreselect)
+    return () => window.removeEventListener('miaso:preselect', handlePreselect)
+  }, [])
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
   const [submitError, setSubmitError] = useState('')
