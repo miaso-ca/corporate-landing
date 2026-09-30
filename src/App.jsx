@@ -9,18 +9,16 @@ import SocialProof from './components/SocialProof.jsx'
 import FAQ from './components/FAQ.jsx'
 import FinalForm from './components/FinalForm.jsx'
 import Footer from './components/Footer.jsx'
-import VideoModal from './components/VideoModal.jsx'
 import QuoteModal from './components/QuoteModal.jsx'
 import StickyCta from './components/StickyCta.jsx'
 
 export default function App() {
-  const [videoOpen, setVideoOpen] = useState(false)
   const [quoteOpen, setQuoteOpen] = useState(false)
 
   return (
     <>
       <Nav onRequestQuote={() => setQuoteOpen(true)} />
-      <Hero onWatchVideo={() => setVideoOpen(true)} onRequestQuote={() => setQuoteOpen(true)} />
+      <Hero onRequestQuote={() => setQuoteOpen(true)} />
       <StatsBar />
       <CateringOptions />
       <WhyMiaso />
@@ -29,7 +27,6 @@ export default function App() {
       <FAQ />
       <FinalForm />
       <Footer />
-      <VideoModal open={videoOpen} onClose={() => setVideoOpen(false)} />
       <QuoteModal open={quoteOpen} onClose={() => setQuoteOpen(false)} />
       <StickyCta onRequestQuote={() => setQuoteOpen(true)} />
     </>
