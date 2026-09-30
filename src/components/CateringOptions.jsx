@@ -4,10 +4,10 @@ import useReveal from '../hooks/useReveal.js'
 import { setPreselect } from '../lib/preselect.js'
 import { trackCardClick } from '../lib/analytics.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
-import platterSpreadPhoto from '../assets/photos/catering-platter-tray.jpg'
-import fullserviceTableWidePhoto from '../assets/photos/catering-fullservice-tablewide.jpg'
-import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.jpg'
-import cartWidePhoto from '../assets/photos/catering-cart-wide.jpg'
+import platterSpreadPhoto from '../assets/photos/catering-platter-tray.webp'
+import fullserviceTableWidePhoto from '../assets/photos/catering-fullservice-tablewide.webp'
+import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.webp'
+import cartWidePhoto from '../assets/photos/catering-cart-wide.webp'
 
 const OPTIONS = [
   {
