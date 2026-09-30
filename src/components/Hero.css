@@ -126,10 +126,34 @@
 
 @media (max-width: 560px) {
   .hero {
-    padding-top: calc(var(--nav-height) + 32px);
-    padding-bottom: 48px;
+    padding-top: calc(var(--nav-height) + 16px);
+    padding-bottom: 40px;
+  }
+  /* Text stack above the video was tall enough to push the video fully
+     below the first viewport on a real phone (address bar + toolbar eat
+     ~150px on top of that) — everything read as one dense wall of text
+     with no video in sight. Tightened every gap in the stack instead of
+     cutting any copy, so the video starts appearing without scrolling. */
+  .hero__grid {
+    gap: 20px;
+  }
+  .hero__intro {
+    gap: 10px;
+  }
+  .hero__title {
+    font-size: 26px;
+    line-height: 1.16;
   }
   .hero__desc {
     max-width: none;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .hero__actions {
+    margin-top: 14px;
+  }
+  .hero__trust {
+    margin-top: 8px;
+    font-size: 11px;
   }
 }
