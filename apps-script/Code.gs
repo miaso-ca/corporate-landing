@@ -48,6 +48,7 @@ var COLUMNS = [
   'timestamp', 'source', 'name', 'email', 'phone', 'eventDate',
   'company', 'guests', 'venue', 'budget', 'format', 'dietary', 'details',
   'eventType', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+  'postalCode', 'consent',
 ];
 
 function doPost(e) {
@@ -254,6 +255,7 @@ function leadSummaryLines(payload) {
     dietary: 'Dietary', details: 'Details',
     utm_source: 'UTM source', utm_medium: 'UTM medium', utm_campaign: 'UTM campaign',
     utm_term: 'UTM term', utm_content: 'UTM content',
+    postalCode: 'Postal code', consent: 'Marketing consent',
   };
   return COLUMNS.filter(function (key) { return key !== 'timestamp'; })
     .filter(function (key) { return payload[key]; })
