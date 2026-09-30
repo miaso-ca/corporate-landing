@@ -31,3 +31,15 @@ export function getUtm() {
     return {}
   }
 }
+
+// Same sessionStorage bucket getUtm() reads — lets an on-site interaction
+// (Holiday bar CTA) tag a lead's campaign the same way a real ad-click URL
+// would, with no separate plumbing on the Code.gs/Sheet side.
+export function setCampaign(campaign) {
+  try {
+    const current = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}')
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, utm_campaign: campaign }))
+  } catch {
+    // Private browsing / storage disabled — best-effort, not worth failing over.
+  }
+}
