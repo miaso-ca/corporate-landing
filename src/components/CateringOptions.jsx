@@ -2,7 +2,7 @@ import './CateringOptions.css'
 import QuickCaptureForm from './QuickCaptureForm.jsx'
 import useReveal from '../hooks/useReveal.js'
 import lunchesPhoto from '../assets/photos/catering-lunches-venue.jpg'
-import platterSpreadPhoto from '../assets/photos/catering-platter-spread.jpg'
+import platterSpreadPhoto from '../assets/photos/catering-platter-tray.jpg'
 import fullserviceTableWidePhoto from '../assets/photos/catering-fullservice-tablewide.jpg'
 import cupsLineupPhoto from '../assets/photos/catering-cups-lineup.jpg'
 import cartWidePhoto from '../assets/photos/catering-cart-wide.jpg'
@@ -27,12 +27,12 @@ const OPTIONS = [
       'Beautifully styled spreads featuring cheeses, charcuterie, seasonal fruit, artisanal breads and optional hot bites — ideal for networking events, client receptions and open houses.',
     bestFor: 'networking events, client receptions',
     photo: platterSpreadPhoto,
-    // ponytail: client sent a brighter, more colorful daylight spread -
-    // sliders, sandwiches, dried apricots and roses all sharp in frame,
-    // a stronger match for "beautifully styled spreads" than the dusk
-    // shot it replaces.
+    // ponytail: Olya flagged the previous photo as a table setup, not a
+    // platter — this card is titled "Shareable Platters" so the photo
+    // needs to actually show one. Overhead flat-lay of the wooden tray
+    // itself, edge-to-edge, no ambiguity.
     photoPosition: '50% 50%',
-    alt: 'Sliders, sandwiches, dried apricots and roses on a beautifully styled catering table',
+    alt: 'Overhead view of a wooden charcuterie platter with cheese, cured meats, fruit and crackers, styled edge to edge',
   },
   {
     title: 'Individual Cups & Boats',
