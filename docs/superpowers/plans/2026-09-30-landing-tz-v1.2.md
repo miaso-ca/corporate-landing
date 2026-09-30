@@ -129,7 +129,7 @@ EOF
 **Interfaces:**
 - Produces: `setPreselect({ eventType, format })` — writes whichever of the two keys are given to `sessionStorage`.
 - Produces: `readAndClearPreselect()` — returns `{ eventType, format }` (missing keys are `undefined`) and immediately clears the stored value, so a later plain navigation to `#quote` doesn't re-apply a stale preselect.
-- Produces: `setCampaign(campaign)` in `utm.js` — merges `{ utm_campaign: campaign }` into the same `sessionStorage` bucket `getUtm()` already reads, so the existing Sheet column + the Task 1 `trackLead` campaign param both pick it up with zero further wiring.
+- Produces: `setCampaign(campaign)` in `utm.js` — merges `{ utm_content: campaign }` into the same `sessionStorage` bucket `getUtm()` already reads, so the existing Sheet column + the Task 1 `trackLead` campaign param both pick it up with zero further wiring. (Post-launch review fix: writes `utm_content`, not `utm_campaign`, so an on-site tag like the Holiday bar's never overwrites a real ad's `utm_campaign` attribution.)
 - Consumes (Task 3): Holiday bar calls `setPreselect({ eventType: 'Holiday Party' })` and `setCampaign('holiday-2026')`.
 - Consumes (Task 4): catering cards call `setPreselect({ format: option.title })`.
 - Consumes (Task 7): `FinalForm` calls `readAndClearPreselect()` once on mount.
@@ -514,7 +514,9 @@ Add dismissible Holiday 2026 announcement bar above the nav
 Auto-hides after 2027-01-15 and once the visitor dismisses it
 (localStorage). Its CTA smooth-scrolls to the full form, preselects
 Event type = Holiday Party, and tags the lead's campaign as
-holiday-2026 for GA4 and the Sheet's utm_campaign column. --nav-height
+holiday-2026 for GA4 and the Sheet's utm_content column (post-launch
+review fix: was utm_campaign, moved to utm_content so it can't
+overwrite a real ad's attribution). --nav-height
 is now measured at runtime (topbar ResizeObserver) instead of the old
 static 84px, so Hero's top padding and every section's scroll-margin
 stay correct whether the bar is showing or not.

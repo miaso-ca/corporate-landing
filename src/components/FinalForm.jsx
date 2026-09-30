@@ -2,7 +2,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import { trackContact } from '../lib/analytics.js'
 import useReveal from '../hooks/useReveal.js'
-import { readAndClearPreselect } from '../lib/preselect.js'
+import { clearPreselect, readAndClearPreselect } from '../lib/preselect.js'
 import './FinalForm.css'
 
 const EVENT_TYPES = [
@@ -94,6 +94,7 @@ export default function FinalForm() {
   useEffect(() => {
     function handlePreselect(e) {
       setValues((v) => ({ ...v, ...e.detail }))
+      clearPreselect()
     }
     window.addEventListener('miaso:preselect', handlePreselect)
     return () => window.removeEventListener('miaso:preselect', handlePreselect)
@@ -195,7 +196,7 @@ export default function FinalForm() {
               style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', opacity: 0 }}
             />
             <div className="final-form__grid">
-              {FIELDS.map(({ name, label, type, options, group, min, max }) => (
+              {FIELDS.map(({ name, label, type, options, group, min, max, required }) => (
                 <Fragment key={name}>
                   {group && <span className="final-form__group-label">{group}</span>}
                   <div
@@ -205,7 +206,7 @@ export default function FinalForm() {
                   >
                     <label htmlFor={`final-${name}`}>
                       {label}
-                      {FIELDS.find((f) => f.name === name).required && (
+                      {required && (
                         <span className="final-form__required" aria-hidden="true"> *</span>
                       )}
                     </label>

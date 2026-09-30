@@ -116,6 +116,10 @@
 }
 
 @media (max-width: 768px) {
+  .nav {
+    position: relative;
+  }
+
   .nav__links,
   .nav__actions {
     display: none;
@@ -126,8 +130,16 @@
   }
 
   /* Grid-template-rows 0fr->1fr instead of animating max-height/padding —
-     avoids layout thrash, GPU-friendly. Inner wrapper clips via overflow. */
+     avoids layout thrash, GPU-friendly. Inner wrapper clips via overflow.
+     Positioned out of flow (absolute, dropping below .nav via top:100%) so
+     opening/closing it can never change .topbar's own rendered height —
+     that height feeds --nav-height (App.jsx's ResizeObserver), which would
+     otherwise shove Hero's top padding down while the menu is open. */
   .nav__mobile-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     display: grid;
     grid-template-rows: 0fr;
     background: var(--bg);

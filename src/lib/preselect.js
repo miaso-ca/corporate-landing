@@ -31,3 +31,14 @@ export function readAndClearPreselect() {
     return {}
   }
 }
+
+// Used by FinalForm's live event listener, which already has the value
+// from the event itself - this only needs to clear storage so a later
+// page reload this same session doesn't re-apply a stale value.
+export function clearPreselect() {
+  try {
+    sessionStorage.removeItem(KEY)
+  } catch {
+    // Private browsing / storage disabled - nothing to clear.
+  }
+}

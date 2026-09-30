@@ -42,10 +42,12 @@ holiday catering, бронюють за 1-2 місяці наперед), авт
 - Кнопка **плавно скролить** до повної форми (`#quote`), автоматично
   підставляє Event type = `Holiday Party`.
 - Заявки з плашки маркуються джерелом `holiday-2026` — через існуючий
-  UTM-механізм (`utm_campaign: "holiday-2026"` пишеться в ту саму
+  UTM-механізм (`utm_content: "holiday-2026"` пишеться в ту саму
   `sessionStorage`-структуру, яку вже читає `getUtm()` у `submitLead.js`;
-  бекенд (`apps-script/Code.gs`) вже пише колонку `utm_campaign` в Sheet —
-  змін на бекенді не треба).
+  бекенд (`apps-script/Code.gs`) вже пише колонку `utm_content` в Sheet —
+  змін на бекенді не треба). Навмисно не `utm_campaign` — це зберегло б
+  реальну UTM-атрибуцію рекламної кампанії, якщо відвідувач прийшов з
+  оплаченої реклами і потім клікнув по плашці.
 - GA4 `generate_lead`-подія для таких заявок додатково несе параметр
   `campaign: "holiday-2026"` (розширення `trackLead()` в `analytics.js`).
 - Формулювання "Peak dates close 5 days ahead" **не використовувати**. За

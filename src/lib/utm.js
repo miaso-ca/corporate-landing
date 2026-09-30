@@ -32,14 +32,15 @@ export function getUtm() {
   }
 }
 
-// Same sessionStorage bucket getUtm() reads — lets an on-site interaction
-// (Holiday bar CTA) tag a lead's campaign the same way a real ad-click URL
-// would, with no separate plumbing on the Code.gs/Sheet side.
+// Writes into utm_content (not utm_campaign) so an on-site interaction like
+// the Holiday bar's CTA never overwrites a real ad's utm_campaign value for
+// a visitor who arrived from an actual paid campaign - utm_content is the
+// safe slot for this kind of supplementary, non-attribution tag.
 export function setCampaign(campaign) {
   try {
     const current = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '{}')
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, utm_campaign: campaign }))
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, utm_content: campaign }))
   } catch {
-    // Private browsing / storage disabled — best-effort, not worth failing over.
+    // Private browsing / storage disabled - best-effort, not worth failing over.
   }
 }

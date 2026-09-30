@@ -259,5 +259,8 @@ function leadSummaryLines(payload) {
   };
   return COLUMNS.filter(function (key) { return key !== 'timestamp'; })
     .filter(function (key) { return payload[key]; })
-    .map(function (key) { return labels[key] + ': ' + payload[key]; });
+    .map(function (key) {
+      var value = key === 'consent' ? (payload[key] === true ? 'Yes' : 'No') : payload[key];
+      return labels[key] + ': ' + value;
+    });
 }
