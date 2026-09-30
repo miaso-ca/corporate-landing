@@ -38,7 +38,7 @@ export async function submitLead(payload) {
     const data = await res.json()
     if (!data.ok) throw new Error('All notification channels failed')
 
-    trackLead(eventId)
+    trackLead(eventId, { campaign: getUtm().utm_campaign })
     return data
   } finally {
     clearTimeout(timeout)

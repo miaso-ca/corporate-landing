@@ -13,11 +13,13 @@ export function generateEventId() {
     : `${Date.now()}-${Math.random().toString(36).slice(2)}`
 }
 
-export function trackLead(eventId) {
+export function trackLead(eventId, extra) {
   if (typeof window.fbq === 'function') {
     window.fbq('track', 'Lead', {}, eventId ? { eventID: eventId } : undefined)
   }
-  if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead')
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'generate_lead', extra?.campaign ? { campaign: extra.campaign } : undefined)
+  }
 }
 
 // method: 'phone' | 'email'
@@ -30,4 +32,12 @@ export function trackContact(method) {
 export function trackSocialClick(network) {
   if (typeof window.fbq === 'function') window.fbq('trackCustom', 'SocialClick', { network })
   if (typeof window.gtag === 'function') window.gtag('event', 'social_click', { network })
+}
+
+// format: the catering format name shown on the card, e.g. "Mobile Cart" —
+// fired on click, before the smooth-scroll to the full form, so we can
+// measure click-to-submit drop-off separately from the form itself.
+export function trackCardClick(format) {
+  if (typeof window.fbq === 'function') window.fbq('trackCustom', 'CardClick', { format })
+  if (typeof window.gtag === 'function') window.gtag('event', 'card_click', { format })
 }
