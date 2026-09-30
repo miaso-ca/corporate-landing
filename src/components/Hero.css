@@ -1,30 +1,78 @@
 .hero {
-  padding: 0;
-  max-width: 1600px;
-  margin: 0 auto;
+  padding-top: calc(var(--nav-height) + 48px);
+  padding-bottom: 64px;
 }
 
-.hero__frame {
-  padding-bottom: 0;
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 64px);
 }
 
-.hero__photo {
+.hero__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.hero__title {
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.14;
+  color: var(--ink);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.hero__desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #4a3c2c;
+  margin: 0;
+  max-width: 480px;
+  text-wrap: pretty;
+}
+
+.hero__actions {
+  margin-top: 22px;
+}
+
+.hero__trust {
+  font-size: 12px;
+  color: #766859; /* WCAG AA on the cream page bg */
+  margin-top: 16px;
+  text-wrap: pretty;
+}
+
+.hero__media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero__video {
   position: relative;
-  /* `vh` on mobile Safari is computed against the viewport with the address
-     bar/toolbar collapsed — the tallest the page will ever get — not what's
-     actually visible on load, when that chrome is still showing. That made
-     88vh taller than the real visible area, pushing the CTA/"Watch" row
-     toward/past the fold (Chrome iOS doesn't have this quirk, which is why
-     it looked fine there). `svh` is the smallest possible viewport (chrome
-     fully shown) — guaranteed to fit without depending on scroll state.
-     `vh` stays first as a fallback for browsers without svh support. */
-  min-height: 88vh;
-  min-height: 88svh;
-  max-height: 900px;
+  width: 100%;
+  aspect-ratio: 16 / 9.3;
+  border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: 0 20px 48px rgba(43, 31, 20, 0.18);
 }
 
-.hero__photo img {
+.hero__video video,
+.hero__video-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.hero__video-play img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -32,177 +80,50 @@
   object-fit: cover;
 }
 
-/* Ken Burns: slow zoom-out on load, once, purely cosmetic */
-.hero__photo-img {
-  transform: scale(1.08);
-  animation: hero-kenburns 11s ease-out forwards;
-}
-@keyframes hero-kenburns {
-  from { transform: scale(1.08); }
-  to { transform: scale(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hero__photo-img {
-    animation: none;
-    transform: none;
-  }
-}
-
-.hero__gradient {
+.hero__video-icon {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(43, 31, 20, 0.12) 0%,
-    rgba(43, 31, 20, 0.4) 35%,
-    rgba(43, 31, 20, 0.72) 100%
-  );
-}
-
-.hero__photo-content {
-  /* Absolute+inset (not height:100%) — .hero__photo has no explicit `height`,
-     only min-height/max-height, so a percentage-height child resolves to
-     `auto` per spec and silently ignores the 100%. That's what broke
-     space-between: this element was only as tall as its own content, not
-     the full photo, so the card sat right under the headline instead of
-     being pushed to the bottom. inset:0 sidesteps the percentage-resolution
-     rule entirely by matching how .hero__gradient/.hero__photo img are
-     already positioned. */
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* Horizontal inset mirrors .section's own math (max-width:1120px, margin
-     auto, 24px padding) — (100vw - 1120px)/2 + 24px simplifies to
-     50vw - 536px — so the hero's left edge lines up with every section
-     below it instead of using an unrelated vw-based clamp. */
-  padding-left: clamp(24px, calc(50vw - 536px), 220px);
-  padding-right: clamp(24px, calc(50vw - 536px), 220px);
-  padding-bottom: clamp(24px, 5vw, 64px);
-  padding-top: clamp(92px, 12vw, 128px);
-  justify-content: space-between;
-  gap: 40px;
-}
-
-.hero__text-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.hero__title {
-  font-size: clamp(30px, 4.6vw, 52px);
-  line-height: 1.12;
-  color: #fff;
-  max-width: 620px;
-  text-wrap: balance;
-  /* Guarantees legibility against whatever the photo happens to show behind
-     the headline at any breakpoint/crop — measured on the narrowest tested
-     width (375px, where the headline wraps to 3 lines) that the existing
-     .hero__gradient alone lets a bright patch of the photo sit directly
-     behind the last line, dropping local contrast to ~1.7:1. A gradient
-     strong enough to fix that everywhere would flatten the photo; a text
-     shadow fixes it at the source regardless of crop or line count. */
-  text-shadow: 0 2px 24px rgba(43, 31, 20, 0.55), 0 1px 3px rgba(43, 31, 20, 0.4);
-  /* Baskervville's line-box has ~30px of leading above the actual glyph
-     cap-height at this size — the flex `gap` above can't touch that, so the
-     pill-to-headline gap looks much bigger than the gap value says. Pull
-     the box up to compensate; tuned empirically against real measurement,
-     not a font-metric formula. */
-  margin-top: -30px;
-}
-
-.hero__card {
-  background: var(--card);
-  border-radius: var(--radius-sm);
-  box-shadow: 0 14px 34px rgba(43, 31, 20, 0.16);
-  padding: 28px 32px 32px;
-  max-width: 640px;
-  width: 100%;
-}
-
-.hero__desc {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #4a3c2c;
-  margin: 0;
-  /* No max-width here on purpose - .hero__card's own max-width (640px)
-     already caps the line length. A tighter cap (520px) left a visible
-     dead-space gap on the right side of the card at desktop widths. */
-  text-wrap: pretty;
-}
-
-.hero__actions {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 18px;
-  flex-wrap: wrap;
-}
-
-.hero__watch {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: var(--ink);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: var(--font-sans);
-  font-size: 12px;
-  padding: 0;
-  /* 44px touch target — the 32px play circle stays the same visual size,
-     centered, the extra height is just tappable padding. */
-  min-height: 44px;
-}
-
-.hero__play {
-  width: 32px;
-  height: 32px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  border: 1.5px solid var(--ink);
+  background: rgba(255, 249, 243, 0.94);
+  color: var(--cta);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  flex-shrink: 0;
+  font-size: 20px;
+  transition: transform 0.2s var(--ease-out);
 }
 
-.hero__trust {
+@media (hover: hover) and (pointer: fine) {
+  .hero__video-play:hover .hero__video-icon {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+.hero__video-caption {
+  align-self: center;
   font-size: 11px;
-  color: #766859; /* WCAG AA on white card — #9c8a76 was only 3.3:1 */
-  margin-top: 14px;
-  text-wrap: pretty;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #766859;
+}
+
+@media (max-width: 860px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
-  .hero__photo { max-height: none; }
-  .hero__card { padding: 20px 20px 22px; max-width: none; }
-  /* Above this width, .hero__photo-content is position:absolute;inset:0 —
-     stretched to EXACTLY .hero__photo's own height (see the comment on
-     that rule), which relies on the pill+headline+card always fitting
-     inside that fixed height. That held on the devices/text this was
-     tuned against, but a 3-line headline plus a full card (desc + CTA +
-     watch link + trust line) can genuinely be taller than 78svh on some
-     real phones — a fixed-height absolute box can't grow for that, so the
-     content overflowed. With justify-content:flex-end (an earlier attempt
-     at closing the pill-to-card gap) the overflow spilled upward, badly
-     enough to render on top of the fixed nav bar.
-
-     Fix: take .hero__photo-content out of absolute positioning here and
-     let it sit in normal flow. min-height keeps the usual tall-hero look
-     when content is short, but now it's a FLOOR, not a fixed box the
-     content must be clipped/overlapped to fit inside — .hero__photo grows
-     to match however tall the content actually needs to be, and the
-     absolutely-positioned img/gradient behind it (inset:0, unaffected)
-     stretch to cover whatever height that ends up being. */
-  .hero__photo-content {
-    position: relative;
-    inset: auto;
-    min-height: 78vh;
-    min-height: 78svh;
-    justify-content: flex-end;
+  .hero {
+    padding-top: calc(var(--nav-height) + 32px);
+    padding-bottom: 48px;
+  }
+  .hero__desc {
+    max-width: none;
   }
 }
