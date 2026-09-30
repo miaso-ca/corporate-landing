@@ -1,18 +1,19 @@
 .nav {
+  /* Fixed positioning now lives on .topbar (App.jsx), which wraps this
+     together with the optional Holiday bar above it — Nav itself just
+     flows normally inside that fixed wrapper. */
+  background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.28s var(--ease-out), border-color 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-out);
+}
+
+.topbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-  /* Was a dark transparent gradient with white text, tuned for sitting on
-     top of Hero's old full-bleed photo. The redesigned Hero has a plain
-     cream background from the very top now, so the nav needs the same
-     solid/light look from the first frame — not just after the old
-     scroll-triggered "solid" state. */
-  background: var(--bg);
-  border-bottom: 1px solid transparent;
-  transition: background-color 0.28s var(--ease-out), border-color 0.28s var(--ease-out),
-    box-shadow 0.28s var(--ease-out);
 }
 
 .nav--solid {
