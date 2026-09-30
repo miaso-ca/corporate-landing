@@ -1,6 +1,12 @@
 .hero {
+  /* Same safe-zone column every other section uses (.section in tokens.css)
+     — Hero keeps its own vertical rhythm instead of reusing that class. */
+  max-width: 1120px;
+  margin: 0 auto;
   padding-top: calc(var(--nav-height) + 48px);
   padding-bottom: 64px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .hero__grid {
