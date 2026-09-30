@@ -1,0 +1,49 @@
+/* Shared .video-modal__close (tokens.css) renders a bare 25x27px glyph —
+   under the 44px touch-target minimum. Scoped override here enlarges the
+   hit area without changing how the × looks. */
+.video-modal__box--info .video-modal__close {
+  top: 4px;
+  right: 4px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal__box--info h3 {
+  text-wrap: balance;
+}
+
+.video-modal__box--info p {
+  text-wrap: pretty;
+}
+
+/* Video variant: the base .video-modal__box (tokens.css) is sized and
+   padded for the short text placeholder — a real video needs to fill a
+   much wider box with no padding eating into the frame.
+   Two-class selector (not just `.video-modal__box--video`) is deliberate:
+   it needs specificity strictly higher than tokens.css's own
+   `.video-modal__box` rule (max-width:420px) to win regardless of
+   stylesheet concatenation order — same pattern already used in
+   CateringOptions.css for the equivalent problem. */
+.video-modal__box.video-modal__box--video {
+  max-width: 900px;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.video-modal__box--video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.video-modal__box--video .video-modal__close {
+  background: rgba(43, 31, 20, 0.55);
+  color: #fff;
+  border-radius: 50%;
+}
