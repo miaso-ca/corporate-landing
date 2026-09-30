@@ -2,6 +2,7 @@ import { Fragment, useRef, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import { trackContact } from '../lib/analytics.js'
 import useReveal from '../hooks/useReveal.js'
+import { readAndClearPreselect } from '../lib/preselect.js'
 import './FinalForm.css'
 
 const EVENT_TYPES = [
@@ -9,6 +10,10 @@ const EVENT_TYPES = [
   'Team Celebration',
   'Client Event',
   'Company Milestone',
+  'Holiday Party',
+  'Conference / Expo',
+  'Product Launch',
+  'Gala',
   'Not sure yet',
 ]
 
@@ -52,6 +57,7 @@ const FIELDS = [
   { name: 'eventDate', label: 'Event Date', type: 'date', required: false },
   { name: 'guests', label: 'Number of Guests', type: 'number', required: true, min: 1, max: 2000 },
   { name: 'venue', label: 'Venue or Location', type: 'text', required: false },
+  { name: 'postalCode', label: 'Postal Code', type: 'text', required: false },
   { name: 'budget', label: 'Approximate Budget', type: 'select', required: true, options: BUDGET_RANGES },
   { name: 'format', label: 'Preferred Catering Format', type: 'select', required: true, options: CATERING_FORMATS },
   { name: 'dietary', label: 'Dietary Requirements', type: 'textarea', required: false, group: 'Anything Else?' },
@@ -82,7 +88,8 @@ function isValidPhone(value) {
 
 export default function FinalForm() {
   const { ref, visible } = useReveal()
-  const [values, setValues] = useState(INITIAL_VALUES)
+  const [values, setValues] = useState(() => ({ ...INITIAL_VALUES, ...readAndClearPreselect() }))
+  const [consent, setConsent] = useState(false)
   const [errors, setErrors] = useState({})
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
@@ -142,7 +149,7 @@ export default function FinalForm() {
     setSubmitting(true)
     setSubmitError('')
     try {
-      await submitLead({ ...values, source: 'full-form' })
+      await submitLead({ ...values, consent, source: 'full-form' })
       setDone(true)
     } catch (err) {
       setSubmitError('Something went wrong — please try again, or call us at 416-613-0078.')
@@ -189,7 +196,12 @@ export default function FinalForm() {
                       type === 'textarea' ? ' final-form__field--full' : ''
                     }`}
                   >
-                    <label htmlFor={`final-${name}`}>{label}</label>
+                    <label htmlFor={`final-${name}`}>
+                      {label}
+                      {FIELDS.find((f) => f.name === name).required && (
+                        <span className="final-form__required" aria-hidden="true"> *</span>
+                      )}
+                    </label>
                     {type === 'select' ? (
                       <select
                         id={`final-${name}`}
@@ -228,6 +240,12 @@ export default function FinalForm() {
                 </Fragment>
               ))}
             </div>
+
+            <label className="final-form__consent">
+              <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+              I agree to receive news and special offers from MIASO by email, SMS and WhatsApp. I
+              can unsubscribe at any time.
+            </label>
 
             {submitError && <p className="final-form__error final-form__error--submit">{submitError}</p>}
             <button className="btn" type="submit" disabled={submitting}>

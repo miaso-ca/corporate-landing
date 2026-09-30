@@ -79,6 +79,25 @@
   color: #6b5c48; /* WCAG AA on white card background */
 }
 
+.final-form__required {
+  color: var(--cta);
+}
+
+.final-form__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #4a3c2c;
+  margin-top: 4px;
+}
+
+.final-form__consent input {
+  margin-top: 3px;
+  flex: none;
+}
+
 .final-form__field input,
 .final-form__field select,
 .final-form__field textarea {
