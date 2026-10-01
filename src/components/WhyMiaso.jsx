@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import './WhyMiaso.css'
-import useReveal from '../hooks/useReveal.js'
 import photo1 from '../assets/photos/gallery/mixed-canapes-trio-spread.jpg'
 import photo2 from '../assets/photos/gallery/tuna-tartare-cucumber-cups.jpg'
 import photo3 from '../assets/photos/gallery/salmon-skewers-lime.jpg'
@@ -68,13 +67,12 @@ function PhotoCarousel({ photos }) {
 }
 
 export default function WhyMiaso() {
-  const { ref, visible } = useReveal()
+  // No reveal wrapper here on purpose - see CateringOptions.jsx for the
+  // full explanation. This section (heading + carousel + 7-item checklist)
+  // was tall enough that the whole-section IntersectionObserver didn't
+  // reliably clear its 0.15 threshold right after it came into view.
   return (
-    <section
-      className={`section reveal ${visible ? 'reveal--visible' : ''}`}
-      id="why-miaso"
-      ref={ref}
-    >
+    <section className="section" id="why-miaso">
       <h2 className="why-miaso__heading">
         You Manage the Event <span className="why-miaso__arrow">→</span> We Manage the Catering
         Details.

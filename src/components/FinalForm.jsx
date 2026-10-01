@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { submitLead } from '../lib/submitLead.js'
 import { trackContact } from '../lib/analytics.js'
-import useReveal from '../hooks/useReveal.js'
 import { clearPreselect, readAndClearPreselect } from '../lib/preselect.js'
 import './FinalForm.css'
 
@@ -87,7 +86,12 @@ function isValidPhone(value) {
 }
 
 export default function FinalForm() {
-  const { ref, visible } = useReveal()
+  // No reveal wrapper here on purpose - see CateringOptions.jsx for the
+  // full explanation. This form (11 fields) was tall enough that the
+  // whole-form IntersectionObserver often didn't clear its 0.15 threshold
+  // until well after a visitor had already scrolled past where the form
+  // starts, leaving it invisible - a real problem for a form specifically,
+  // since landing here via "Request a Quote" should show it immediately.
   const [values, setValues] = useState(() => ({ ...INITIAL_VALUES, ...readAndClearPreselect() }))
   const [consent, setConsent] = useState(false)
   const [errors, setErrors] = useState({})
@@ -169,7 +173,7 @@ export default function FinalForm() {
 
   return (
     <section className="section" id="quote">
-      <div className={`final-form reveal ${visible ? 'reveal--visible' : ''}`} ref={ref}>
+      <div className="final-form">
         <h2>Let&rsquo;s Plan an Event Your Guests Will Remember</h2>
         <p className="final-form__intro">
           Tell us a little about your event, and we&rsquo;ll recommend the right catering format

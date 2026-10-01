@@ -135,7 +135,13 @@ export default function SocialProof() {
           </p>
         </Reveal>
 
-        <Reveal delay={100} className="social-proof__top">
+        {/* Plain div, not <Reveal>, on purpose - see CateringOptions.jsx
+            for the full explanation. Wrapping video+reviews together in
+            one whole-block reveal meant ClientVideo's own, correctly-sized
+            reveal (which decides when the video starts playing) could
+            fire fine while still rendering invisible, stuck behind this
+            larger parent's own 0.15 threshold not having cleared yet. */}
+        <div className="social-proof__top">
           <ClientVideo />
           <div className="social-proof__reviews">
             {visible.map((r) => (
@@ -149,7 +155,7 @@ export default function SocialProof() {
               </div>
             ))}
           </div>
-        </Reveal>
+        </div>
 
         {pageCount > 1 && (
           <div className="social-proof__reviews-nav">

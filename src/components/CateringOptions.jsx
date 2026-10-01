@@ -147,13 +147,17 @@ function CateringCard({ option, delay }) {
 }
 
 export default function CateringOptions() {
-  const { ref, visible } = useReveal()
+  // No top-level reveal here on purpose - this section is tall (5 cards +
+  // quote form), and a single IntersectionObserver at the usual 0.15
+  // threshold needs 15% of THIS WHOLE section visible before it fires.
+  // Landing anywhere near its top (the common case, scrolling down from
+  // StatsBar) showed far less than that, so the entire section - including
+  // every card's own, individually-correct reveal nested inside it - sat
+  // multiplied by this parent's stuck opacity:0 and stayed invisible until
+  // scrolling well past the heading. Confirmed on a real phone. Each card
+  // below already has its own appropriately-sized reveal; that's enough.
   return (
-    <section
-      className={`section reveal ${visible ? 'reveal--visible' : ''}`}
-      id="catering-options"
-      ref={ref}
-    >
+    <section className="section" id="catering-options">
       <h2>One Catering Partner for Every Corporate Occasion</h2>
       <p className="catering-options__intro">
         Whether you are planning a boardroom lunch, client reception, conference or company

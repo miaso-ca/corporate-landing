@@ -1,4 +1,3 @@
-import useReveal from '../hooks/useReveal.js'
 import './HowItWorks.css'
 
 const STEPS = [
@@ -21,14 +20,13 @@ const STEPS = [
 ]
 
 export default function HowItWorks({ onRequestQuote }) {
-  const { ref, visible } = useReveal()
+  // No reveal wrapper here on purpose - see CateringOptions.jsx for the
+  // full explanation. This section (intro + 4 steps) was tall enough that
+  // the whole-section IntersectionObserver didn't reliably clear its 0.15
+  // threshold right after it came into view.
 
   return (
-    <section
-      className={`section reveal ${visible ? 'reveal--visible' : ''}`}
-      id="how-it-works"
-      ref={ref}
-    >
+    <section className="section" id="how-it-works">
       <div className="how-it-works__panel">
         <h2>From Your Brief to a Beautifully Served Event</h2>
         <p className="how-it-works__intro">

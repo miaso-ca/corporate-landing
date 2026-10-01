@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import useReveal from '../hooks/useReveal.js'
 import './FAQ.css'
 
 const FAQS = [
@@ -47,10 +46,14 @@ const FAQS = [
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null)
-  const { ref, visible } = useReveal()
+  // No reveal wrapper here on purpose - see CateringOptions.jsx for the
+  // full explanation. This section (10 FAQ items) was tall enough that the
+  // single whole-section IntersectionObserver often didn't clear its 0.15
+  // threshold until well past the point a visitor would expect to see it,
+  // leaving the whole FAQ invisible in the meantime.
 
   return (
-    <section className={`section reveal ${visible ? 'reveal--visible' : ''}`} id="faq" ref={ref}>
+    <section className="section" id="faq">
       <div className="faq__panel">
         <h2>Frequently Asked Questions</h2>
         <div className="faq__list">
