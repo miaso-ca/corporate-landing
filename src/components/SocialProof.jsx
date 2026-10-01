@@ -78,19 +78,26 @@ function Reveal({ delay = 0, className = '', children }) {
 
 function ClientVideo() {
   const videoRef = useRef(null)
+  // Was `autoPlay` on the <video> tag itself, which starts downloading the
+  // full 3MB file the instant this component mounts - on initial page
+  // load, same wave as the Hero poster/JS/CSS, even though this section is
+  // several screens below the fold. Gate playback (and preload) behind the
+  // same scroll-reveal IntersectionObserver every other section already
+  // uses, so the download only starts once a visitor actually scrolls here.
+  const { ref, visible } = useReveal()
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      videoRef.current?.pause()
-    }
-  }, [])
+    if (!visible) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    videoRef.current?.play().catch(() => {})
+  }, [visible])
 
   return (
-    <div className="social-proof__video">
+    <div className="social-proof__video" ref={ref}>
       <video
         ref={videoRef}
         src={clientVideo}
-        autoPlay
+        preload="none"
         muted
         loop
         playsInline
