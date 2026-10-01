@@ -13,6 +13,10 @@ const REVIEWS = [
     text: 'I had an amazing experience with MIASO catering! The food was absolutely delicious, beautifully presented, and made with high-quality ingredients. Every dish was fresh, flavorful, and thoughtfully prepared. The service was professional, and very attentive to details. The team made everything stress-free. MIASO truly exceeded expectations and added a special touch to our event. I highly recommend them to anyone looking for exceptional catering services. We will definitely book them again!',
   },
   {
+    name: 'Lauren Mitchell',
+    text: 'MIASO catered a team appreciation event at our Toronto office, and everything was excellent. The menu offered plenty of variety, the food arrived fresh and on time, and the setup looked polished. Our entire team had wonderful things to say.',
+  },
+  {
     name: 'Ulyana Nepelyak',
     text: 'I highly recommend this service! Everything was absolutely delicious and all my guests loved the catering. Thank you MIASO Catering for making my event so special!!!',
   },
