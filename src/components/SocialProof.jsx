@@ -36,6 +36,30 @@ const REVIEWS = [
     name: 'James Wilson',
     text: 'Our guests are still talking about the food. Every dish was full of flavour and presented with care. The MIASO team was friendly, flexible, and professional throughout the event. They helped create a warm and memorable experience for everyone.',
   },
+  {
+    name: 'Richa Roy',
+    text: 'Miaso’s grazing platters and gift boxes are perfect for spoiling loved ones or yourself, no judgement here. We tried their solo box and fell in love — you could definitely taste the freshness of each ingredient! From a curated selection of artisan meats to fine cheeses and even crackers, this box had it all. Valentina really is passionate about creating an experience. With catering, charcuterie carts and much more, MIASO has countless options to make your event memorable — highly recommended!',
+  },
+  {
+    name: 'Anyuta',
+    text: 'I had a very pleasant experience working with them! Everything was organized professionally and smoothly. The event turned out wonderful, and the guests absolutely loved the charcuterie bar — it looked beautiful and tasted amazing. Thank you for the great service and atmosphere. I would definitely work with you again!',
+  },
+  {
+    name: 'Sviatoslav Vyshnevskyi',
+    text: 'We had an amazing experience with MIASO Catering! Valentina and her team did an incredible job from start to finish. The food was absolutely delicious, beautifully presented, and everything was handled with such professionalism and care. Highly recommend Valentina and her team if you’re looking for quality, reliability, and great service.',
+  },
+  {
+    name: 'Olgacontect',
+    text: 'I ordered catering for my birthday party for 30 people, and it was honestly the best decision! Everything was incredibly delicious, fresh, and beautifully presented. My guests kept asking where the food was from because they loved it so much. The service was also amazing — everything was organized perfectly and delivered on time. It made my celebration completely stress-free. Highly recommend!',
+  },
+  {
+    name: 'Dilia Iavari',
+    text: 'Incredible experience! The menu variety was impressive and every dish was seasoned to perfection. It’s rare to find catering where the food tastes just as good as it looks, but they nailed it. Everything arrived on time, hot and delicious. They really elevated our event and I can’t wait to work with them again!',
+  },
+  {
+    name: 'Olya Stefurak',
+    text: 'Extremely pleasant experience working with MIASO. Everything was fresh, the delivery was fast and they were really helpful in answering all my questions. Highly recommend!',
+  },
 ]
 const REVIEWS_PER_PAGE = 3
 
