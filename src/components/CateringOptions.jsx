@@ -11,7 +11,7 @@ import cartWidePhoto from '../assets/photos/catering-cart-wide.webp'
 
 const OPTIONS = [
   {
-    title: 'Office Lunches & Drop-Off Catering',
+    title: 'Office Lunches & Drop-Off Catering',
     priceLine: 'Coffee breaks from $13.50/guest',
     minimum: null,
     description:
@@ -43,7 +43,7 @@ const OPTIONS = [
   {
     title: 'Individual Cups & Boats',
     priceLine: 'From $14.50 each, down to $12 at 200+',
-    minimum: '10 cups',
+    minimum: '10 cups',
     description:
       'Individually portioned charcuterie cups and grazing boats, prepared for easy serving at meetings, conferences, networking events and team celebrations. A polished, convenient option with minimal setup and cleanup.',
     bestFor: 'meetings, networking events, team celebrations',
@@ -56,7 +56,7 @@ const OPTIONS = [
   },
   {
     title: 'Mobile Cart',
-    priceLine: 'From $22/guest + setup · 2-hour staffed service',
+    priceLine: 'From $22/guest + setup · 2-hour staffed service',
     minimum: null,
     description:
       'A fully refrigerated, staffed and styled food cart with charcuterie, salad or sandwich menus. A memorable focal point for conferences, expos, brand activations and company celebrations.',

@@ -252,7 +252,7 @@ export default function FinalForm() {
             <label className="final-form__consent">
               <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
               I agree to receive news and special offers from MIASO by email, SMS and WhatsApp. I
-              can unsubscribe at any time.
+              can unsubscribe at any{' '}time.
             </label>
 
             {submitError && <p className="final-form__error final-form__error--submit">{submitError}</p>}

@@ -187,7 +187,7 @@ export default function QuickCaptureForm({ source }) {
       <label className="quick-form__consent">
         <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
         I agree to receive news and special offers from MIASO by email, SMS and WhatsApp. I can
-        unsubscribe at any time.
+        unsubscribe at any{' '}time.
       </label>
       {submitError && <span className="quick-form__error quick-form__error--submit">{submitError}</span>}
       <button className="btn" type="submit" disabled={submitting}>

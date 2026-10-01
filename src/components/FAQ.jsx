@@ -16,19 +16,19 @@ const FAQS = [
     a: 'Boards and cups: 24 hours. Grazing tables: 72 hours. Mobile Cart and full-service catering: 5-7 days. Holiday dates are limited, so book early.',
   },
   {
-    q: 'What is included - setup, staffing and cleanup?',
+    q: 'What is included - setup, staffing and cleanup?',
     a: 'Drop-off orders arrive ready to serve. Grazing tables and catering include delivery, styling and setup; staffing and cleanup can be added. The Mobile Cart includes a staffed two-hour service.',
   },
   {
-    q: 'Do you deliver across Toronto and the GTA?',
+    q: 'Do you deliver across Toronto and the GTA?',
     a: 'Yes. Delivery is priced by distance zone and shown in your quote, with morning delivery windows for office orders.',
   },
   {
-    q: 'Can you accommodate dietary requirements?',
+    q: 'Can you accommodate dietary requirements?',
     a: 'Yes - vegetarian, Halal-friendly, Kosher-friendly and allergy-aware options are available. List every requirement in your request and we will confirm them in your quote.',
   },
   {
-    q: 'Can you provide catering and bar service together?',
+    q: 'Can you provide catering and bar service together?',
     a: 'Yes. Through our long-time partner North Spirit Distillery, we add bartenders, mixers and glassware to your booking - one quote, one point of contact.',
   },
   {
@@ -36,7 +36,7 @@ const FAQS = [
     a: 'Yes. Weekly or monthly breakfasts, lunches and coffee breaks can run as a standing order with a fixed or rotating menu.',
   },
   {
-    q: 'What types of corporate events do you cater?',
+    q: 'What types of corporate events do you cater?',
     a: 'Office lunches, meetings, training days, client receptions, conferences, expos, product launches, holiday parties and team celebrations - from small team orders to large receptions.',
   },
   {
