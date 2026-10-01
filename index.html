@@ -24,7 +24,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Loaded as a non-blocking preload instead of a plain stylesheet link -
+         a plain <link rel="stylesheet"> here was the single biggest
+         render-blocking request on the page (Lighthouse flagged ~900ms):
+         the browser painted nothing at all until this round-trip to
+         fonts.googleapis.com finished. This preload+onload swap is the
+         standard async-CSS pattern - text now paints immediately in the
+         fallback font and swaps to Baskervville/Josefin Sans once it
+         arrives, instead of blocking first paint on it. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Josefin+Sans:wght@400;500;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Josefin+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </noscript>
 
     <!-- Google Analytics 4 (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SS6HTCGBYL"></script>
