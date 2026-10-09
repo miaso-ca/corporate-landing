@@ -113,7 +113,9 @@ export default function FinalForm() {
   const submittingRef = useRef(false)
 
   function handleChange(name, value) {
-    setValues((v) => ({ ...v, [name]: value }))
+    // type="tel" lets any character be typed; drop non-phone characters as they are entered.
+    const next = name === 'phone' ? value.replace(/[^+\d\s().-]/g, '') : value
+    setValues((v) => ({ ...v, [name]: next }))
   }
 
   function validate() {
